@@ -29,8 +29,8 @@
     },
     {
       "path": "README.en.md",
-      "size": 9292,
-      "sha256": "bd0e4c727162890a12b9ef9e655ace3cd6c12f2c6336a5cd42069af3706ad062",
+      "size": 9375,
+      "sha256": "fa8a16cfbe9bea7d7868ce3129af7a415509a498f93075fb2fd21709410300cd",
       "lfs": false
     },
     {
@@ -41,8 +41,8 @@
     },
     {
       "path": "demos/android/README.md",
-      "size": 2642,
-      "sha256": "82b9a53d41edb133e5d4ddff8a8951391043ac15fc045ea1aa5d600157b6f9a0",
+      "size": 1784,
+      "sha256": "117c5a94eb0dda03d4546e563a0ee7f2423f96b76c052e12b9baca36b7a68ad5",
       "lfs": false
     },
     {
@@ -575,8 +575,14 @@
     },
     {
       "path": "licenses/THIRD_PARTY_NOTICES.md",
-      "size": 1884,
-      "sha256": "058d078db989bfca73d7b5699a8e91856a0b2165a5c419f3689a5099030b6da2",
+      "size": 2500,
+      "sha256": "32121fea77b0b475511c5936ca6117ff21dae2e38a6f97a8af7e47d62d7583b6",
+      "lfs": false
+    },
+    {
+      "path": "licenses/third-party/MediaPipe-LICENSE.txt",
+      "size": 12549,
+      "sha256": "364aafdc6c88e810a89323e46a2c50b7e5e2e67076c89d20eb9732031fa36a3b",
       "lfs": false
     },
     {
@@ -589,6 +595,12 @@
       "path": "licenses/third-party/MediaPipeTasksVision-LICENSE.txt",
       "size": 12331,
       "sha256": "8707eef0533987efc5b155d64761eeb6e20793f50b9bd1a68dad1cf4719d0ed8",
+      "lfs": false
+    },
+    {
+      "path": "licenses/third-party/metal-cpp-LICENSE.txt",
+      "size": 11344,
+      "sha256": "f4e92c7fe2aa066e294c0da9d08683dc9fb741ee6e6debbfad99a0c96e07c1f2",
       "lfs": false
     },
     {

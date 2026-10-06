@@ -145,7 +145,7 @@ See [integration details](docs/INTEGRATION.md) and [platform status](docs/PLATFO
 
 ## Validation and performance
 
-Build and runtime status are recorded in `manifest/platforms.json`. Some Windows/Linux binaries are retained from previous delivery builds; cross-compilation does not substitute for target-device testing.
+Build and runtime status are recorded in `manifest/platforms.json`; this release's checks are listed in [distribution validation](docs/VALIDATION.md). Some Windows/Linux binaries are retained from previous delivery builds; cross-compilation does not substitute for target-device testing.
 
 A recent Snapdragon 8 Gen 2 test measured 29.99 FPS on average at 1080×1920 with default effects over 30 seconds, using a **static portrait displayed on a screen**. This is not live-person or sustained thermal acceptance, and does not imply 30 FPS on every flagship device. The iPhone 8 Plus targets of 480p/30 FPS and 720p/25 FPS remain optimization goals.
 
