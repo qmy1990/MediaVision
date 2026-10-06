@@ -1,0 +1,41 @@
+Moon MediaVision SDK Binary Integration License
+Version 1.0 — 2026-10-07
+Copyright (c) 2026 Moon
+
+1. Grant
+Moon grants you a worldwide, non-exclusive, royalty-free permission to use,
+copy and distribute the supplied Moon SDK binaries in personal and commercial
+applications, and to distribute unmodified SDK binary packages with this
+license and applicable third-party notices. No application usage fee is due
+to Moon under this license.
+
+2. Scope
+This permission applies to Moon's compiled SDK libraries. Public API headers,
+authored demos, integration tools and documentation have a separate MIT
+license. This license does not grant access to or ownership of the proprietary
+SDK implementation, shader source or unreleased models. Model packages and
+third-party runtimes remain subject to their respective upstream licenses.
+
+3. Notices and identity
+Retain this license and applicable notices when distributing SDK binary
+packages. You may identify your application as using MediaVision, but this
+license does not authorize presenting your product as an official Moon
+product or imply endorsement. No license to trademarks is granted.
+
+4. Third parties and demonstration media
+Third-party license terms prevail for their respective components. Example
+videos are provided for this project's effect demonstrations and do not grant
+independent rights to the depicted person's likeness.
+
+5. Warranty and liability
+THE SDK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, MOON IS
+NOT LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM USE OF THE
+SDK. No support commitment, availability guarantee or performance guarantee
+is included.
+
+中文说明：Moon 自有 SDK 二进制允许免费用于个人及商业应用，并可随应用分发；
+未修改的 SDK 包可连同本授权和第三方声明分发。核心源码与 shader 源码不随包提供。
+公开 Demo、接入工具和公共头文件使用 MIT；第三方模型及运行库各自的许可证仍适用。
+SDK 按现状提供，不附效果、性能或维护保证。英文条款为完整授权文本。

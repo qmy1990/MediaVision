@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07A02B17DCA75AAC4F819CF8 /* Vision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65F78FA82E881BFB0AF4CDC /* Vision.framework */; };
+		1B64A2289F9B70EE5F4E84E8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C57E996E0B041FEE6ADDD5A1 /* CoreMedia.framework */; };
+		375A6933F8AFA583D91C68BD /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED0401F1098D12FA5BF3DDE /* MetalKit.framework */; };
+		39B055C63D33E34917258BA8 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20263210139187CEDA4B6709 /* CoreML.framework */; };
+		4257BBAF7DD1437C752ED956 /* MediaVisionSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5979AEBBC956BAF6C1EC1FE0 /* MediaVisionSDK.xcframework */; };
+		6A3358049DBEF4720050667E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF53B5E2EA103431F9D958EF /* CoreGraphics.framework */; };
+		6C9B773EA921CAF5B89A13E4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1062D9D262F207B566079D5B /* CoreVideo.framework */; };
+		7966ED51A75B7FCD08AB9D0C /* MediaVisionSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5979AEBBC956BAF6C1EC1FE0 /* MediaVisionSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7AA56B04673DE83EC548D1D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC854B727D990383D67A841 /* UIKit.framework */; };
+		885C05A734716BF9CA712150 /* mediavision.mvsmodels in Resources */ = {isa = PBXBuildFile; fileRef = 056A3DB66D6DC01052DE4ADB /* mediavision.mvsmodels */; };
+		8E78B3760BBCA22CE1BDE622 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0238F99DA3C905764F97A041 /* AVFoundation.framework */; };
+		986F4B6C3D9BC6B98C2B010C /* MVSCameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7570495AAD0CB0BAFF604B17 /* MVSCameraViewController.mm */; };
+		ACD377A296A62A07E39E5148 /* MVSAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 60DDDD0F8B18ADAB279234D3 /* MVSAppDelegate.mm */; };
+		B31A7903E4B8DB1F55739D91 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A30E17CBF8866B592CA7B515 /* CoreImage.framework */; };
+		CA2E4C05F0582018266E18B4 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCDE82AF9DCC0F97490A1AE5 /* Accelerate.framework */; };
+		D6CB9616ACAD58A5CAFA7C62 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AC15F9614A32682A9D94E8 /* QuartzCore.framework */; };
+		E77411F31843C620B316A9B5 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9D97519D76EFB12A90A66AE /* Metal.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		09807563C4D17AB3D8612FE7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7966ED51A75B7FCD08AB9D0C /* MediaVisionSDK.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0238F99DA3C905764F97A041 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		056A3DB66D6DC01052DE4ADB /* mediavision.mvsmodels */ = {isa = PBXFileReference; path = mediavision.mvsmodels; sourceTree = "<group>"; };
+		1062D9D262F207B566079D5B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		20263210139187CEDA4B6709 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+		3A68B1200EA37AB1EA85D578 /* MediaVisionDemo.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MediaVisionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5979AEBBC956BAF6C1EC1FE0 /* MediaVisionSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MediaVisionSDK.xcframework; path = ../../sdk/ios/MediaVisionSDK.xcframework; sourceTree = "<group>"; };
+		60DDDD0F8B18ADAB279234D3 /* MVSAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MVSAppDelegate.mm; sourceTree = "<group>"; };
+		6ED0401F1098D12FA5BF3DDE /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		7570495AAD0CB0BAFF604B17 /* MVSCameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MVSCameraViewController.mm; sourceTree = "<group>"; };
+		A30E17CBF8866B592CA7B515 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		A5AC15F9614A32682A9D94E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AF53B5E2EA103431F9D958EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C57E996E0B041FEE6ADDD5A1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C65F78FA82E881BFB0AF4CDC /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = System/Library/Frameworks/Vision.framework; sourceTree = SDKROOT; };
+		D7D807CB20EDEB38D12BE3E4 /* MVSCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVSCameraViewController.h; sourceTree = "<group>"; };
+		DCDE82AF9DCC0F97490A1AE5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		DEC854B727D990383D67A841 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F9D97519D76EFB12A90A66AE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DE008C2438B1F055ABE2016E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4257BBAF7DD1437C752ED956 /* MediaVisionSDK.xcframework in Frameworks */,
+				8E78B3760BBCA22CE1BDE622 /* AVFoundation.framework in Frameworks */,
+				CA2E4C05F0582018266E18B4 /* Accelerate.framework in Frameworks */,
+				375A6933F8AFA583D91C68BD /* MetalKit.framework in Frameworks */,
+				B31A7903E4B8DB1F55739D91 /* CoreImage.framework in Frameworks */,
+				6A3358049DBEF4720050667E /* CoreGraphics.framework in Frameworks */,
+				7AA56B04673DE83EC548D1D9 /* UIKit.framework in Frameworks */,
+				E77411F31843C620B316A9B5 /* Metal.framework in Frameworks */,
+				6C9B773EA921CAF5B89A13E4 /* CoreVideo.framework in Frameworks */,
+				1B64A2289F9B70EE5F4E84E8 /* CoreMedia.framework in Frameworks */,
+				39B055C63D33E34917258BA8 /* CoreML.framework in Frameworks */,
+				07A02B17DCA75AAC4F819CF8 /* Vision.framework in Frameworks */,
+				D6CB9616ACAD58A5CAFA7C62 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		14A583A4A52A32D8253379A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A68B1200EA37AB1EA85D578 /* MediaVisionDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C96052ABBF4ADC096F1D77D = {
+			isa = PBXGroup;
+			children = (
+				59FD2EFC9A84BEC99B4DAF1F /* ios */,
+				614707E672D903771877D3C7 /* ios */,
+				DA2E929616CB93A9BD533B5A /* Frameworks */,
+				14A583A4A52A32D8253379A4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		59FD2EFC9A84BEC99B4DAF1F /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				60DDDD0F8B18ADAB279234D3 /* MVSAppDelegate.mm */,
+				D7D807CB20EDEB38D12BE3E4 /* MVSCameraViewController.h */,
+				7570495AAD0CB0BAFF604B17 /* MVSCameraViewController.mm */,
+			);
+			name = ios;
+			path = .;
+			sourceTree = "<group>";
+		};
+		614707E672D903771877D3C7 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				056A3DB66D6DC01052DE4ADB /* mediavision.mvsmodels */,
+			);
+			name = ios;
+			path = ../../models/ios;
+			sourceTree = "<group>";
+		};
+		DA2E929616CB93A9BD533B5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DCDE82AF9DCC0F97490A1AE5 /* Accelerate.framework */,
+				0238F99DA3C905764F97A041 /* AVFoundation.framework */,
+				AF53B5E2EA103431F9D958EF /* CoreGraphics.framework */,
+				A30E17CBF8866B592CA7B515 /* CoreImage.framework */,
+				C57E996E0B041FEE6ADDD5A1 /* CoreMedia.framework */,
+				20263210139187CEDA4B6709 /* CoreML.framework */,
+				1062D9D262F207B566079D5B /* CoreVideo.framework */,
+				5979AEBBC956BAF6C1EC1FE0 /* MediaVisionSDK.xcframework */,
+				F9D97519D76EFB12A90A66AE /* Metal.framework */,
+				6ED0401F1098D12FA5BF3DDE /* MetalKit.framework */,
+				A5AC15F9614A32682A9D94E8 /* QuartzCore.framework */,
+				DEC854B727D990383D67A841 /* UIKit.framework */,
+				C65F78FA82E881BFB0AF4CDC /* Vision.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29AD66B8CFEB42706CE2F5B5 /* MediaVisionDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 884C401D7D05C731751D94A7 /* Build configuration list for PBXNativeTarget "MediaVisionDemo" */;
+			buildPhases = (
+				54196663FADF7ADD5CF6A868 /* Sources */,
+				893724BF0CBAC07535AFBD68 /* Resources */,
+				DE008C2438B1F055ABE2016E /* Frameworks */,
+				09807563C4D17AB3D8612FE7 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MediaVisionDemo;
+			productName = MediaVisionDemo;
+			productReference = 3A68B1200EA37AB1EA85D578 /* MediaVisionDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FDCB1CD1575741E08C273DCA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 06D1B16E21D0D03BA2FF198F /* Build configuration list for PBXProject "MediaVisionDemo" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 2C96052ABBF4ADC096F1D77D;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29AD66B8CFEB42706CE2F5B5 /* MediaVisionDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		893724BF0CBAC07535AFBD68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				885C05A734716BF9CA712150 /* mediavision.mvsmodels in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		54196663FADF7ADD5CF6A868 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACD377A296A62A07E39E5148 /* MVSAppDelegate.mm in Sources */,
+				986F4B6C3D9BC6B98C2B010C /* MVSCameraViewController.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0C8A100744CAD4E1C47B80F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 4;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.4.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		13CF2591CE96A7F9CEADE2B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"../../sdk/ios\"",
+				);
+				INFOPLIST_FILE = "Generated-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.moon.mediavision.demo;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48C1E270BD4CC239E8355148 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 4;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.4.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		737B947C171888452AB986F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"../../sdk/ios\"",
+				);
+				INFOPLIST_FILE = "Generated-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.moon.mediavision.demo;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06D1B16E21D0D03BA2FF198F /* Build configuration list for PBXProject "MediaVisionDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C8A100744CAD4E1C47B80F4 /* Debug */,
+				48C1E270BD4CC239E8355148 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		884C401D7D05C731751D94A7 /* Build configuration list for PBXNativeTarget "MediaVisionDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13CF2591CE96A7F9CEADE2B3 /* Debug */,
+				737B947C171888452AB986F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FDCB1CD1575741E08C273DCA /* Project object */;
+}

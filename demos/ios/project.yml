@@ -1,0 +1,51 @@
+name: MediaVisionDemo
+options:
+  deploymentTarget:
+    iOS: '15.0'
+settings:
+  base:
+    CLANG_CXX_LANGUAGE_STANDARD: c++17
+    CLANG_ENABLE_OBJC_ARC: YES
+    IPHONEOS_DEPLOYMENT_TARGET: '15.0'
+    MARKETING_VERSION: '0.4.0'
+    CURRENT_PROJECT_VERSION: '4'
+targets:
+  MediaVisionDemo:
+    type: application
+    platform: iOS
+    sources:
+      - path: .
+        includes: ['MVSAppDelegate.mm', 'MVSCameraViewController.h', 'MVSCameraViewController.mm']
+      - path: ../../models/ios/mediavision.mvsmodels
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.moon.mediavision.demo
+        TARGETED_DEVICE_FAMILY: '1,2'
+    info:
+      path: Generated-Info.plist
+      properties:
+        CFBundleDisplayName: MediaVision
+        NSCameraUsageDescription: 实时人像视觉效果 / Real-time portrait effects
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UILaunchScreen: {}
+    dependencies:
+      - framework: ../../sdk/ios/MediaVisionSDK.xcframework
+        embed: true
+      - sdk: AVFoundation.framework
+      - sdk: Accelerate.framework
+      - sdk: MetalKit.framework
+      - sdk: CoreImage.framework
+      - sdk: CoreGraphics.framework
+      - sdk: UIKit.framework
+      - sdk: Metal.framework
+      - sdk: CoreVideo.framework
+      - sdk: CoreMedia.framework
+      - sdk: CoreML.framework
+      - sdk: Vision.framework
+      - sdk: QuartzCore.framework
+schemes:
+  MediaVisionDemo:
+    build:
+      targets:
+        MediaVisionDemo: all

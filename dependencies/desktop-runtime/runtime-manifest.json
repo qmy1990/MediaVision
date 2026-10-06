@@ -1,0 +1,178 @@
+{
+  "onnxruntime": "1.24.3",
+  "source_tag": "v1.24.3",
+  "source_commit": "3a728b75062256951b6e19ce718907cf1a1d4cf0",
+  "windows_x64": "DirectML + CPU, official onnxruntime-directml 1.24.3 wheel",
+  "linux_x64_aarch64": "CPU; official 1.24.3 release archives; CUDA runtime not bundled",
+  "files": [
+    {
+      "path": "linux-aarch64/libonnxruntime.so",
+      "bytes": 18625376,
+      "sha256": "33032cb5b91c12edbf028d7c69fa40a31848d66c0095448758af237d5e0b07db",
+      "machine": "AArch64",
+      "glibc_versions": [
+        "2.17",
+        "2.27"
+      ],
+      "glibcxx_versions": [
+        "3.4",
+        "3.4.9",
+        "3.4.11",
+        "3.4.14",
+        "3.4.15",
+        "3.4.17",
+        "3.4.18",
+        "3.4.19",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22"
+      ]
+    },
+    {
+      "path": "linux-aarch64/libonnxruntime.so.1.24.3",
+      "bytes": 18625376,
+      "sha256": "33032cb5b91c12edbf028d7c69fa40a31848d66c0095448758af237d5e0b07db",
+      "machine": "AArch64",
+      "glibc_versions": [
+        "2.17",
+        "2.27"
+      ],
+      "glibcxx_versions": [
+        "3.4",
+        "3.4.9",
+        "3.4.11",
+        "3.4.14",
+        "3.4.15",
+        "3.4.17",
+        "3.4.18",
+        "3.4.19",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22"
+      ]
+    },
+    {
+      "path": "linux-aarch64/libonnxruntime_providers_shared.so",
+      "bytes": 198792,
+      "sha256": "3b6be288fbfb7dff8770d08a23defdde18e8f7e0f5a2b344a0e5e238c999ea88",
+      "machine": "AArch64",
+      "glibc_versions": [
+        "2.17"
+      ],
+      "glibcxx_versions": []
+    },
+    {
+      "path": "linux-aarch64/LICENSE",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    {
+      "path": "linux-aarch64/ThirdPartyNotices.txt",
+      "bytes": 325054,
+      "sha256": "0e07b95f3a8d6230037707c5c4a2b554d12c4cb67369669ac255635528ffcee2"
+    },
+    {
+      "path": "linux-x64/libonnxruntime.so",
+      "bytes": 22146944,
+      "sha256": "bc33abfd6154771fe4cb4268d8a8323ce86ab5ee3e110f87f36d26eb1126079c",
+      "machine": "x86_64",
+      "glibc_versions": [
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.6",
+        "2.14",
+        "2.16",
+        "2.17",
+        "2.27"
+      ],
+      "glibcxx_versions": [
+        "3.4",
+        "3.4.9",
+        "3.4.11",
+        "3.4.14",
+        "3.4.15",
+        "3.4.17",
+        "3.4.18",
+        "3.4.19",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22"
+      ]
+    },
+    {
+      "path": "linux-x64/libonnxruntime.so.1.24.3",
+      "bytes": 22146944,
+      "sha256": "bc33abfd6154771fe4cb4268d8a8323ce86ab5ee3e110f87f36d26eb1126079c",
+      "machine": "x86_64",
+      "glibc_versions": [
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.6",
+        "2.14",
+        "2.16",
+        "2.17",
+        "2.27"
+      ],
+      "glibcxx_versions": [
+        "3.4",
+        "3.4.9",
+        "3.4.11",
+        "3.4.14",
+        "3.4.15",
+        "3.4.17",
+        "3.4.18",
+        "3.4.19",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22"
+      ]
+    },
+    {
+      "path": "linux-x64/libonnxruntime_providers_shared.so",
+      "bytes": 14632,
+      "sha256": "086ec1d5388f64153d9c63470d126693db9a182c8ce236d3a1119068471b8a0d",
+      "machine": "x86_64",
+      "glibc_versions": [
+        "2.2"
+      ],
+      "glibcxx_versions": []
+    },
+    {
+      "path": "linux-x64/LICENSE",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    {
+      "path": "linux-x64/ThirdPartyNotices.txt",
+      "bytes": 325054,
+      "sha256": "0e07b95f3a8d6230037707c5c4a2b554d12c4cb67369669ac255635528ffcee2"
+    },
+    {
+      "path": "windows-x64/DirectML.dll",
+      "bytes": 18527816,
+      "sha256": "2d1d0c0e7362d5f52062510ae454474f18044b570a175f34be05f4717a5904cc"
+    },
+    {
+      "path": "windows-x64/LICENSE",
+      "bytes": 1094,
+      "sha256": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674"
+    },
+    {
+      "path": "windows-x64/onnxruntime.dll",
+      "bytes": 21112352,
+      "sha256": "6169297ee0bbb3a3ba8d2c7ea8033e6d13d1e0c0f57ea849d7904c2f9f5b87a0"
+    },
+    {
+      "path": "windows-x64/onnxruntime_providers_shared.dll",
+      "bytes": 21528,
+      "sha256": "ca503e4c86c729326512401be672dc33b717a2641de78e28a40a54a59f033cd9"
+    },
+    {
+      "path": "windows-x64/ThirdPartyNotices.txt",
+      "bytes": 331175,
+      "sha256": "fb0af774b4d7cffc5b9d046f2aaeade2f37df2f80abf8033c95dfffcc77a8866"
+    }
+  ]
+}

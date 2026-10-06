@@ -1,0 +1,77 @@
+{
+  "runtime_packages": {
+    "android": [
+      1,
+      2
+    ],
+    "ios": [
+      1,
+      2,
+      101,
+      102
+    ],
+    "windows": [
+      1,
+      3
+    ],
+    "linux": [
+      1,
+      3
+    ]
+  },
+  "verified_packages": [
+    {
+      "path": "models/android/mediavision.mvsmodels",
+      "models": 2
+    },
+    {
+      "path": "models/ios/mediavision.mvsmodels",
+      "models": 4
+    },
+    {
+      "path": "models/linux/mediavision.mvsmodels",
+      "models": 2
+    },
+    {
+      "path": "models/research/mediavision.mvsmodels",
+      "models": 80
+    },
+    {
+      "path": "models/variants/model-accel/person-candidates-20261006/android-gpu.mvsmodels",
+      "models": 3
+    },
+    {
+      "path": "models/variants/model-accel/person-candidates-20261006/apple-a11.mvsmodels",
+      "models": 3
+    },
+    {
+      "path": "models/variants/model-accel/person-candidates-20261006/apple-modern-w8.mvsmodels",
+      "models": 4
+    },
+    {
+      "path": "models/variants/model-accel/person-candidates-20261006/apple-modern.mvsmodels",
+      "models": 5
+    },
+    {
+      "path": "models/variants/model-accel/person-candidates-20261006/linux-cpu.mvsmodels",
+      "models": 3
+    },
+    {
+      "path": "models/variants/model-accel/person-candidates-20261006/linux-intel.mvsmodels",
+      "models": 3
+    },
+    {
+      "path": "models/variants/model-accel/person-candidates-20261006/mediatek-mt6991.mvsmodels",
+      "models": 3
+    },
+    {
+      "path": "models/variants/model-accel/person-candidates-20261006/windows-directml.mvsmodels",
+      "models": 2
+    },
+    {
+      "path": "models/windows/mediavision.mvsmodels",
+      "models": 2
+    }
+  ],
+  "research_candidate_status": "Not production deployment approval"
+}

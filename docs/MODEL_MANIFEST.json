@@ -1,0 +1,136 @@
+{
+  "mediapipe": {
+    "tag": "v0.10.14",
+    "commit": "4cf89a70942ca3252e46ace7e4552f53be9bef2e"
+  },
+  "models": [
+    {
+      "file": "selfie_segmenter.tflite",
+      "url": "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/1/selfie_segmenter.tflite",
+      "sha256": "191ac9529ae506ee0beefa6b2c945a172dab9d07d1e802a290a4e4038226658b",
+      "output": "Single float person confidence mask",
+      "android_asset": false,
+      "selection": "Pinned upstream source for the graph-equivalent standard-LiteRT production model"
+    },
+    {
+      "file": "selfie_segmenter_litert.tflite",
+      "bundled": true,
+      "sha256": "48abd5233ab0d5fda0813ec08b8717a689a36e7b060e3629725a4f6d6e67018c",
+      "output": "Single float person confidence mask",
+      "android_asset": true,
+      "source": "Official MediaPipe Selfie Segmenter with its final custom Convolution2DTransposeBias lowered exactly to TRANSPOSE_CONV plus ADD",
+      "selection": "Portable realtime fallback; identical MediaPipe weights and output, with a fully standard graph visible to QNN, NNAPI, GPU and CPU"
+    },
+    {
+      "file": "selfie_segmenter_landscape.tflite",
+      "url": "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter_landscape/float16/1/selfie_segmenter_landscape.tflite",
+      "sha256": "490e9ea734313e0de10fa0cd9e3c6133e36ea4db2b7a49bde9ef019f72796b8e",
+      "output": "Single float person confidence mask optimized for landscape video",
+      "android_asset": false
+    },
+    {
+      "file": "qaihub_selfie_segmenter_w8a8.tflite",
+      "bundled": true,
+      "source": "Qualcomm AI Hub MediaPipe-Selfie-Segmentation TFLite W8A8, QAIHM 0.62.2 / QAIRT 2.45",
+      "sha256": "d5c2732b854c39a99237873904c948393c415a03132b29f80ba222d1d1020f00",
+      "input": "256x256 UINT8 NHWC, scale 1/255",
+      "output": "256x256 UINT8 person confidence, scale 1/256",
+      "selection": "Offline NPU/performance reference; excluded because supplied motion and hair-boundary samples showed unstable holes and a broad uncertain band",
+      "android_asset": false
+    },
+    {
+      "file": "selfie_multiclass_256x256.tflite",
+      "url": "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_multiclass_256x256/float32/1/selfie_multiclass_256x256.tflite",
+      "sha256": "c6748b1253a99067ef71f7e26ca71096cd449baefa8f101900ea23016507e0e0",
+      "output": "Six-class logits: background, hair, body, face, clothes, others",
+      "android_asset": false,
+      "selection": "Offline quality reference; production uses the binary official MediaPipe portrait model with its custom final operator lowered to standard LiteRT"
+    },
+    {
+      "file": "face_landmarker.task",
+      "url": "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
+      "sha256": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
+      "output": "468/478 normalized face landmarks",
+      "android_asset": true,
+      "selection": "Only shipped face model; embedded detector and 478-point subgraphs are extracted in memory"
+    },
+    {
+      "file": "face_detector.tflite",
+      "bundled": true,
+      "source": "face_landmarker.task/face_detector.tflite",
+      "sha256": "b4578f35940bf5a1a655214a1cce5cab13eba73c1297cd78e1a04c2380b0152f",
+      "output": "896 BlazeFace boxes and scores",
+      "android_asset": false
+    },
+    {
+      "file": "face_landmarks_detector.tflite",
+      "bundled": true,
+      "source": "face_landmarker.task/face_landmarks_detector.tflite",
+      "sha256": "c7d54204ce0448474c7f3fa9af494787c0965cbdd6f20fc72867e43046bd43d5",
+      "output": "478 float landmarks and presence",
+      "android_asset": false
+    },
+    {
+      "file": "qaihub_face_landmarks_w8a8.tflite",
+      "bundled": true,
+      "source": "Qualcomm AI Hub MediaPipe Face export",
+      "sha256": "93b4ea35b396bcfe0b5d7a79cf115b5f911a7dc26dcda695de2a0858e70d495f",
+      "input": "192x192 UINT8 NHWC",
+      "output": "468 normalized UINT8 landmarks and face score",
+      "selection": "Qualcomm GPU fast path; official model remains portable fallback",
+      "android_asset": false
+    },
+    {
+      "file": "slimnet_512.tflite",
+      "url": "https://raw.githubusercontent.com/anilsathyan7/Portrait-Segmentation/master/mediapipe_slimnet/portrait_segmentation.tflite",
+      "sha256": "cc33b5c06b8cfa4c0a69cc0c7b86d67e1f2b85c79bad85048de92f57194356b5",
+      "output": "512x512 binary person logits",
+      "android_asset": false,
+      "license": "MIT",
+      "selection": "Offline quality reference; rejected by live raised-hand/background scenes and 1080p end-to-end FPS"
+    },
+    {
+      "file": "modnet_512.tflite",
+      "url": "https://huggingface.co/litert-community/MODNet-LiteRT/resolve/4d5bd22bde15c8ae5e215ca4799513844979a431/modnet.tflite",
+      "sha256": "f7d1e9eca9562abddb60e4b0a3ed0c29441ef09cd621954978f1613914cc64bc",
+      "output": "512x512 soft portrait alpha",
+      "android_asset": false,
+      "input": "512x512 FLOAT32 NCHW normalized to [-1,1]",
+      "source": "litert-community MODNet-LiteRT revision 4d5bd22; Apache-2.0; fully GPU-compatible graph",
+      "selection": "AUTO quality candidate; retained only when a real full-graph QNN/NNAPI/GPU warm invocation is no slower than 14 ms"
+    },
+    {
+      "file": "faceparsing_bisenet_160.tflite",
+      "bundled": true,
+      "source": "AI2lab/face-parsing.PyTorch 79999_iter.pth re-exported by tools/export_bisenet_litert.py",
+      "sha256": "141a3d5a41a3f75a65d5a94700ab4f3f10e30230e6e615ad3212e3e26931d3f6",
+      "input": "160x160 FLOAT32 NHWC, ImageNet normalization, 478-point aligned face crop",
+      "output": "19 CelebAMask-HQ class logits; runtime compacts lip, oral cavity, skin and brow probabilities",
+      "selection": "Primary realtime face parser; semantic regions are refined by current-frame 478-point contours and native-colour occlusion rejection",
+      "android_asset": false
+    },
+    {
+      "file": "faceparsing_bisenet_256.tflite",
+      "bundled": true,
+      "android_asset": false,
+      "source": "AI2lab/face-parsing.PyTorch 79999_iter.pth re-exported by tools/export_bisenet_litert.py",
+      "sha256": "c1a0f91debbb9ee0dd3b985eda7e68f01760a55b14b9e60e1033b8b0770df1a1",
+      "input": "256x256 FLOAT32 NHWC, ImageNet normalization, 478-point aligned face crop",
+      "output": "19 CelebAMask-HQ class logits; runtime compacts lip, oral cavity, skin and brow probabilities",
+      "selection": "Offline quality/performance comparison; the 160 realtime graph retained the same final hybrid lip result on supplied difficult frames"
+    },
+    {
+      "file": "faceparsing_bisenet_512.tflite",
+      "url": "https://huggingface.co/litert-community/BiSeNet-Face-Parsing-LiteRT/resolve/62996ba4ebcfd9a44b45f1dd5325dcd7e4f09955/faceparsing.tflite",
+      "sha256": "23923022a8f4149fe1f5df5426a18f3a202dd605454539ed33c5d76f3035e907",
+      "android_asset": false,
+      "input": "512x512 FLOAT32 NCHW, ImageNet normalization, aligned face crop",
+      "output": "19 CelebAMask-HQ class logits; runtime compacts lip, mouth, skin and brow probabilities",
+      "selection": "Offline quality/performance comparison; not shipped in the Android package"
+    }
+  ],
+  "metal_cpp": {
+    "url": "https://developer.apple.com/metal/cpp/files/metal-cpp_macOS15_iOS18.zip",
+    "sha256": "0433df1e0ab13c2b0becbd78665071e3fa28381e9714a3fce28a497892b8a184"
+  }
+}

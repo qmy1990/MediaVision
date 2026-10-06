@@ -1,0 +1,67 @@
+plugins { id 'maven-publish' }
+
+def sdkVersion = providers.gradleProperty('sdkVersion').getOrElse('0.4.0')
+def repoRoot = rootDir.parentFile
+def inputAar = file(providers.gradleProperty('sdkAar').getOrElse(
+  new File(repoRoot, "sdk/android/maven/com/moon/mediavision/mediavision-sdk/${sdkVersion}/mediavision-sdk-${sdkVersion}.aar").path))
+def outputRepository = file(providers.gradleProperty('publishDirectory').getOrElse(
+  new File(repoRoot, 'sdk/android/maven').path))
+
+def runtimeDependencies = [
+  ['com.google.mediapipe', 'tasks-vision', '0.10.28'],
+  ['com.google.ai.edge.litert', 'litert', '1.4.2'],
+  ['com.google.ai.edge.litert', 'litert-gpu', '1.4.2'],
+  ['com.google.ai.edge.litert', 'litert-gpu-api', '1.4.2'],
+  ['com.qualcomm.qti', 'qnn-runtime', '2.45.0'],
+  ['com.qualcomm.qti', 'qnn-litert-delegate', '2.45.0']
+]
+
+publishing {
+  publications {
+    sdk(MavenPublication) {
+      groupId = 'com.moon.mediavision'
+      artifactId = 'mediavision-sdk'
+      version = sdkVersion
+      artifact(inputAar) { extension = 'aar' }
+      pom {
+        name = 'Moon MediaVision SDK'
+        description = 'Binary SDK for real-time portrait effects, native rendering and platform-adapted acceleration.'
+        url = 'https://github.com/qmy1990/MediaVision'
+        licenses {
+          license {
+            name = 'Moon MediaVision SDK Binary Integration License'
+            url = 'https://github.com/qmy1990/MediaVision/blob/main/licenses/SDK-BINARY-LICENSE.txt'
+          }
+        }
+        developers { developer { id = 'moon'; name = 'Moon' } }
+        withXml {
+          def node = asNode().appendNode('dependencies')
+          runtimeDependencies.each { values ->
+            def dependency = node.appendNode('dependency')
+            dependency.appendNode('groupId', values[0])
+            dependency.appendNode('artifactId', values[1])
+            dependency.appendNode('version', values[2])
+            dependency.appendNode('scope', 'runtime')
+          }
+        }
+      }
+    }
+  }
+  repositories { maven { name = 'Distribution'; url = uri(outputRepository) } }
+}
+
+tasks.withType(PublishToMavenRepository).configureEach {
+  doFirst {
+    if (!inputAar.isFile()) throw new GradleException("Missing precompiled SDK AAR: ${inputAar}")
+    def zip = new java.util.zip.ZipFile(inputAar)
+    try {
+      if (zip.getEntry('classes.jar') == null || zip.getEntry('AndroidManifest.xml') == null)
+        throw new GradleException('Input is not an Android SDK AAR')
+    } finally { zip.close() }
+    def installed = new File(outputRepository,
+      "com/moon/mediavision/mediavision-sdk/${sdkVersion}/mediavision-sdk-${sdkVersion}.aar")
+    if (installed.exists() && installed.canonicalFile != inputAar.canonicalFile &&
+        !java.util.Arrays.equals(installed.bytes, inputAar.bytes))
+      throw new GradleException('Published SDK versions are immutable; use a new sdkVersion')
+  }
+}
