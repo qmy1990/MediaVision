@@ -6,7 +6,7 @@
 |---|---|
 | Android SDK | Release AAR 构建通过；公开 API 使用 `com.moon.mediavision`；保留 `VisionOptions.Builder`，内部 Java 实现经过压缩混淆 |
 | Android Demo | 仅从分发 Maven 仓库解析 SDK，Debug / Release 均编译通过；应用 ID 为 `com.moon.mediavision.demo` |
-| Maven | `maven-publish` 生成 AAR、POM、校验文件和版本元数据；POM 声明 MediaPipe / LiteRT / QNN 运行依赖 |
+| Maven | `maven-publish` 生成 AAR、POM、校验文件和版本元数据；POM 声明 MediaPipe / LiteRT / QNN 运行依赖；远程仓库已通过 Gradle 解析验证 |
 | Apple SDK | iOS arm64、模拟器 arm64/x86_64 的 Core 与封装 XCFramework 构建通过 |
 | iOS Demo | 公开工程只链接预编译 XCFramework，编译通过；IPA 未签名，真机安装需要自己的开发团队 |
 | macOS | x86_64 静态/动态库构建通过；6 项原生测试全部通过；公开 C++ 示例调用 Metal 后端处理图片成功 |

@@ -66,7 +66,7 @@ demos/android/gradlew -p publisher publishSdkPublicationToDistributionRepository
   -PsdkAar=/absolute/path/to/precompiled.aar
 ```
 
-Windows：`demos\android\gradlew.bat -p publisher ...`。要求 JDK 17 和联网可用的 Gradle Wrapper。默认 AAR 使用已分发版本，默认目标为本仓库 `sdk/android/maven`。`-PpublishDirectory=/path/to/staging-maven` 可指定独立目标。该任务生成 AAR/POM/版本元数据，声明与本版 SDK 匹配的第三方依赖。
+Windows：`demos\android\gradlew.bat -p publisher ...`。要求 JDK 17 和联网可用的 Gradle Wrapper。默认 AAR 使用已分发版本，默认目标为本仓库 `sdk/android/maven`。`-PpublishDirectory=/path/to/staging-maven` 可指定独立目标。任务先将 AAR 复制到构建暂存目录，再生成 AAR/POM/版本元数据，避免输入与输出路径相同时损坏 AAR；同时声明与本版 SDK 匹配的第三方依赖。
 
 发布完成后，核对 AAR 的 API、依赖和平台版本，重新生成分发清单，再提交 Maven 新版本目录并推送 GitHub。**不要用不兼容的新文件覆盖已有版本号。** 如果以后更换 SDK 的依赖版本，必须同步更新 `publisher/build.gradle` 的依赖列表。公开仓库不提供编译私有核心的任务。
 

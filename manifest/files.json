@@ -425,8 +425,8 @@
     },
     {
       "path": "docs/MAVEN.md",
-      "size": 3402,
-      "sha256": "02bfe60ff8c91619632058d068542d8f80932c332072f60817e5d83562ba2a81",
+      "size": 3498,
+      "sha256": "0a0c298a181f90d5733586d99572ee32c42b3cfb5a441bfac76858c87113f677",
       "lfs": false
     },
     {
@@ -449,8 +449,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "size": 2286,
-      "sha256": "20b322e9fb42f6fdc80c2ebea0b04125e7e50ce9cbf88c96f6f23ca67232e5fb",
+      "size": 2330,
+      "sha256": "52cb0238572050f790d3673373e81bacbdb1bcce0a0740ae5a21f57c6ed29c62",
       "lfs": false
     },
     {
@@ -713,8 +713,8 @@
     },
     {
       "path": "publisher/build.gradle",
-      "size": 2901,
-      "sha256": "e424206c5fb8e1deb97f78bd65797eefd8d44480077ab4a60522cccb88013136",
+      "size": 3422,
+      "sha256": "0d61083df3d40c062f841b6f225377ae87e1c2baa21039cbbcf62f2917f43080",
       "lfs": false
     },
     {
@@ -2405,8 +2405,8 @@
     },
     {
       "path": "tools/package_distribution.py",
-      "size": 830,
-      "sha256": "0cd4664ec9dca4cf0f884563e4f58f9d9fd74392b9677ad2873cb0035d41ca51",
+      "size": 1176,
+      "sha256": "df914b26c3ca86efc2b05eca492aededfa75106750a4c283252d23de8dff6ea4",
       "lfs": false
     },
     {

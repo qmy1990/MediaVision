@@ -6,6 +6,18 @@ def inputAar = file(providers.gradleProperty('sdkAar').getOrElse(
   new File(repoRoot, "sdk/android/maven/com/moon/mediavision/mediavision-sdk/${sdkVersion}/mediavision-sdk-${sdkVersion}.aar").path))
 def outputRepository = file(providers.gradleProperty('publishDirectory').getOrElse(
   new File(repoRoot, 'sdk/android/maven').path))
+def stagedAar = layout.buildDirectory.file("publication/mediavision-sdk-${sdkVersion}.aar")
+def stageSdkAar = tasks.register('stageSdkAar') {
+  inputs.file(inputAar)
+  outputs.file(stagedAar)
+  doLast {
+    def destination = stagedAar.get().asFile
+    destination.parentFile.mkdirs()
+    // File Maven transports may truncate a source that is also the destination.
+    java.nio.file.Files.copy(inputAar.toPath(), destination.toPath(),
+      java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+  }
+}
 
 def runtimeDependencies = [
   ['com.google.mediapipe', 'tasks-vision', '0.10.28'],
@@ -22,7 +34,7 @@ publishing {
       groupId = 'com.moon.mediavision'
       artifactId = 'mediavision-sdk'
       version = sdkVersion
-      artifact(inputAar) { extension = 'aar' }
+      artifact(stagedAar) { extension = 'aar'; builtBy(stageSdkAar) }
       pom {
         name = 'Moon MediaVision SDK'
         description = 'Binary SDK for real-time portrait effects, native rendering and platform-adapted acceleration.'

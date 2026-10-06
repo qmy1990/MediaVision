@@ -11,8 +11,13 @@ if __name__ == '__main__':
     a = p.parse_args()
     manifest = verify()
     a.output.parent.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(a.output, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
+    with zipfile.ZipFile(a.output, 'w', zipfile.ZIP_DEFLATED, compresslevel=1) as archive:
         for item in manifest['files']:
-            archive.write(ROOT / item['path'], 'MediaVision/' + item['path'])
+            path = ROOT / item['path']
+            # Encryptions and existing archives/videos gain little from recompression.
+            compression = (zipfile.ZIP_STORED if path.suffix in
+                           {'.mvsmodels', '.aar', '.apk', '.ipa', '.mp4', '.jar', '.zip'}
+                           else zipfile.ZIP_DEFLATED)
+            archive.write(path, 'MediaVision/' + item['path'], compress_type=compression)
         archive.write(ROOT / 'manifest/files.json', 'MediaVision/manifest/files.json')
     print('Created:', a.output.resolve())
