@@ -75,10 +75,10 @@ Keep `google()` and `mavenCentral()`, then add:
 
 ```groovy
 // settings.gradle → dependencyResolutionManagement.repositories
-maven { url 'https://raw.githubusercontent.com/qmy1990/MediaVision/main/sdk/android/maven' }
+maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.moon.mediavision:mediavision-sdk:0.4.0'
+implementation 'com.github.qmy1990:MediaVision:0.4.1'
 ```
 
 The Java package is `com.moon.mediavision`:

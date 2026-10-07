@@ -5,8 +5,8 @@
 | 项目 | 结果 |
 |---|---|
 | Android SDK | Release AAR 构建通过；公开 API 使用 `com.moon.mediavision`；保留 `VisionOptions.Builder`，内部 Java 实现经过压缩混淆 |
-| Android Demo | 仅从分发 Maven 仓库解析 SDK，Debug / Release 均编译通过；应用 ID 为 `com.moon.mediavision.demo` |
-| Maven | `maven-publish` 生成 AAR、POM、校验文件和版本元数据；POM 声明 MediaPipe / LiteRT / QNN 运行依赖；远程仓库已通过 Gradle 解析验证 |
+| Android Demo | 本地分发 Maven 的构建已通过；当前默认使用 JitPack `0.4.1`，arm64 Debug / Release 均编译通过；应用 ID 为 `com.moon.mediavision.demo` |
+| Maven / JitPack | `maven-publish` 发布 AAR / POM；JitPack `0.4.1` 远程构建成功，AAR 与原始 SDK 逐字节一致，保留 6 个运行依赖；真实 Android Demo 编译通过 |
 | Apple SDK | iOS arm64、模拟器 arm64/x86_64 的 Core 与封装 XCFramework 构建通过 |
 | iOS Demo | 公开工程只链接预编译 XCFramework，编译通过；IPA 未签名，真机安装需要自己的开发团队 |
 | macOS | x86_64 静态/动态库构建通过；6 项原生测试全部通过；公开 C++ 示例调用 Metal 后端处理图片成功 |
@@ -18,3 +18,5 @@ SDK 中使用的第三方运行库保留其内部运行机制和许可证；它�
 当前发布收尾时没有连接移动设备，因此没有对新包名版本补做 Android / iOS 真机运行测试。Windows / Linux 产物来自此前构建，其具体架构与已验证范围见 `manifest/platforms.json`。本表不构成所有平台、模型或芯片的性能达标承诺。
 
 Android and iOS public demos were built against precompiled SDK artifacts. The macOS C++ example successfully processed an image with Metal, and all six native tests passed. All thirteen encrypted model packages loaded successfully. This release did not receive a new mobile-device runtime test after the package rename. Windows and Linux use earlier delivery binaries; see the platform manifest for their validation scope.
+
+README 的 8 个循环 GIF 均保留完整对比时长，300px 宽、12 FPS，每个小于 5 MB；已确认 GitHub 渲染页面包含全部 8 个内嵌图片，公共 GIF 下载与本地文件一致。GIF 的播放帧率不代表 SDK 处理帧率。

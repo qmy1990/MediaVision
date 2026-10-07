@@ -29,26 +29,26 @@
     },
     {
       "path": "README.en.md",
-      "size": 6332,
-      "sha256": "734ef02c6287787aab7ec3b65ec47b2fabee97d48ec60828814e69cd502dae0a",
+      "size": 6268,
+      "sha256": "745b4e6f199a27028419ef0daa210a2e2ec75900d4ab44102153b2d1b1d4a2d2",
       "lfs": false
     },
     {
       "path": "README.md",
-      "size": 5717,
-      "sha256": "801cd42e6256b4dcd5454e7ff41e90a8a1e163722e41a6d3fa478aea2a12d600",
+      "size": 5653,
+      "sha256": "893f991997d3f7b447d8a6fdc70ed14b9bc6e2e01415c2084c95b704959bb9ac",
       "lfs": false
     },
     {
       "path": "demos/android/README.md",
-      "size": 1784,
-      "sha256": "117c5a94eb0dda03d4546e563a0ee7f2423f96b76c052e12b9baca36b7a68ad5",
+      "size": 1717,
+      "sha256": "5a92672e71609519b479d379d63e504ac3de02ab0bf4d99a6be2f7d2345ed58e",
       "lfs": false
     },
     {
       "path": "demos/android/app/build.gradle",
-      "size": 1058,
-      "sha256": "444ab904530a26c15e04a2dd1886347a8bfdbf0432a68ade94adcc66f02513fa",
+      "size": 1052,
+      "sha256": "c1a4b71a3843f88688c84aa15836aba57565da6aefae7d74024b9b5f9a3e7f4c",
       "lfs": false
     },
     {
@@ -125,8 +125,8 @@
     },
     {
       "path": "demos/android/settings.gradle",
-      "size": 501,
-      "sha256": "370855fb2ef786ec3ad1e0c5dc0157c132cb81c23d67e47795f27b56e2b106ef",
+      "size": 552,
+      "sha256": "a1c317bb81847080983b9517ae13bfa0fb62157375d033e6f2f90e299a18cefd",
       "lfs": false
     },
     {
@@ -419,14 +419,14 @@
     },
     {
       "path": "docs/INTEGRATION.md",
-      "size": 5208,
-      "sha256": "806622b21b155cc6f6f2c8df2433e5b7c7ad4788b47a6e5506b27b0e6668a5a9",
+      "size": 5214,
+      "sha256": "776c7f1987b3955fed7362a78612ee424be6a2fda3c0dd61d993f9752b1c33de",
       "lfs": false
     },
     {
       "path": "docs/MAVEN.md",
-      "size": 4366,
-      "sha256": "524f3ab5d6858e6b52f3f471c19d35b86344c6193161cbe347bc8bb23e2ee1a6",
+      "size": 4379,
+      "sha256": "de074eee0bb373cd7d820ef8a2be091e9729b0bf58d3797aded9ed15272190ef",
       "lfs": false
     },
     {
@@ -449,8 +449,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "size": 2330,
-      "sha256": "52cb0238572050f790d3673373e81bacbdb1bcce0a0740ae5a21f57c6ed29c62",
+      "size": 2643,
+      "sha256": "8f8ed5e550c4657f371f4e4b1adf1c19167550887565430571c106b5bce676f3",
       "lfs": false
     },
     {
@@ -683,8 +683,8 @@
     },
     {
       "path": "manifest/platforms.json",
-      "size": 1409,
-      "sha256": "87425452b1dff43741c6f236af1afb8ca91a353a6ba5499a59cec9e1ecf572b6",
+      "size": 1723,
+      "sha256": "3a7d89d45cc820f85ef94a1d01c0bd49a5303496f6d380cbbd49485667cd002f",
       "lfs": false
     },
     {

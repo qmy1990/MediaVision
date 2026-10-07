@@ -9,7 +9,10 @@ pluginManagement {
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
-    maven { url uri('../../sdk/android/maven') }
+    maven {
+      url 'https://jitpack.io'
+      content { includeGroup 'com.github.qmy1990' }
+    }
     maven {
       url 'https://maven.aliyun.com/repository/google'
     }
@@ -23,4 +26,3 @@ dependencyResolutionManagement {
 
 rootProject.name = 'MediaVisionDemo'
 include ':app'
-

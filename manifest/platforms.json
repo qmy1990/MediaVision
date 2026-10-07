@@ -18,7 +18,17 @@
     "camera_rebuilt": true,
     "public_maven_consumer_build": true,
     "new_package_device_test": false,
-    "reason": "No connected Android device during public-distribution validation"
+    "reason": "No connected Android device during public-distribution validation",
+    "jitpack": {
+      "coordinate": "com.github.qmy1990:MediaVision:0.4.1",
+      "binary_sdk_version": "0.4.0",
+      "remote_publication_verified": true,
+      "remote_aar_identical_to_sdk": true,
+      "consumer_debug_and_release_build": true,
+      "consumer_build_abis": [
+        "arm64-v8a"
+      ]
+    }
   },
   "ios": {
     "device_archs": [

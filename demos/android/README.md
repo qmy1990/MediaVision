@@ -1,6 +1,6 @@
 # Android Demo
 
-公开 Demo 仅依赖编译好的 SDK，通过本地 Maven 仓库解析 `com.moon.mediavision:mediavision-sdk:0.4.0`，不包含 SDK 实现模块。用 Android Studio 打开此目录，或在 JDK 17、Android SDK 35 环境下执行：
+Android 相机 Demo 使用 JitPack 依赖 `com.github.qmy1990:MediaVision:0.4.1`。用 Android Studio 打开此目录，或在 JDK 17、Android SDK 35 环境下执行：
 
 ```bash
 ./gradlew :app:assembleDebug
@@ -14,4 +14,4 @@ SDK 支持 API 26+，其中 API 29+ 相机路径使用 Camera2 → AHardwareBuff
 
 远程 Maven 引用和更新方法见 [Maven 文档](../../docs/MAVEN.md)，发布验证范围见 [分发验证](../../docs/VALIDATION.md)。本公开工程不包含 SDK 内部测试或核心编译任务。
 
-This demo consumes the precompiled SDK from the bundled Maven repository. Open it in Android Studio or run `./gradlew :app:assembleDebug` with JDK 17 and Android SDK 35. It contains application integration code only. Release APKs require your own signing. See the linked Maven guide for remote consumption and upgrades.
+This demo consumes `com.github.qmy1990:MediaVision:0.4.1` from JitPack. Open it in Android Studio or run `./gradlew :app:assembleDebug` with JDK 17 and Android SDK 35. It contains application integration code only. Release APKs require your own signing. See the linked Maven guide for remote consumption and upgrades.
