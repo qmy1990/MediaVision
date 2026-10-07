@@ -11,10 +11,10 @@ JitPack 配置已完成，远程发布正在验证；当前可使用下方已验
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:0.4.0'
+implementation 'com.github.qmy1990:MediaVision:0.4.1'
 ```
 
-JitPack 坐标不改变 Java 包名：仍使用 `import com.moon.mediavision.*`。同时保留 `google()`、`mavenCentral()` 以解析运行依赖。
+JitPack 坐标不改变 Java 包名：仍使用 `import com.moon.mediavision.*`。同时保留 `google()`、`mavenCentral()` 以解析运行依赖。`0.4.1` 是接入与发布配置更新，沿用 SDK 0.4.0 的二进制和接口。
 
 仓库根目录 `jitpack.yml` 使用 JDK 17，调用 `tools/publish_jitpack.sh`，将预编译 AAR 与依赖 POM 发布到构建环境的本地 Maven。该流程只需随 Git 提交的 AAR，不需要下载所有 LFS 模型或编译核心 SDK。维护者参考 [JitPack 官方构建文档](https://docs.jitpack.io/building/)。
 

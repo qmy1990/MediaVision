@@ -1,4 +1,4 @@
-plugins { id 'maven-publish' }
+plugins { id 'base'; id 'maven-publish' }
 
 def sdkVersion = providers.gradleProperty('sdkVersion').getOrElse('0.4.0')
 def publicationGroup = providers.gradleProperty('publicationGroup').getOrElse('com.moon.mediavision')

@@ -5,4 +5,4 @@ exec bash "$repo_root/demos/android/gradlew" --no-daemon -p "$repo_root/publishe
   publishSdkPublicationToMavenLocal \
   "-PpublicationGroup=${GROUP:-com.github.qmy1990}" \
   "-PpublicationArtifact=${ARTIFACT:-MediaVision}" \
-  "-PpublicationVersion=${VERSION:-0.4.0}" "$@"
+  "-PpublicationVersion=${VERSION:-0.4.1}" "$@"

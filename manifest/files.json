@@ -425,8 +425,8 @@
     },
     {
       "path": "docs/MAVEN.md",
-      "size": 4284,
-      "sha256": "823d78fdaa3649086013c2efd3b8ab3aabed5c0f3de5532790fbb7add03337d5",
+      "size": 4366,
+      "sha256": "524f3ab5d6858e6b52f3f471c19d35b86344c6193161cbe347bc8bb23e2ee1a6",
       "lfs": false
     },
     {
@@ -767,8 +767,8 @@
     },
     {
       "path": "publisher/build.gradle",
-      "size": 3779,
-      "sha256": "c307515abdc73f499bd3be1fdc8a5b8c07ba4edf21685efb07faf60c7c18daff",
+      "size": 3790,
+      "sha256": "7556c35274424fc35881319dff831e8b30adcd1b7141c6874eda0a42c9ae3615",
       "lfs": false
     },
     {
@@ -2478,7 +2478,7 @@
     {
       "path": "tools/publish_jitpack.sh",
       "size": 377,
-      "sha256": "2d96c00d4f91350d55dc940d10fa04caa73988e0458889801e235b6dd9592ff3",
+      "sha256": "3d1646b182a72a90598508fbe78d16e0e6ba1c114c2634ad2dbd93feb9e4c8e4",
       "lfs": false
     },
     {
