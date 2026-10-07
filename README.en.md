@@ -1,168 +1,111 @@
 # MediaVision · Moon
 
 **A cross-platform SDK for real-time portrait effects**  
-`com.moon.mediavision` · C++17 · C ABI 9 · Android / iOS / Windows / macOS / Linux
+Android / iOS / Windows / macOS / Linux · `com.moon.mediavision`
 
-[简体中文（默认）](README.md) | English
+[中文](README.md) | English
 
-MediaVision combines portrait analysis, beauty filters, face reshaping, makeup and background processing behind native integration APIs. Maintained by **Moon**, it provides platform adapters and a public C/C++ interface for the effects stage of camera, video, streaming and conferencing applications.
+MediaVision brings beauty filters, face reshaping, makeup and background effects to mobile and C/C++ applications, including camera previews, video, live streaming and conferencing.
 
-This repository publishes **demo source, integration code, public headers and build/distribution tools**, together with compiled SDK binaries and encrypted model packages. The core implementation and shader source are not published. Authored demos and integration material are MIT-licensed; Moon's SDK binaries are free to integrate into personal and commercial applications under the [binary SDK license](LICENSE.md). Third-party licenses continue to apply.
+**The released SDK is free for commercial use.**
 
-## Capabilities
+## Features and plans
 
-| Area | Available features |
-|---|---|
-| Portrait and background | Person segmentation, adjustable background blur, image background replacement, mask visualization |
-| Skin and image quality | Skin smoothing, blemish removal, skin tone adjustment, four tone presets, sharpening |
-| Face reshaping | Eye enlargement, head scaling, face slimming, nose width, eye spacing, cheekbone adjustment |
-| Makeup | Adjustable lipstick intensity and color, blush, eyebrow darkening |
-| Accessories | Basic landmark-anchored triangle-mesh props, headwear and jewelry examples |
-| Integration and diagnostics | Landmark/mesh overlays, backend selection, stage timings, C ABI, custom effect callbacks |
+“Refining” means the feature is available and its quality or performance is being improved. Planned features follow the order below.
 
-Vulkan and Metal handle rendering and image effects. Inference uses suitable GPU, NPU or CPU paths according to platform and device. Android includes QNN HTP, NNAPI and GPU paths with fallbacks; the Apple adapter exposes MediaPipe, Vision and Core ML options. Available backend settings do not establish NPU/ANE execution on every chipset.
-
-The Android camera path imports AHardwareBuffer images, caches frames on the GPU and pairs analysis with the corresponding input before compositing. The Windows/Linux Python demo supports photos, videos and webcams. A small C++ CLI demonstrates direct native integration. Models and optimizations differ across platforms; pixel-identical output and equal performance are not promised.
+| Area | Feature | Status | Next improvement |
+|---|---|---|---|
+| Background | Person segmentation | Available | Hair and motion edges |
+| Background | Adjustable background blur | Refining | Temporal stability and face boundaries |
+| Background | Image background replacement | Available | Occlusion and color blending |
+| Background | Mask visualization | Available | Preview and diagnostics |
+| Background | Mask smoothing | Available | Stability versus latency |
+| Skin | Skin smoothing | Available | Retain skin texture |
+| Skin | Blemish removal | Refining | Mobile parity and GPU efficiency |
+| Skin | Whitening | Available | Natural tone and regional protection |
+| Skin | Natural / cool / rosy / tan presets | Available | Lighting and skin-tone coverage |
+| Image | Sharpening | Available | Noise and edge control |
+| Reshaping | Eye enlargement | Available | Pose and eye-region protection |
+| Reshaping | Head scaling | Refining | Blur boundaries and halos |
+| Reshaping | Face slimming | Available | Natural moving contours |
+| Reshaping | Nose width | Available | Profile views and local warping |
+| Reshaping | Eye spacing | Available | Extreme settings and pose stability |
+| Reshaping | Cheekbone adjustment | Refining | Alignment with background boundaries |
+| Makeup | Lipstick, colors and intensity | Refining | Lip boundaries and occlusion |
+| Makeup | Blush | Available | Placement and natural blending |
+| Makeup | Eyebrow darkening | Available | Hair detail and occlusion |
+| Accessories | Basic mesh props | Basic | More models and materials |
+| Accessories | Headwear | Basic | Pose tracking and occlusion |
+| Accessories | Jewelry | Basic | Anchors and temporal stability |
+| Diagnostics | Face landmarks | Available | Accuracy and tracking stability |
+| Diagnostics | Face mesh overlay | Available | Display efficiency and occlusion |
+| Demo | Master toggle / per-effect intensity | Available | Consistent controls |
+| Demo | FPS / resolution / camera switching | Available | Sustained performance and preview |
+| Input | Images / video / camera | Available | Platform input pipelines |
+| Integration | Android / iOS / Windows / macOS / Linux | Distributed | Effect parity across platforms |
+| Integration | C / C++ and mobile APIs | Available | Examples and wrappers |
+| Integration | Custom effect callbacks | Available | Extension APIs and examples |
+| Acceleration | GPU rendering and processing | Available | Fewer copies and less CPU work |
+| Acceleration | Inference backends / chipset tuning | In progress | NPU / GPU models and fallbacks |
+| Performance | Realtime on older iPhones | Refining | 480p/30 FPS and 720p/25 FPS targets |
+| Planned 1 | Pupil size | Planned | Precise pupil-region scaling |
+| Planned 2 | Forehead width | Planned | Natural contour and hairline transitions |
+| Planned 3 | Colored contact lenses | Planned | Texture fit and eyelid occlusion |
+| Planned 4 | Sunglasses | Planned | Pose tracking and realistic occlusion |
+| Planned 5 | Nasolabial fold reduction | Planned | Local texture preservation |
+| Planned 6 | Teeth whitening | Planned | Tooth isolation and natural brightening |
+| Planned 7 | Dark circle reduction | Planned | Blend with surrounding skin |
+| Planned 8 | Hairline adjustment | Planned | Natural hair boundaries |
+| Planned 9 | Hair volume | Planned | Hair structure and temporal stability |
 
 ## Effect comparisons
 
-Click to view or download the supplied comparison videos:
+Looping GIFs play directly below and preserve the original comparison sequence.
 
-| Effect | Video | Effect | Video |
-|---|---|---|---|
-| Beauty toggle | [View](docs/media/beauty-toggle.mp4) | Blemish removal | [View](docs/media/blemish-removal.mp4) |
-| Eye enlargement | [View](docs/media/eye-enlargement.mp4) | Face slimming | [View](docs/media/face-slimming.mp4) |
-| Nose reshaping | [View](docs/media/nose-reshaping.mp4) | Lipstick | [View](docs/media/lipstick.mp4) |
-| Eyebrows | [View](docs/media/eyebrows.mp4) | Skin tone | [View](docs/media/skin-tone.mp4) |
+| Preview | Preview |
+|---|---|
+| **Beauty toggle**<br><img src="docs/media/beauty-toggle.gif" width="300" alt="Beauty toggle"> | **Blemish removal**<br><img src="docs/media/blemish-removal.gif" width="300" alt="Blemish removal"> |
+| **Eye enlargement**<br><img src="docs/media/eye-enlargement.gif" width="300" alt="Eye enlargement"> | **Face slimming**<br><img src="docs/media/face-slimming.gif" width="300" alt="Face slimming"> |
+| **Nose reshaping**<br><img src="docs/media/nose-reshaping.gif" width="300" alt="Nose reshaping"> | **Lipstick**<br><img src="docs/media/lipstick.gif" width="300" alt="Lipstick"> |
+| **Eyebrows**<br><img src="docs/media/eyebrows.gif" width="300" alt="Eyebrows"> | **Skin tone**<br><img src="docs/media/skin-tone.gif" width="300" alt="Skin tone"> |
 
-These clips illustrate particular scenes, not all lighting conditions, skin tones, poses or devices. Temporal edges, occlusion, makeup stability and sustained performance remain active development areas.
+## Android integration
 
-## Download the complete distribution
+Keep `google()` and `mavenCentral()`, then add:
 
-SDK binaries, models and large installers use [Git LFS](https://git-lfs.com):
+```groovy
+// settings.gradle → dependencyResolutionManagement.repositories
+maven { url 'https://raw.githubusercontent.com/qmy1990/MediaVision/main/sdk/android/maven' }
+
+// app/build.gradle
+implementation 'com.moon.mediavision:mediavision-sdk:0.4.0'
+```
+
+The Java package is `com.moon.mediavision`:
+
+```java
+VisionSdk sdk = new VisionSdk(context, VisionSdk.AUTO);
+sdk.configure(VisionOptions.builder()
+    .beauty(0.55f).blemishRemoval(0.35f).build());
+```
+
+See the [Android demo](demos/android) for camera integration and the [integration instructions](docs/MAVEN.md) for complete configuration. Android API 26+.
+
+## iOS / C++ integration
+
+**iOS 15+**: add `sdk/ios/MediaVisionSDK.xcframework` with Embed & Sign, include `models/ios/mediavision.mvsmodels` in app resources, and run the [iOS demo](demos/ios) with your own signing team.
+
+**C / C++**: link the platform binary with public headers from `include/mvs/`. Start with the [C++ example](demos/cli/main.cpp).
+
+See the [integration guide](docs/INTEGRATION.md) and [platform status](docs/PLATFORMS.md) for details.
+
+## Download SDKs and demos
+
+Install [Git LFS](https://git-lfs.com), then download the complete distribution:
 
 ```bash
 git lfs install
 git clone https://github.com/qmy1990/MediaVision.git
-cd MediaVision
-git lfs pull
-python3 tools/verify_distribution.py
 ```
 
-GitHub source ZIP downloads may contain LFS pointers. Run `python3 tools/fetch_binary_assets.py` to retrieve manifest-listed binary files and validate SHA-256 hashes. A source ZIP alone is not guaranteed to contain all SDK assets.
-
-| Directory | Contents |
-|---|---|
-| `sdk/` | Platform binaries, Android Maven repository, Apple XCFrameworks |
-| `include/mvs/` | Public C/C++ interfaces |
-| `models/` | Runtime packages, encrypted research archive and candidates |
-| `demos/` | Android/iOS apps, desktop Python demo, C++ CLI |
-| `installers/` | Android APKs and an unsigned iOS IPA |
-| `tools/` | Demo builds, validation, downloads and distribution packaging |
-| `docs/` | Integration guides, platform status, roadmap and videos |
-| `licenses/` | Demo/SDK licensing and third-party notices |
-| `manifest/` | Version, platform, model and file integrity metadata |
-
-Ship only the runtime package appropriate for your application. Do not bundle the entire `models/research/` or `models/variants/` tree: these are independent research assets, not production-approved replacements.
-
-## Android integration
-
-Add the repository to `dependencyResolutionManagement.repositories` in `settings.gradle`, alongside `google()` and `mavenCentral()`:
-
-```groovy
-maven {
-    url 'https://raw.githubusercontent.com/qmy1990/MediaVision/main/sdk/android/maven'
-    content { includeGroup 'com.moon.mediavision' }
-}
-```
-
-```groovy
-implementation 'com.moon.mediavision:mediavision-sdk:0.4.0'
-```
-
-```java
-import com.moon.mediavision.VisionSdk;
-import com.moon.mediavision.VisionOptions;
-
-VisionSdk sdk = new VisionSdk(context, VisionSdk.AUTO);
-VisionOptions options = VisionOptions.builder()
-    .beauty(0.55f).blemishRemoval(0.35f).build();
-sdk.configure(options);
-// Attach an output Surface and submit camera frames; see demos/android.
-// Call sdk.close() when the camera/page is released.
-```
-
-The Camera AAR targets API 26+ and includes arm64-v8a, armeabi-v7a and x86. The standalone native core also offers x86_64, which is not a complete Java Camera SDK.
-
-The public demo uses the local repository: `maven { url uri('../../sdk/android/maven') }`. With JDK 17 and Android SDK 35 configured, run `./gradlew :app:assembleDebug` in `demos/android`. All SDK runtime dependencies are declared in the POM; the SDK's proprietary source is not needed.
-
-To upgrade, change the explicit dependency version to an available release. Avoid dynamic `+` versions. This is a GitHub-hosted static Maven repository, not a claim of publication to Maven Central or GitHub Packages. See [publishing and consumption](docs/MAVEN.md).
-
-## iOS integration
-
-Embed and sign `sdk/ios/MediaVisionSDK.xcframework`. For direct C/C++ integration, use `MediaVisionCore.xcframework`. Add `models/ios/mediavision.mvsmodels` to your application resources.
-
-```objective-c
-#import <MediaVisionSDK/MVSProcessor.h>
-
-MVSProcessor *sdk = [[MVSProcessor alloc]
-    initWithModelPackagePath:packagePath backend:MVS_METAL error:&error];
-MvsOptions options = mvs_default_options();
-options.beauty = 0.55f;
-options.background = MVS_BACKGROUND_BLUR;
-[sdk configure:options error:&error];
-// Submit CVPixelBuffer frames synchronously or through submitPixelBuffer.
-```
-
-iOS 15+; device arm64 and simulator arm64/x86_64 are provided. The demo links binary SDKs only. Device installation requires your own Apple development signing configuration. The distributed unsigned IPA is not directly installable.
-
-## C/C++ integration
-
-Use `include/mvs/sdk.h`, or the lightweight RAII wrapper in `mvs.hpp`, and link the binary for your platform, architecture and toolchain.
-
-```cpp
-#include <mvs/sdk.h>
-
-MvsConfig config = mvs_default_config();
-MvsHandle engine = nullptr;
-if (mvs_create(&config, &engine) == MVS_OK) {
-  MvsOptions options = mvs_default_options();
-  options.sharpen = 0.3f;
-  mvs_set_options(engine, &options);
-  // mvs_process(engine, &input, &output);
-  mvs_destroy(engine);
-}
-```
-
-Portrait/face effects require valid analysis. Supply an inference callback with `mvs_set_analyzer`, or provide matching frame analysis to `mvs_process_with_analysis`. Linking the core alone does not create camera capture or inference pipelines.
-
-```bash
-cmake -S . -B build/demo -DMEDIAVISION_SDK_ROOT=/path/to/platform/sdk
-cmake --build build/demo --config Release
-```
-
-See [integration details](docs/INTEGRATION.md) and [platform status](docs/PLATFORMS.md) for runtime dependencies and ABI constraints.
-
-## Validation and performance
-
-Build and runtime status are recorded in `manifest/platforms.json`; this release's checks are listed in [distribution validation](docs/VALIDATION.md). Some Windows/Linux binaries are retained from previous delivery builds; cross-compilation does not substitute for target-device testing.
-
-A recent Snapdragon 8 Gen 2 test measured 29.99 FPS on average at 1080×1920 with default effects over 30 seconds, using a **static portrait displayed on a screen**. This is not live-person or sustained thermal acceptance, and does not imply 30 FPS on every flagship device. The iPhone 8 Plus targets of 480p/30 FPS and 720p/25 FPS remain optimization goals.
-
-## Roadmap
-
-Planned additions, in order; none are announced as shipped:
-
-1. Pupil size adjustment
-2. Forehead width adjustment
-3. Cosmetic contact lenses
-4. Virtual sunglasses
-5. Nasolabial fold reduction
-6. Teeth whitening
-7. Dark circle adjustment
-8. Hairline adjustment
-9. Hair volume adjustment
-
-Ongoing work also covers temporal background stability, hair/face boundaries, makeup and occlusion consistency, moving CPU work to accelerators, device-specific backend selection, sustained benchmarks and platform demo parity. See [the roadmap](docs/ROADMAP.md).
-
-Issues with device details and reproducible steps are welcome. Please avoid uploading unauthorized portraits or credentials. Pull requests may improve the public demos and integration tools; the proprietary core is updated through binary releases.
+SDKs are in `sdk/`, demos in `demos/`, and installers in `installers/`. Source ZIP download instructions are in the [integration guide](docs/INTEGRATION.md).

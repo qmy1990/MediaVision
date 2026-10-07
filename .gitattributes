@@ -17,3 +17,4 @@ sdk/**/*.framework/MediaVisionCore filter=lfs diff=lfs merge=lfs -text
 demos/linux/**/mvs_demo_cli filter=lfs diff=lfs merge=lfs -text
 demos/macos/**/mvs_demo_cli filter=lfs diff=lfs merge=lfs -text
 *.mp4 binary
+*.gif binary

@@ -1,6 +1,11 @@
 plugins { id 'maven-publish' }
 
 def sdkVersion = providers.gradleProperty('sdkVersion').getOrElse('0.4.0')
+def publicationGroup = providers.gradleProperty('publicationGroup').getOrElse('com.moon.mediavision')
+def publicationArtifact = providers.gradleProperty('publicationArtifact').getOrElse('mediavision-sdk')
+def publicationVersion = providers.gradleProperty('publicationVersion').getOrElse(sdkVersion)
+group = publicationGroup
+version = publicationVersion
 def repoRoot = rootDir.parentFile
 def inputAar = file(providers.gradleProperty('sdkAar').getOrElse(
   new File(repoRoot, "sdk/android/maven/com/moon/mediavision/mediavision-sdk/${sdkVersion}/mediavision-sdk-${sdkVersion}.aar").path))
@@ -31,9 +36,9 @@ def runtimeDependencies = [
 publishing {
   publications {
     sdk(MavenPublication) {
-      groupId = 'com.moon.mediavision'
-      artifactId = 'mediavision-sdk'
-      version = sdkVersion
+      groupId = publicationGroup
+      artifactId = publicationArtifact
+      version = publicationVersion
       artifact(stagedAar) { extension = 'aar'; builtBy(stageSdkAar) }
       pom {
         name = 'Moon MediaVision SDK'

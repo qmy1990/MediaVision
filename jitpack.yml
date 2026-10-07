@@ -1,0 +1,6 @@
+jdk:
+  - openjdk17
+env:
+  GIT_LFS_SKIP_SMUDGE: "1"
+install:
+  - bash tools/publish_jitpack.sh

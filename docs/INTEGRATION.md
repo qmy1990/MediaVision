@@ -43,6 +43,8 @@ Windows MSVC `.lib` 与 GNU ARM64 `.dll.a/.a` 的工具链不同。Linux 静态�
 
 ## 模型部署与分发
 
+GitHub 源码 ZIP 可能只包含大型二进制的 LFS 指针。在解压目录执行 `python3 tools/fetch_binary_assets.py`，再执行 `python3 tools/verify_distribution.py`，即可下载并校验完整资产。
+
 已有运行模型部署：
 
 ```bash
@@ -54,6 +56,8 @@ python3 tools/package_distribution.py --output distribution-output/MediaVision-0
 模型加密、量化和内部 SDK 编译在私有工程完成。公开工具只校验/部署已打包模型及分发文件，不公开加密密钥或内部编译流水线。候选模型不同输入/输出合约不能直接替换生产包。
 
 二进制分发不等于技术上无法逆向。此仓库不公开核心源码、shader 源码、SDK 混淆 mapping、调试符号或签名私钥；Apple 自有 shader 以预编译库嵌入。加密模型包装是分发形式，不提供“无法提取模型”的保证。
+
+README 的效果预览为循环 GIF，保留完整视频时长。需要更新预览时，安装 FFmpeg 并执行 `python3 tools/convert_comparisons.py`；原始 MP4 同时保留在 `docs/media/`。
 
 ## English summary
 

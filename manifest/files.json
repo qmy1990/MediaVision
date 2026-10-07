@@ -5,8 +5,8 @@
   "files": [
     {
       "path": ".gitattributes",
-      "size": 925,
-      "sha256": "8c91cc327484ff2518b7f1a4937484fe42dfd5f1f2820292aa735fd3087c32bf",
+      "size": 938,
+      "sha256": "d3c4bc39e9d8424f01ac5f1a2a7588ff0cc7c51e1976dd446d96ebf7df4bb67b",
       "lfs": false
     },
     {
@@ -29,14 +29,14 @@
     },
     {
       "path": "README.en.md",
-      "size": 9375,
-      "sha256": "fa8a16cfbe9bea7d7868ce3129af7a415509a498f93075fb2fd21709410300cd",
+      "size": 6332,
+      "sha256": "734ef02c6287787aab7ec3b65ec47b2fabee97d48ec60828814e69cd502dae0a",
       "lfs": false
     },
     {
       "path": "README.md",
-      "size": 9085,
-      "sha256": "3c80a3b839ef2f6fcaae8fd80f37d3e4d4d97d37c3bc77bf319f16f016fbd39e",
+      "size": 5717,
+      "sha256": "801cd42e6256b4dcd5454e7ff41e90a8a1e163722e41a6d3fa478aea2a12d600",
       "lfs": false
     },
     {
@@ -419,14 +419,14 @@
     },
     {
       "path": "docs/INTEGRATION.md",
-      "size": 4792,
-      "sha256": "55df459c9eef32e32dc4169ac55a3e56d8f5dad8b4b3041c5ca572e23b2fc322",
+      "size": 5208,
+      "sha256": "806622b21b155cc6f6f2c8df2433e5b7c7ad4788b47a6e5506b27b0e6668a5a9",
       "lfs": false
     },
     {
       "path": "docs/MAVEN.md",
-      "size": 3498,
-      "sha256": "0a0c298a181f90d5733586d99572ee32c42b3cfb5a441bfac76858c87113f677",
+      "size": 4284,
+      "sha256": "823d78fdaa3649086013c2efd3b8ab3aabed5c0f3de5532790fbb7add03337d5",
       "lfs": false
     },
     {
@@ -454,9 +454,21 @@
       "lfs": false
     },
     {
+      "path": "docs/media/beauty-toggle.gif",
+      "size": 4548851,
+      "sha256": "f14fc7d88375e7728470bee9494b98c01be23788202e9dc999f86fd2e37964c9",
+      "lfs": false
+    },
+    {
       "path": "docs/media/beauty-toggle.mp4",
       "size": 6804288,
       "sha256": "3cb17d42553e372cddd0af288ff57baa23ef51fe389de74ef597408d07110f0b",
+      "lfs": false
+    },
+    {
+      "path": "docs/media/blemish-removal.gif",
+      "size": 3751055,
+      "sha256": "5faa7fcf60fc437d5ad429fd6baa42e1537847be9c6d38b367c1294a14fea1b8",
       "lfs": false
     },
     {
@@ -466,9 +478,21 @@
       "lfs": false
     },
     {
+      "path": "docs/media/eye-enlargement.gif",
+      "size": 2607733,
+      "sha256": "5d990fc0098a485544ba5e271889b94f44a7a68fe345e06b4dde4ed676ae664c",
+      "lfs": false
+    },
+    {
       "path": "docs/media/eye-enlargement.mp4",
       "size": 2495091,
       "sha256": "32b0b4524293679a62491a8774d5a27b5b311d346f8c34b40497db0cbea55963",
+      "lfs": false
+    },
+    {
+      "path": "docs/media/eyebrows.gif",
+      "size": 2831804,
+      "sha256": "74a3b3dd3b87ba410c2755265d7c4712546cfa9bed3e290e764f27dccd3b52ba",
       "lfs": false
     },
     {
@@ -478,9 +502,21 @@
       "lfs": false
     },
     {
+      "path": "docs/media/face-slimming.gif",
+      "size": 2929245,
+      "sha256": "febe4faf6bd30d31cba43cc40946a6483323f547490a2d2f403518a0c9bfaf7a",
+      "lfs": false
+    },
+    {
       "path": "docs/media/face-slimming.mp4",
       "size": 3781462,
       "sha256": "a582f3e89dea2ac498b04928fc797b1ed4b3aab14b0362007b9567f7727a9953",
+      "lfs": false
+    },
+    {
+      "path": "docs/media/lipstick.gif",
+      "size": 2384448,
+      "sha256": "135af01d7bea381979cca196134d205e90cb6f68a5d54f366a74f09e4e1a5d8b",
       "lfs": false
     },
     {
@@ -490,9 +526,21 @@
       "lfs": false
     },
     {
+      "path": "docs/media/nose-reshaping.gif",
+      "size": 3007550,
+      "sha256": "3fd8ee22af1f90ee141fed5a86ffaaad2f7a616bf61fa4f9c2954d0a54f0fa75",
+      "lfs": false
+    },
+    {
       "path": "docs/media/nose-reshaping.mp4",
       "size": 3697603,
       "sha256": "d854cc341a18a93b9636abcda2d73511952b9580609aeac2309b046aea68e92b",
+      "lfs": false
+    },
+    {
+      "path": "docs/media/skin-tone.gif",
+      "size": 2862723,
+      "sha256": "fd011b60655846241ac57e7338779f20a115d4b616d4576bfa28bb0c71256fd2",
       "lfs": false
     },
     {
@@ -560,6 +608,12 @@
       "size": 24272536,
       "sha256": "49684066dce374264c861b2adebed790fa6cb4ee3177fce3541b21b3ef8d095a",
       "lfs": true
+    },
+    {
+      "path": "jitpack.yml",
+      "size": 94,
+      "sha256": "71b1a71bafc84e22696035f18c825e9f99ba01447e374c98a22c610f83c1bee3",
+      "lfs": false
     },
     {
       "path": "licenses/LICENSE-MIT.txt",
@@ -713,8 +767,8 @@
     },
     {
       "path": "publisher/build.gradle",
-      "size": 3422,
-      "sha256": "0d61083df3d40c062f841b6f225377ae87e1c2baa21039cbbcf62f2917f43080",
+      "size": 3779,
+      "sha256": "c307515abdc73f499bd3be1fdc8a5b8c07ba4edf21685efb07faf60c7c18daff",
       "lfs": false
     },
     {
@@ -2398,6 +2452,12 @@
       "lfs": false
     },
     {
+      "path": "tools/convert_comparisons.py",
+      "size": 1301,
+      "sha256": "451dd4265c01326f4dbaf7bb5dcedfde9c512cab6e08e43e01b3192e12b9ed7f",
+      "lfs": false
+    },
+    {
       "path": "tools/fetch_binary_assets.py",
       "size": 2018,
       "sha256": "06dae33dcc9573234931eec50b1a324ca6b232e45372709218eeb9770e845e56",
@@ -2413,6 +2473,12 @@
       "path": "tools/prepare_model_assets.py",
       "size": 868,
       "sha256": "778083c84a618dae1927f291d975e4828f322e294e34c7f1a915a6fc8fe75fa9",
+      "lfs": false
+    },
+    {
+      "path": "tools/publish_jitpack.sh",
+      "size": 377,
+      "sha256": "2d96c00d4f91350d55dc940d10fa04caa73988e0458889801e235b6dd9592ff3",
       "lfs": false
     },
     {
