@@ -6,7 +6,7 @@
 |---|---|
 | Android SDK | Release AAR、四架构 C/C++ core、三架构相机 JNI 重新编译；公开 `blushMode()`、`blushColor()` 与 14 色常量保留 |
 | Android Demo | 使用发布 AAR 和 POM 的公开工程 Debug / Release 编译通过；版本 0.4.2、应用 ID `com.moon.mediavision.demo` |
-| Maven / JitPack | 本地 Maven 发布通过，POM 保留 6 个运行依赖；JitPack 首次构建因服务器无法安装 JDK 17 失败，发布脚本未执行，远程 AAR 尚未验收 |
+| Maven / JitPack | JitPack `v0.4.2` 构建成功；远程 AAR 与本地 SDK 的 SHA-256 一致，POM 保留 6 个运行依赖；公开 Demo 通过远程依赖完成三 ABI Debug / Release 构建 |
 | iOS | device arm64、simulator arm64/x86_64 的 Core 与封装 XCFramework 重编译；公开 Demo 只链接预编译 SDK，Release 构建通过；IPA 未签名 |
 | macOS | x86_64、arm64 静态/动态库重编译；四组公开 C++ 示例编译通过；Intel 静态/动态示例均使用 Metal 处理图片成功 |
 | 原生测试 | Intel macOS：9 项测试全部通过，覆盖选项/接口、模型加载、参考美白、腮红、遮罩与 GPU 像素处理 |
@@ -25,6 +25,6 @@ Windows/Linux 与 macOS ARM64 本次为交叉编译和链接验证，没有新�
 
 All five platforms ship newly built SDK 0.4.2 libraries and matching ABI 11 headers. Android public Debug/Release demos and the iOS binary-only Release demo build successfully. Windows x86/x64/ARM64, Linux x86/x86_64/ARMv7/aarch64, and macOS x86_64/arm64 static/shared C++ consumers compile against the public packages. Both Intel macOS consumers process an image with Metal; all nine native tests pass.
 
-Across 68 real-photo CPU/Metal cases, maximum RGB differences are 2 for whitening, 3 for smoothing, 1 for blush, and 5 for combined effects; the 99th-percentile channel difference is at most 2. The README shows ten infinitely looping GIFs. The first JitPack attempt failed before the publication script because the worker could not download/install JDK 17. Remote AAR and consumer checks remain pending an owner-authorized retry; see the platform manifest.
+Across 68 real-photo CPU/Metal cases, maximum RGB differences are 2 for whitening, 3 for smoothing, 1 for blush, and 5 for combined effects; the 99th-percentile channel difference is at most 2. The README shows ten infinitely looping GIFs. JitPack `v0.4.2` publishes the exact local SDK AAR (matching SHA-256) and retains all six runtime dependencies. The public Android demo builds Debug and Release for all three camera ABIs using the remote JitPack dependency.
 
 Cross builds do not establish native runtime or FPS results. Windows/Linux and macOS ARM64 received no new target-device performance tests; the final Android/iOS installers have not received a new installation/runtime test in this release packaging pass. Image parity and GIF playback FPS are not mobile video throughput measurements.

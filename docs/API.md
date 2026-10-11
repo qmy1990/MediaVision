@@ -5,7 +5,7 @@ Android/iOS 相机 SDK 提供模型推理与 GPU 效果处理；原生 C/C++ cor
 ## Android
 
 ```groovy
-implementation 'com.github.qmy1990:MediaVision:0.4.2'
+implementation 'com.github.qmy1990:MediaVision:v0.4.2'
 ```
 
 ```java

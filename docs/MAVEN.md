@@ -1,8 +1,8 @@
 # Maven 发布与引用 / Maven publishing and consumption
 
-发布状态：首次远程构建在 JDK 17 安装阶段失败，SDK 发布脚本未执行；仓库所有者重试后再验收远程依赖。已编译 AAR 与本地 Maven 可正常使用。
+已验证远程 AAR 与发布 SDK 逐字节一致，公开 Android Demo 的 Debug / Release 远程依赖构建通过。
 
-推荐坐标：`com.github.qmy1990:MediaVision:0.4.2`。Java 包：`com.moon.mediavision`。
+推荐坐标：`com.github.qmy1990:MediaVision:v0.4.2`。Java 包：`com.moon.mediavision`。
 
 ## JitPack
 
@@ -13,10 +13,10 @@ JitPack 发布 SDK 0.4.2 预编译 AAR，POM 自动声明运行依赖。推荐�
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:0.4.2'
+implementation 'com.github.qmy1990:MediaVision:v0.4.2'
 ```
 
-JitPack 坐标不改变 Java 包名：仍使用 `import com.moon.mediavision.*`。同时保留 `google()`、`mavenCentral()` 以解析运行依赖。`0.4.2` 使用新编译的 SDK 0.4.2 二进制，新增腮红模式和 RGB 颜色接口。
+JitPack 坐标不改变 Java 包名：仍使用 `import com.moon.mediavision.*`。同时保留 `google()`、`mavenCentral()` 以解析运行依赖。`v0.4.2` 使用新编译的 SDK 0.4.2 二进制，新增腮红模式和 RGB 颜色接口。
 
 仓库根目录 `jitpack.yml` 使用 JDK 17，调用 `tools/publish_jitpack.sh`，将预编译 AAR 与依赖 POM 发布到构建环境的本地 Maven。该流程只需随 Git 提交的 AAR，不需要下载所有 LFS 模型或编译核心 SDK。维护者参考 [JitPack 官方构建文档](https://docs.jitpack.io/building/)。
 

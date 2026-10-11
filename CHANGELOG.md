@@ -9,7 +9,7 @@
 - 优化腮红位置、形状及上下、鼻侧的渐淡过渡。
 - 新增“脸颊＋鼻尖”腮红模式，保留“脸颊”模式。
 - 新增 14 种腮红颜色，支持自定义 RGB 和独立强度调节。
-- 同步更新 Android、iOS、Windows、macOS、Linux 的 SDK、公共接口和 Demo、接口说明及循环 GIF；JitPack 引用升级至 `0.4.2`。
+- 同步更新 Android、iOS、Windows、macOS、Linux 的 SDK、公共接口和 Demo、接口说明及循环 GIF；JitPack 引用升级至 `v0.4.2`。
 
 ### English
 
@@ -18,7 +18,7 @@
 - Refined blush placement, shape, and falloff above, below, and toward the nose.
 - Added a cheeks-and-nose-tip blush mode alongside the cheeks-only mode.
 - Added 14 blush shades, custom RGB colors, and independent intensity control.
-- Updated SDK binaries, public APIs, and demos across Android, iOS, Windows, macOS, and Linux, API documentation, and looping GIFs; upgraded the JitPack dependency to `0.4.2`.
+- Updated SDK binaries, public APIs, and demos across Android, iOS, Windows, macOS, and Linux, API documentation, and looping GIFs; upgraded the JitPack dependency to `v0.4.2`.
 
 ### 接口兼容 / Compatibility
 
