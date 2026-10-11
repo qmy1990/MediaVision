@@ -1,6 +1,6 @@
 # 集成指南 / Integration
 
-SDK 标识：`com.moon.mediavision`。Android 命名空间与 Maven group 使用同一标识；Demo 应用 ID 为 `com.moon.mediavision.demo`。C/C++ 保留公共 `mvs_*` 符号及 ABI 9，避免无意义地改变原生调用约定。
+SDK 标识：`com.moon.mediavision`。Android 命名空间与 Maven group 使用同一标识；Demo 应用 ID 为 `com.moon.mediavision.demo`。C/C++ 保留公共 `mvs_*` 符号。所有平台 0.4.2 库使用 ABI 11，新增腮红模式和颜色；使用配套头文件与库重新编译。
 
 ## Android
 
@@ -9,10 +9,12 @@ SDK 标识：`com.moon.mediavision`。Android 命名空间与 Maven group 使用
 `VisionOptions` 是不可变配置：
 
 ```java
-VisionOptions options = VisionOptions.builder()
+VisionOptions options = new VisionOptions.Builder()
     .beauty(0.55f).blemishRemoval(0.35f)
     .background(VisionOptions.BLUR).blurRadius(24)
     .lipstick(0.22f).lipstickColor(VisionOptions.LIP_CLASSIC_RED)
+    .blush(.35f).blushMode(VisionOptions.BLUSH_CHEEKS_AND_NOSE)
+    .blushColor(VisionOptions.BLUSH_PEACH_PINK)
     .build();
 VisionSdk sdk = new VisionSdk(context, VisionSdk.AUTO);
 sdk.configure(options);
@@ -39,7 +41,7 @@ App 集成 `MediaVisionSDK.xcframework` 并 Embed & Sign。模型加入资源并
 
 CMake 可用 `find_package(MediaVisionSDK CONFIG REQUIRED)` 与 `MediaVision::SDK`，将选定库的安装前缀加入 `CMAKE_PREFIX_PATH`。仓库根目录工程提供纯上层 `mvs_demo_cli` 示例；它不编译 SDK 内部源文件。
 
-Windows MSVC `.lib` 与 GNU ARM64 `.dll.a/.a` 的工具链不同。Linux 静态库使用 Clang/libc++ ABI，不能假定任意 GCC/libstdc++ 可链接；共享 C ABI 库通常更便于跨编译器接入。具体见 [平台说明](PLATFORMS.md)。
+Windows x86/x64/ARM64 均提供 MSVC `.lib`；本版不沿用旧 GNU ARM64 库格式。Linux 静态库使用 Clang/libc++ ABI，不能假定任意 GCC/libstdc++ 可链接；共享 C ABI 库通常更便于跨编译器接入。具体见 [平台说明](PLATFORMS.md)。
 
 ## 模型部署与分发
 
@@ -50,7 +52,7 @@ GitHub 源码 ZIP 可能只包含大型二进制的 LFS 指针。在解压目录
 ```bash
 python3 tools/prepare_model_assets.py --platform android \
   --output /path/to/app/src/main/assets/mediavision.mvsmodels
-python3 tools/package_distribution.py --output distribution-output/MediaVision-0.4.0.zip
+python3 tools/package_distribution.py --output distribution-output/MediaVision-0.4.2.zip
 ```
 
 模型加密、量化和内部 SDK 编译在私有工程完成。公开工具只校验/部署已打包模型及分发文件，不公开加密密钥或内部编译流水线。候选模型不同输入/输出合约不能直接替换生产包。
@@ -59,6 +61,8 @@ python3 tools/package_distribution.py --output distribution-output/MediaVision-0
 
 README 的效果预览为循环 GIF，保留完整视频时长。需要更新预览时，安装 FFmpeg 并执行 `python3 tools/convert_comparisons.py`；原始 MP4 同时保留在 `docs/media/`。
 
+新增腮红参数和常见颜色完整列表见 [接口说明](API.md)。
+
 ## English summary
 
-Use the platform wrapper for camera/inference integration, or link the public C ABI for native applications. Android uses `com.github.qmy1990:MediaVision:0.4.1` via JitPack; the POM resolves external runtimes. The iOS demo links the prebuilt framework and requires your own signing team. Native callers supply valid buffers and, when needed, matching inference analysis. Select the correct platform/architecture/toolchain. Public tooling deploys existing encrypted packages and builds demos only; proprietary SDK/model compilation and signing credentials are not published.
+Use the platform wrapper for camera/inference integration, or link the public C ABI for native applications. Android uses `com.github.qmy1990:MediaVision:0.4.2` via JitPack; the POM resolves external runtimes. The iOS demo links the prebuilt framework and requires your own signing team. Native callers supply valid buffers and, when needed, matching inference analysis. Select the correct platform/architecture/toolchain. Public tooling deploys existing encrypted packages and builds demos only; proprietary SDK/model compilation and signing credentials are not published.

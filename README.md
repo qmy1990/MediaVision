@@ -9,6 +9,8 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 
 **发布的 SDK 可以免费商用。**
 
+当前版本：**0.4.2** · [更新日志](CHANGELOG.md) · [接口说明](docs/API.md)
+
 ## 功能与计划
 
 “优化中”表示已有功能，正在改善效果或性能；计划功能按表中顺序开发。
@@ -32,7 +34,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 | 塑形 | 眼间距调节 | 已支持 | 极值与姿态稳定性 |
 | 塑形 | 颧骨调节 | 优化中 | 背景边缘对齐 |
 | 美妆 | 口红 / 颜色 / 强度 | 优化中 | 嘴部遮挡与边缘贴合 |
-| 美妆 | 腮红 | 已支持 | 位置与自然融合 |
+| 美妆 | 腮红 / 14 色 / 脸颊与鼻尖模式 | 已支持 | 动态贴合与自然渐淡 |
 | 美妆 | 眉毛加深 | 已支持 | 毛发细节与遮挡 |
 | 道具 | 基础网格道具 | 基础版 | 更丰富的模型与材质 |
 | 道具 | 头饰 | 基础版 | 姿态跟随与遮挡 |
@@ -68,6 +70,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 | **大眼**<br><img src="docs/media/eye-enlargement.gif" width="300" alt="大眼"> | **瘦脸**<br><img src="docs/media/face-slimming.gif" width="300" alt="瘦脸"> |
 | **鼻翼**<br><img src="docs/media/nose-reshaping.gif" width="300" alt="鼻翼"> | **口红**<br><img src="docs/media/lipstick.gif" width="300" alt="口红"> |
 | **眉毛**<br><img src="docs/media/eyebrows.gif" width="300" alt="眉毛"> | **美白**<br><img src="docs/media/skin-tone.gif" width="300" alt="美白"> |
+| **腮红**<br><img src="docs/media/blush.gif" width="300" alt="腮红"> | **颧骨**<br><img src="docs/media/cheekbone-adjustment.gif" width="300" alt="颧骨"> |
 
 ## Android 接入
 
@@ -78,14 +81,14 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:0.4.1'
+implementation 'com.github.qmy1990:MediaVision:0.4.2'
 ```
 
 Java 包名为 `com.moon.mediavision`：
 
 ```java
 VisionSdk sdk = new VisionSdk(context, VisionSdk.AUTO);
-sdk.configure(VisionOptions.builder()
+sdk.configure(new VisionOptions.Builder()
     .beauty(0.55f).blemishRemoval(0.35f).build());
 ```
 

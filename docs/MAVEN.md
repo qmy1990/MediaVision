@@ -1,20 +1,20 @@
 # Maven 发布与引用 / Maven publishing and consumption
 
-推荐坐标：`com.github.qmy1990:MediaVision:0.4.1`。Java 包：`com.moon.mediavision`。
+推荐坐标：`com.github.qmy1990:MediaVision:0.4.2`。Java 包：`com.moon.mediavision`。
 
 ## JitPack
 
-JitPack `0.4.1` 已通过远程构建、AAR / POM 校验，以及 Android Demo 的 arm64 Debug / Release 编译。推荐使用以下配置：
+JitPack 发布 SDK 0.4.2 预编译 AAR，POM 自动声明运行依赖。推荐使用以下配置：
 
 ```groovy
 // settings.gradle → dependencyResolutionManagement.repositories
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:0.4.1'
+implementation 'com.github.qmy1990:MediaVision:0.4.2'
 ```
 
-JitPack 坐标不改变 Java 包名：仍使用 `import com.moon.mediavision.*`。同时保留 `google()`、`mavenCentral()` 以解析运行依赖。`0.4.1` 是接入与发布配置更新，沿用 SDK 0.4.0 的二进制和接口。
+JitPack 坐标不改变 Java 包名：仍使用 `import com.moon.mediavision.*`。同时保留 `google()`、`mavenCentral()` 以解析运行依赖。`0.4.2` 使用新编译的 SDK 0.4.2 二进制，新增腮红模式和 RGB 颜色接口。
 
 仓库根目录 `jitpack.yml` 使用 JDK 17，调用 `tools/publish_jitpack.sh`，将预编译 AAR 与依赖 POM 发布到构建环境的本地 Maven。该流程只需随 Git 提交的 AAR，不需要下载所有 LFS 模型或编译核心 SDK。维护者参考 [JitPack 官方构建文档](https://docs.jitpack.io/building/)。
 
@@ -39,7 +39,7 @@ dependencyResolutionManagement {
 
 ```groovy
 dependencies {
-  implementation 'com.moon.mediavision:mediavision-sdk:0.4.0'
+  implementation 'com.moon.mediavision:mediavision-sdk:0.4.2'
 }
 ```
 
@@ -51,7 +51,7 @@ maven {
   content { includeGroup("com.moon.mediavision") }
 }
 // app/build.gradle.kts
-implementation("com.moon.mediavision:mediavision-sdk:0.4.0")
+implementation("com.moon.mediavision:mediavision-sdk:0.4.2")
 ```
 
 本地离线 SDK 仓库：`maven { url uri('/path/to/MediaVision/sdk/android/maven') }`。第一次解析 MediaPipe/LiteRT/QNN 等第三方依赖仍可能需要联网；本 SDK Maven 目录不是完整 Android 工具链或全部第三方缓存。
@@ -63,9 +63,9 @@ The repository URL above can be used without GitHub credentials for a public rep
 ```text
 sdk/android/maven/com/moon/mediavision/mediavision-sdk/
   maven-metadata.xml
-  0.4.0/
-    mediavision-sdk-0.4.0.aar
-    mediavision-sdk-0.4.0.pom
+  0.4.2/
+    mediavision-sdk-0.4.2.aar
+    mediavision-sdk-0.4.2.pom
     ... checksums
 ```
 
@@ -78,7 +78,7 @@ Maven 路径内的 AAR 使用普通 Git 文件而非 LFS，确保远程 Maven UR
 ```bash
 # 在仓库根目录执行；Gradle Wrapper 来自 Android Demo。
 demos/android/gradlew -p publisher publishSdkPublicationToDistributionRepository \
-  -PsdkVersion=0.4.0 \
+  -PsdkVersion=0.4.2 \
   -PsdkAar=/absolute/path/to/precompiled.aar
 ```
 

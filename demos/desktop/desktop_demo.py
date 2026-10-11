@@ -23,6 +23,17 @@ def available(*paths):
     return next((path for path in paths if path.exists()), paths[0])
 
 
+def native_sdk_relative():
+    machine = platform.machine().lower()
+    is_64_bit = C.sizeof(C.c_void_p) == 8
+    arm = machine in {"aarch64", "arm64"} or machine.startswith("arm")
+    if sys.platform == "win32":
+        arch = "arm64" if arm and is_64_bit else "x64" if is_64_bit else "x86"
+        return f"windows/{arch}/shared/bin/mvs_sdk.dll"
+    arch = ("aarch64" if is_64_bit else "armv7") if arm else ("x86_64" if is_64_bit else "x86")
+    return f"linux/{arch}/shared/lib/libmvs_sdk.so"
+
+
 class Config(C.Structure):
     _fields_ = [
         ("struct_size", C.c_uint32),
@@ -64,6 +75,8 @@ class Options(C.Structure):
         ("skin_tone", C.c_int),
         ("debug_landmarks", C.c_uint32),
         ("debug_face_mesh", C.c_uint32),
+        ("blush_mode", C.c_int),
+        ("blush_color", C.c_uint32),
     ]
 
 
@@ -121,6 +134,9 @@ class SDK:
         self.timestamp = 0
         l = self.lib
         l.mvs_default_config.restype = Config
+        config = l.mvs_default_config()
+        if config.abi_version != 11:
+            raise RuntimeError("This demo requires the matching MediaVision 0.4.2 ABI 11 library")
         l.mvs_default_options.restype = Options
         l.mvs_create.argtypes = [C.POINTER(Config), C.POINTER(C.c_void_p)]
         l.mvs_destroy.argtypes = [C.c_void_p]
@@ -151,6 +167,8 @@ class SDK:
         o = self.lib.mvs_default_options()
         o.mask_smoothing = 0
         for key, value in kwargs.items():
+            if key not in {name for name, _ in Options._fields_}:
+                raise ValueError(f"Unknown SDK option: {key}")
             setattr(o, key, value)
         self.check(self.lib.mvs_set_options(self.handle, C.byref(o)))
         self.timestamp += 1
@@ -318,23 +336,10 @@ class Face:
         self.task = None
         self.owns_models = models is None
         if self.models is None:
-            linux_arch = (
-                "aarch64"
-                if platform.machine().lower() in {"aarch64", "arm64"}
-                else "x86_64"
-            )
-            sdk_path = (
-                available(
-                    ROOT / "dist/package/windows/x64/shared/bin/mvs_sdk.dll",
-                    PACKAGE / "sdk/windows/x64/shared/bin/mvs_sdk.dll",
-                )
-                if sys.platform == "win32"
-                else available(
-                    ROOT
-                    / f"dist/package/linux/{linux_arch}/shared/lib/libmvs_sdk.so",
-                    PACKAGE
-                    / f"sdk/linux/{linux_arch}/shared/lib/libmvs_sdk.so",
-                )
+            sdk_relative = native_sdk_relative()
+            sdk_path = available(
+                ROOT / "dist/package" / sdk_relative,
+                PACKAGE / "sdk" / sdk_relative,
             )
             self._sdk = SDK(sdk_path, 1)
             try:
@@ -416,15 +421,7 @@ def main():
     p.add_argument("--input", required=True, help="photo/video or camera:0")
     p.add_argument("--output", type=Path)
     linux_arm = platform.machine().lower() in {"aarch64", "arm64"}
-    sdk_relative = (
-        "windows/x64/shared/bin/mvs_sdk.dll"
-        if sys.platform == "win32"
-        else (
-            "linux/aarch64/shared/lib/libmvs_sdk.so"
-            if linux_arm
-            else "linux/x86_64/shared/lib/libmvs_sdk.so"
-        )
-    )
+    sdk_relative = native_sdk_relative()
     runtime_relative = (
         "windows-x64/onnxruntime.dll"
         if sys.platform == "win32"
@@ -467,8 +464,19 @@ def main():
         ("blemish", 0.6),
         ("small-head", 0),
         ("lipstick", 0),
+        ("whitening", 0),
+        ("blush", 0),
+        ("eye-enlarge", 0),
+        ("face-slim", 0),
+        ("nose-slim", 0),
+        ("eyebrow-darkening", 0),
+        ("cheekbone-reduce", .5),
+        ("eye-spacing", .5),
     ]:
         p.add_argument("--" + flag, type=float, default=default)
+    p.add_argument("--blush-mode", choices=["cheeks", "cheeks-nose"], default="cheeks")
+    p.add_argument("--blush-color", type=lambda value: int(value.removeprefix("#"), 16), default=0xEB5263, help="RGB hex, e.g. F4A18F")
+    p.add_argument("--skin-tone", type=int, choices=range(4), default=0)
     p.add_argument("--models", type=Path, help="Single encrypted model package")
     a = p.parse_args()
     is_photo = Path(a.input).suffix.lower() in {
@@ -486,7 +494,12 @@ def main():
         beauty=a.beauty,
         blemish_removal=a.blemish,
         small_head=a.small_head,
-        lipstick=a.lipstick,
+        lipstick=a.lipstick, whitening=a.whitening, blush=a.blush,
+        blush_mode=1 if a.blush_mode == "cheeks-nose" else 0,
+        blush_color=a.blush_color, skin_tone=a.skin_tone,
+        eye_enlarge=a.eye_enlarge, face_slim=a.face_slim, nose_slim=a.nose_slim,
+        eyebrow_darkening=a.eyebrow_darkening, cheekbone_reduce=a.cheekbone_reduce,
+        eye_spacing=a.eye_spacing,
     )
     camera = a.input.startswith("camera:")
     cap = None
@@ -507,6 +520,8 @@ def main():
                 ("beauty", a.beauty),
                 ("blemish", a.blemish),
                 ("small_head", a.small_head),
+                ("whitening", a.whitening),
+                ("blush", a.blush),
             ]:
                 cv2.createTrackbar(
                     name,
@@ -558,7 +573,7 @@ def main():
             alpha, mt = mat.run(rgb, timestamp)
             points, ft = face.run(rgb, timestamp)
             if camera:
-                for key in ["beauty", "small_head"]:
+                for key in ["beauty", "small_head", "whitening", "blush"]:
                     opts[key] = (
                         cv2.getTrackbarPos(key, "MediaVision Desktop") / 100
                     )

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "sdk": "com.moon.mediavision",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "files": [
     {
       "path": ".gitattributes",
@@ -16,9 +16,15 @@
       "lfs": false
     },
     {
+      "path": "CHANGELOG.md",
+      "size": 1880,
+      "sha256": "f307f6496e811a9153618946d99527da5d2e1cc490bdc20c795246ccaef0e7ac",
+      "lfs": false
+    },
+    {
       "path": "CMakeLists.txt",
-      "size": 1135,
-      "sha256": "f3e4926b72fe85f4354989b2d873336d08e575574b24133a13ab29661d096487",
+      "size": 2232,
+      "sha256": "9e8655e6d7607e8536b87f7bd6dea7a9d460e9b4a59f4753e7f17c49ab48adfa",
       "lfs": false
     },
     {
@@ -29,26 +35,26 @@
     },
     {
       "path": "README.en.md",
-      "size": 6268,
-      "sha256": "745b4e6f199a27028419ef0daa210a2e2ec75900d4ab44102153b2d1b1d4a2d2",
+      "size": 6586,
+      "sha256": "d7dda9e2e60b7032a446ad4ba24d1e61b80fb12b84bafad87c4647323f414b95",
       "lfs": false
     },
     {
       "path": "README.md",
-      "size": 5653,
-      "sha256": "893f991997d3f7b447d8a6fdc70ed14b9bc6e2e01415c2084c95b704959bb9ac",
+      "size": 5950,
+      "sha256": "672e323bc9445c95ea00fc2e1aea198714e296fcbc45421955ba9bab013a0243",
       "lfs": false
     },
     {
       "path": "demos/android/README.md",
       "size": 1717,
-      "sha256": "5a92672e71609519b479d379d63e504ac3de02ab0bf4d99a6be2f7d2345ed58e",
+      "sha256": "8845e72275452cc6eb4193fd54f0f57d5a335b6caea4fa2ff32379d43cbc90f3",
       "lfs": false
     },
     {
       "path": "demos/android/app/build.gradle",
       "size": 1052,
-      "sha256": "c1a4b71a3843f88688c84aa15836aba57565da6aefae7d74024b9b5f9a3e7f4c",
+      "sha256": "1e72169d6d2c9c8494ccb412fb27b96f7f7d80079c57eaeba35311ab899f255e",
       "lfs": false
     },
     {
@@ -77,8 +83,8 @@
     },
     {
       "path": "demos/android/app/src/main/java/com/moon/mediavision/demo/MainActivity.java",
-      "size": 47909,
-      "sha256": "fe95f004c0a1a2a1557967637a0c0ed4dd184afa8780528caf82c4d774900c98",
+      "size": 51689,
+      "sha256": "ab9bb61157f85753e862041872cc717fa50250d6f501f7a1d3b44216abd47e0f",
       "lfs": false
     },
     {
@@ -137,14 +143,14 @@
     },
     {
       "path": "demos/desktop/README.md",
-      "size": 1019,
-      "sha256": "1946312e13e2c11a794303629434b048d16bc0111728bfeb3ab8308c120219b7",
+      "size": 1741,
+      "sha256": "94bac01670d2858cb5d1652fcd2fb6dccaf4457c92dd339ba86b8ecc8a7aaaba",
       "lfs": false
     },
     {
       "path": "demos/desktop/desktop_demo.py",
-      "size": 19721,
-      "sha256": "608d6d28db632feb40c536928f3890a0d7fb226d9307be462af2a07a5bd94110",
+      "size": 20845,
+      "sha256": "bbb92449cca4ca6be93db622c91889f97288c8a1a8d4dfd1efc7926a2b1eb35e",
       "lfs": false
     },
     {
@@ -155,8 +161,8 @@
     },
     {
       "path": "demos/ios/Generated-Info.plist",
-      "size": 1022,
-      "sha256": "34c2d23f91f80c308c21526e8baf89b751c5c72dc92b5ddd89a0e306bcff8c43",
+      "size": 1024,
+      "sha256": "76ededc36bbacd9857d7e9192abc27140fa82bef451576bc98c6c83966698d25",
       "lfs": false
     },
     {
@@ -173,14 +179,14 @@
     },
     {
       "path": "demos/ios/MVSCameraViewController.mm",
-      "size": 53003,
-      "sha256": "f444f5a4100d62970071ebf6cf7d072de28e76e1088ef44f383d7f3a5789502f",
+      "size": 55441,
+      "sha256": "8bf0a2dd2e851156e10b43ca92e12b5d2d94a4cace6186c8ca507f7ed46ce7ec",
       "lfs": false
     },
     {
       "path": "demos/ios/MediaVisionDemo.xcodeproj/project.pbxproj",
       "size": 19035,
-      "sha256": "c73e90de708d700852a424f5cf7ac0493f488d80426d9872729fe2293e64b0cc",
+      "sha256": "a321a7bcc3931f013be13bdbd817b9a3e7c0314c8ed093c46ef4a84fef162462",
       "lfs": false
     },
     {
@@ -198,127 +204,169 @@
     {
       "path": "demos/ios/project.yml",
       "size": 1524,
-      "sha256": "d838671369d082c2589b4e2cbed095fb649b6d3e23f9f5ead4a05011b0f45bbb",
+      "sha256": "887ccf754c4e94afbf9342f0f763311c524d5b614487e5a8c49877292062a50d",
       "lfs": false
     },
     {
+      "path": "demos/linux/aarch64/shared/libmvs_sdk.so",
+      "size": 1299904,
+      "sha256": "54033983b28197e519bbc7b92145a08d2cb39941a856640298a2d028bcd4e40d",
+      "lfs": true
+    },
+    {
       "path": "demos/linux/aarch64/shared/mvs_demo_cli",
-      "size": 5166472,
-      "sha256": "787ed9f0cb074e53d4a1f04a502720b956fe1bcb54cb4003cd9db9a876cc29c0",
+      "size": 735568,
+      "sha256": "5e3eb31db17fb28bc61ab06faccb592601d0bf546ca5fadeda68572cb3cc610d",
       "lfs": true
     },
     {
       "path": "demos/linux/aarch64/static/mvs_demo_cli",
-      "size": 7256112,
-      "sha256": "5b681836a8c0aabb4ec7671894b410d75ce1b114b5e475defc0c9d2ae32854cd",
+      "size": 1087712,
+      "sha256": "65e923ba9c223657f55b5f4155c6edf73d5e5b0f4f470466b76660edcfe8039a",
+      "lfs": true
+    },
+    {
+      "path": "demos/linux/armv7/shared/libmvs_sdk.so",
+      "size": 1158864,
+      "sha256": "a65c4c242aba6cb026caadb9622ea7e115ea314f9794639b821a43e4db52a95c",
       "lfs": true
     },
     {
       "path": "demos/linux/armv7/shared/mvs_demo_cli",
-      "size": 4123768,
-      "sha256": "ce1902d015a799c9057bd43af694543973ca8f85bd0538bdd582597204e00883",
+      "size": 657232,
+      "sha256": "73c221da7a63d1283a34f3ef415706e42973196b7a4854a5c9f0ae620010f8e4",
       "lfs": true
     },
     {
       "path": "demos/linux/armv7/static/mvs_demo_cli",
-      "size": 6660828,
-      "sha256": "244a323d26a92bd25700494524aa15074e3595ccd4474e2f33a0610457e4632b",
+      "size": 981096,
+      "sha256": "9a8a764ba82fcd2ffcc533307f515e388433af19f5ce0b261f3f02258166097c",
+      "lfs": true
+    },
+    {
+      "path": "demos/linux/x86/shared/libmvs_sdk.so",
+      "size": 1127844,
+      "sha256": "8dc5cda10e139389d1277b596575cbdbf909634489a5a947f56627758382b82c",
       "lfs": true
     },
     {
       "path": "demos/linux/x86/shared/mvs_demo_cli",
-      "size": 4015168,
-      "sha256": "b2bc97b46606d98daa5266a08a78381fb8f1a1e612ab0f6cc7935746f53a36e1",
+      "size": 742304,
+      "sha256": "8c98ad1c5f999b5dd58a22f7bfdbf1346737e411d448abe5471b5b6d35011ea0",
       "lfs": true
     },
     {
       "path": "demos/linux/x86/static/mvs_demo_cli",
-      "size": 5924580,
-      "sha256": "e4a31f1b63c05e897b1ae020b3e5a897ed0f4e8310894db1cec26eb442bc16fd",
+      "size": 1087908,
+      "sha256": "f67a0bc953c18cd57d99806308005e542d8a0cf91988431bc8fbe72bade44d8d",
+      "lfs": true
+    },
+    {
+      "path": "demos/linux/x86_64/shared/libmvs_sdk.so",
+      "size": 1129152,
+      "sha256": "cecc7be9e7854fcfb7354021779e628065e1c23411f9e87faf6a83b06ffde0e0",
       "lfs": true
     },
     {
       "path": "demos/linux/x86_64/shared/mvs_demo_cli",
-      "size": 4914432,
-      "sha256": "1aa2d2318776a6adce5f475012268b07d287c75e50225c63253230f977b3231b",
+      "size": 723848,
+      "sha256": "b5071178a5bc9fc69213e6219f27921c0fbce20b6601fbbc0ca9caaa808ad5fa",
       "lfs": true
     },
     {
       "path": "demos/linux/x86_64/static/mvs_demo_cli",
-      "size": 6979336,
-      "sha256": "0f2c94bac1a1903478f68bf94ffe416421e2232854ab229fbafe4cb8c4877917",
+      "size": 1043784,
+      "sha256": "f2c77bc8c9c98a94be6c935b6e336787fbb508aad3094b0c13b187e802cdf299",
+      "lfs": true
+    },
+    {
+      "path": "demos/macos/arm64/shared/libmvs_sdk.dylib",
+      "size": 647024,
+      "sha256": "250941ec6b6f5760267380ed04631c10c1883ddef42109c0700770abc0d229f3",
+      "lfs": true
+    },
+    {
+      "path": "demos/macos/arm64/shared/mvs_demo_cli",
+      "size": 39072,
+      "sha256": "62451aa09e42dedfb0f295e20e1ae6c574d20931f4b00b0f2b6558c00172b710",
+      "lfs": true
+    },
+    {
+      "path": "demos/macos/arm64/static/mvs_demo_cli",
+      "size": 648672,
+      "sha256": "50f15f40c91869d46fe66083750d84974f725722b8f62f087f349c60d0c378d8",
       "lfs": true
     },
     {
       "path": "demos/macos/x86_64/shared/libmvs_sdk.dylib",
-      "size": 703664,
-      "sha256": "7f77925e43062ea6c8e4013c8c2ef84b43f74ded1c6bd5391176c451221dcfdf",
+      "size": 691344,
+      "sha256": "b59b86dc311235be2b8986972d7a91ce825600c0654b75da1044c1ca50824bbc",
       "lfs": true
     },
     {
       "path": "demos/macos/x86_64/shared/mvs_demo_cli",
-      "size": 39768,
-      "sha256": "47ca25e626e4459b32a00a8b4fe1d6237ad7f92239bb8437004ae12f82793aa1",
+      "size": 38632,
+      "sha256": "4848f40a9ba57186ea4af2b2995f6be5071a380b7603af8cd316ca4f7357a3d7",
       "lfs": true
     },
     {
       "path": "demos/macos/x86_64/static/mvs_demo_cli",
-      "size": 688744,
-      "sha256": "65b513224edb3cc2c77003618b69f3fe2f0d1ab8b8052bfa9abf65a00bdf1c6c",
-      "lfs": true
-    },
-    {
-      "path": "demos/windows/arm64/shared/libmvs_sdk.dll",
-      "size": 793088,
-      "sha256": "7dd2fbcbd9ae10778778a5b6b81e6cbdf03cfdaf429917ea91cc5559c2417eaa",
+      "size": 676560,
+      "sha256": "7da443a8bb18d3dc536770d9e9cdde2922867226b31349afa1b9865c9c691970",
       "lfs": true
     },
     {
       "path": "demos/windows/arm64/shared/mvs_demo_cli.exe",
-      "size": 692224,
-      "sha256": "8004adba72aeb3a9a058d70b559073feb207382fec74aab5a4368365382bc315",
+      "size": 280576,
+      "sha256": "8f5d63c6c5fa24bc8c76b96e19fa3736e38cb6dfd52655e3217eccff8ed06c9a",
+      "lfs": true
+    },
+    {
+      "path": "demos/windows/arm64/shared/mvs_sdk.dll",
+      "size": 460800,
+      "sha256": "7c7c44ae0a5508309d6b1c9f8a0cdd8045e47640252ab38c05d810e4522015bb",
       "lfs": true
     },
     {
       "path": "demos/windows/arm64/static/mvs_demo_cli.exe",
-      "size": 775680,
-      "sha256": "fe86b1a8146315e842c6d560976913b82a5583f04277a697cc8ed74ce9c9407e",
+      "size": 487424,
+      "sha256": "934b300d368d03c06d9666faf50437b842445331db2c7ac859c5176c6797d618",
       "lfs": true
     },
     {
       "path": "demos/windows/x64/shared/mvs_demo_cli.exe",
-      "size": 35840,
-      "sha256": "985a10dc9568808282bfd7731315451cd5ed150403f9dc9368c2f468c51d4412",
+      "size": 304640,
+      "sha256": "d7ecc0cbdd68eab7e3a360f1485d5b50a7f7c260fe86d8eed60203d7256ff6a4",
       "lfs": true
     },
     {
       "path": "demos/windows/x64/shared/mvs_sdk.dll",
-      "size": 257536,
-      "sha256": "dc259377b1da740a320af6051642f78e6af1fc0acba89e0c2c8b2951302f8c24",
+      "size": 542208,
+      "sha256": "31cac3f0803311e2f8c506caf32bc3b33562a4dea2b02d924bfd6a7efa0313e1",
       "lfs": true
     },
     {
       "path": "demos/windows/x64/static/mvs_demo_cli.exe",
-      "size": 216064,
-      "sha256": "ae6751e36fa43fe5a5bcccd177db3d4abbaf887868400f158bfe66d3f75a2510",
+      "size": 559104,
+      "sha256": "7896b08abf34faae7de43c5adccabb18d6a67795fdecd6a5b6e7a29903b60d0f",
       "lfs": true
     },
     {
       "path": "demos/windows/x86/shared/mvs_demo_cli.exe",
-      "size": 30720,
-      "sha256": "1c2d70d737e306a5352909bfc8370dbb7546598f9fc1d7325666ab340dc29676",
+      "size": 247808,
+      "sha256": "55056b80551820f4e5e398a8c32af102b7230f7ec35b80e0a1e38dac858378c6",
       "lfs": true
     },
     {
       "path": "demos/windows/x86/shared/mvs_sdk.dll",
-      "size": 239616,
-      "sha256": "2771d83a3c10eec2cf3c1d5cdc9276e755843647b43f22c60151efd24057d433",
+      "size": 489984,
+      "sha256": "70df645d619a701a4022a8e1867280c7718ed780a9220876499583c4fe03c591",
       "lfs": true
     },
     {
       "path": "demos/windows/x86/static/mvs_demo_cli.exe",
-      "size": 203264,
-      "sha256": "3026e7170815e2aa12e1e679bbfc7c653a60fb59dbb30f71c87044ac10edffe2",
+      "size": 504832,
+      "sha256": "c2edcede7867b789f86e410477efa4512d914d8777a040cdabd4bbb93b5985c6",
       "lfs": true
     },
     {
@@ -418,15 +466,21 @@
       "lfs": true
     },
     {
+      "path": "docs/API.md",
+      "size": 6140,
+      "sha256": "79ed1b6226f632eb68a5628cbbad82af9bfd68c98790fa7257236456cc0e2a7b",
+      "lfs": false
+    },
+    {
       "path": "docs/INTEGRATION.md",
-      "size": 5214,
-      "sha256": "776c7f1987b3955fed7362a78612ee424be6a2fda3c0dd61d993f9752b1c33de",
+      "size": 5482,
+      "sha256": "710f79a5ea48c71f065ee659fc3c12d6ff30e4580cce6fc9ba5972ff164055e2",
       "lfs": false
     },
     {
       "path": "docs/MAVEN.md",
-      "size": 4379,
-      "sha256": "de074eee0bb373cd7d820ef8a2be091e9729b0bf58d3797aded9ed15272190ef",
+      "size": 4345,
+      "sha256": "cae6981cf2ca1cd81aae558ef6412336a06e28e4e78f9228458fbbc864083adc",
       "lfs": false
     },
     {
@@ -437,8 +491,8 @@
     },
     {
       "path": "docs/PLATFORMS.md",
-      "size": 3738,
-      "sha256": "5ab88cc93998195c2754ca35dce34c19d96e5d88cbf94ac49efe0ac5cc38793e",
+      "size": 3191,
+      "sha256": "40e41237ee4c6a4bbbb0c4229003510ef166d9d136be76301073cd15f0b1c275",
       "lfs": false
     },
     {
@@ -449,26 +503,32 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "size": 2643,
-      "sha256": "8f8ed5e550c4657f371f4e4b1adf1c19167550887565430571c106b5bce676f3",
+      "size": 3523,
+      "sha256": "6d12d655879c26c6263a915ec2cde40d03be1136cf6f3839a1d5c63694ba4b74",
+      "lfs": false
+    },
+    {
+      "path": "docs/media/README.md",
+      "size": 645,
+      "sha256": "09b858d46ff3b454fd544ced7c54696385f21dea478d7b9788fc8a3792179d8b",
       "lfs": false
     },
     {
       "path": "docs/media/beauty-toggle.gif",
-      "size": 4548851,
-      "sha256": "f14fc7d88375e7728470bee9494b98c01be23788202e9dc999f86fd2e37964c9",
+      "size": 3804618,
+      "sha256": "7a723c12fbc8eb7d6b7aa1520018b6b99c9ee17d565bedaf304b3a07f790519a",
       "lfs": false
     },
     {
       "path": "docs/media/beauty-toggle.mp4",
-      "size": 6804288,
-      "sha256": "3cb17d42553e372cddd0af288ff57baa23ef51fe389de74ef597408d07110f0b",
+      "size": 4101856,
+      "sha256": "00cb5c6e3e65277ac15f2ab44829e0a450168b640ded56c03dbb101556a00ebe",
       "lfs": false
     },
     {
       "path": "docs/media/blemish-removal.gif",
-      "size": 3751055,
-      "sha256": "5faa7fcf60fc437d5ad429fd6baa42e1537847be9c6d38b367c1294a14fea1b8",
+      "size": 6186195,
+      "sha256": "40058417e88a97aca7ed3546a516d40397db2007003d6341f308ebc42b167038",
       "lfs": false
     },
     {
@@ -478,9 +538,33 @@
       "lfs": false
     },
     {
+      "path": "docs/media/blush.gif",
+      "size": 2725129,
+      "sha256": "aba4c41cce26930bf13630ab81fe92963a466078a5847538a88a423c4e4f2088",
+      "lfs": false
+    },
+    {
+      "path": "docs/media/blush.mp4",
+      "size": 2048894,
+      "sha256": "19e6e04963bdac8fb0cd86230bf744a5d86d9b8bfbaa6199e4fef10dc909f7bf",
+      "lfs": false
+    },
+    {
+      "path": "docs/media/cheekbone-adjustment.gif",
+      "size": 2760348,
+      "sha256": "d5923b99bf4d4ca250bf7752e5eb6f7038fa105136abccdb0734073c17d6d514",
+      "lfs": false
+    },
+    {
+      "path": "docs/media/cheekbone-adjustment.mp4",
+      "size": 2469873,
+      "sha256": "ce55e6c076e7c63c3411506671294e934b16677ab8d3e4fb3f21158b32515ab4",
+      "lfs": false
+    },
+    {
       "path": "docs/media/eye-enlargement.gif",
-      "size": 2607733,
-      "sha256": "5d990fc0098a485544ba5e271889b94f44a7a68fe345e06b4dde4ed676ae664c",
+      "size": 4196428,
+      "sha256": "6bea19cdf65a5c9533c8c22dc84646c230ef0fe4728ace8a77dc22cbb62754da",
       "lfs": false
     },
     {
@@ -491,8 +575,8 @@
     },
     {
       "path": "docs/media/eyebrows.gif",
-      "size": 2831804,
-      "sha256": "74a3b3dd3b87ba410c2755265d7c4712546cfa9bed3e290e764f27dccd3b52ba",
+      "size": 4758160,
+      "sha256": "e817a3c2d098fa9b07bcb9a1e00c2588e91af36fee862cfd10598b7dbbd2118e",
       "lfs": false
     },
     {
@@ -503,8 +587,8 @@
     },
     {
       "path": "docs/media/face-slimming.gif",
-      "size": 2929245,
-      "sha256": "febe4faf6bd30d31cba43cc40946a6483323f547490a2d2f403518a0c9bfaf7a",
+      "size": 5060189,
+      "sha256": "f2de637221d5269813b15a7b074f5adb3e907f85e2e247854a32f72ab95e05a6",
       "lfs": false
     },
     {
@@ -515,8 +599,8 @@
     },
     {
       "path": "docs/media/lipstick.gif",
-      "size": 2384448,
-      "sha256": "135af01d7bea381979cca196134d205e90cb6f68a5d54f366a74f09e4e1a5d8b",
+      "size": 4058332,
+      "sha256": "ba8967e57b688ea770bfaece2ad0c855f1e3ea502b2b14c22c08561168b89e04",
       "lfs": false
     },
     {
@@ -527,8 +611,8 @@
     },
     {
       "path": "docs/media/nose-reshaping.gif",
-      "size": 3007550,
-      "sha256": "3fd8ee22af1f90ee141fed5a86ffaaad2f7a616bf61fa4f9c2954d0a54f0fa75",
+      "size": 5228251,
+      "sha256": "f38c7c553597865ff1fee65b496ad0ebe2eb5bb991948f89b34b79d67c5c3b40",
       "lfs": false
     },
     {
@@ -539,20 +623,20 @@
     },
     {
       "path": "docs/media/skin-tone.gif",
-      "size": 2862723,
-      "sha256": "fd011b60655846241ac57e7338779f20a115d4b616d4576bfa28bb0c71256fd2",
+      "size": 2673233,
+      "sha256": "edd688a7b3459b37e48adac5d16eb8fb0fcd7ea291673b4efec54cdaa7f45f3b",
       "lfs": false
     },
     {
       "path": "docs/media/skin-tone.mp4",
-      "size": 2424200,
-      "sha256": "71300119ff67d72d133a38e43d03810d3c890e5d7f97a76a8c1ea62a0e037287",
+      "size": 1951170,
+      "sha256": "6cb3e9d9449d948f025a218a12f3ad3ea5b8ce2ca52344b145762316e7301857",
       "lfs": false
     },
     {
       "path": "include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -587,26 +671,26 @@
     },
     {
       "path": "include/mvs/sdk.h",
-      "size": 7991,
-      "sha256": "06f1f87aea7768161c7a6821d06f4c5eedd735e89e8d5cc4305c870228081be3",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "installers/android/MediaVisionDemo-debug.apk",
-      "size": 345913626,
-      "sha256": "c2d48e95603b24315179b6030b36a8508ca1f62419bdba883ca4003a8e5ea35a",
+      "size": 345979162,
+      "sha256": "a1dfa6f3543ea4e26c7dd16c515c6019394368c2df1180a0ce58e2cc0c68fd26",
       "lfs": true
     },
     {
       "path": "installers/android/MediaVisionDemo-release-unsigned.apk",
-      "size": 344941816,
-      "sha256": "91365248b330573d9ca99a41879badfaeda6d6fa5ade5051ce5ebd4175462833",
+      "size": 345007352,
+      "sha256": "6aa07d8621bceb045a9804cd6183fb363e1b60bd1fc6d4fe1f1df97648e8426a",
       "lfs": true
     },
     {
       "path": "installers/ios/MediaVisionDemo-unsigned.ipa",
-      "size": 24272536,
-      "sha256": "49684066dce374264c861b2adebed790fa6cb4ee3177fce3541b21b3ef8d095a",
+      "size": 23655624,
+      "sha256": "d2697ace091ac1afd2904b39e34e9219f2752c45c2f75cd58fcbaf147e31f8bf",
       "lfs": true
     },
     {
@@ -683,8 +767,8 @@
     },
     {
       "path": "manifest/platforms.json",
-      "size": 1723,
-      "sha256": "3a7d89d45cc820f85ef94a1d01c0bd49a5303496f6d380cbbd49485667cd002f",
+      "size": 2308,
+      "sha256": "71a05165b78aca598280b5f477896de47a9c658ecff11c794c1579e79bdcdd51",
       "lfs": false
     },
     {
@@ -768,7 +852,7 @@
     {
       "path": "publisher/build.gradle",
       "size": 3790,
-      "sha256": "7556c35274424fc35881319dff831e8b30adcd1b7141c6874eda0a42c9ae3615",
+      "sha256": "b9d694a1a37281cf827bd2e441c2c9ba978531a08b3164f67e63200968695923",
       "lfs": false
     },
     {
@@ -785,44 +869,44 @@
     },
     {
       "path": "sdk/android/camera-native/arm64-v8a/libmvs_android.so",
-      "size": 546960,
-      "sha256": "198a25885c6c6e70dd0ba42609d9006b92dfac2b2eb201c03bc86683de0fabd7",
+      "size": 547352,
+      "sha256": "cf37fbb5f8d2ab12ead32bf38cf17a7d6692921997bccbb3601d2e76faa961d6",
       "lfs": true
     },
     {
       "path": "sdk/android/camera-native/arm64-v8a/libmvs_sdk.so",
-      "size": 1354296,
-      "sha256": "a2b0f370e157a7e1d7046c1d3c2bc0244ce3201873aa5a36f8d5fb0b4e766b8e",
+      "size": 1372616,
+      "sha256": "b9ab4749a62987b8034b1eba0bdd7d1d6c96a820c4bd7dc5ad7bdf743b803d0c",
       "lfs": true
     },
     {
       "path": "sdk/android/camera-native/armeabi-v7a/libmvs_android.so",
-      "size": 393284,
-      "sha256": "3fb292d03f42bc80d465a2032d2a2bf084e18ce670c188e9f9134e4539fb2dcf",
+      "size": 393544,
+      "sha256": "ddfce96882e1df829277b9dd28ac831274a03a7290d08dd2dc1d726fa14a8783",
       "lfs": true
     },
     {
       "path": "sdk/android/camera-native/armeabi-v7a/libmvs_sdk.so",
-      "size": 973248,
-      "sha256": "048670c8d05f9be28a067b3ac37ae3f5ed3edcf3b8064bcdffb26e985f869f90",
+      "size": 991448,
+      "sha256": "04716c40871c4def58f6a0870c4c259a1920312406a786d002d71d4a3fa9ab83",
       "lfs": true
     },
     {
       "path": "sdk/android/camera-native/x86/libmvs_android.so",
-      "size": 694868,
-      "sha256": "5093b6f2993938cec998941af9142d76c8644554a6394ddaec55733812fa6b2c",
+      "size": 695320,
+      "sha256": "3e405e43e140a2a55d1062cfbe607d1c9261a05e8ac3be690c2f1d62b1c4b4a3",
       "lfs": true
     },
     {
       "path": "sdk/android/camera-native/x86/libmvs_sdk.so",
-      "size": 1387696,
-      "sha256": "f9720068f9f68f69b055e847e2527bbe3b0d567a209cbd9c0cfb2303176a9218",
+      "size": 1411752,
+      "sha256": "46bba2fac606f3edd3fc9fd9bb037ed0aa5624bb5c48452783ae4461470f929e",
       "lfs": true
     },
     {
       "path": "sdk/android/core/arm64-v8a/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -839,8 +923,8 @@
     },
     {
       "path": "sdk/android/core/arm64-v8a/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -857,26 +941,26 @@
     },
     {
       "path": "sdk/android/core/arm64-v8a/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/android/core/arm64-v8a/libmvs_sdk.a",
-      "size": 227448,
-      "sha256": "cf42942ebd649e926a53a0bdb40279b30b29224ba63d4595482fe7250859a839",
+      "size": 340240,
+      "sha256": "ddbcaab6eb9291fd8748de90c003d6f84cf9fdc242713b26d72acbe687fe886f",
       "lfs": true
     },
     {
       "path": "sdk/android/core/arm64-v8a/libmvs_sdk.so",
-      "size": 1455784,
-      "sha256": "a0c10307454d77c9241de4b7ff5c40a951fcba55c6733c0bd5ebed3fd5e65fc4",
+      "size": 1818408,
+      "sha256": "e64ec8781f19bffe945789eed6793cef6fef2970c776d99f1b66394ef51a67bd",
       "lfs": true
     },
     {
       "path": "sdk/android/core/armeabi-v7a/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -893,8 +977,8 @@
     },
     {
       "path": "sdk/android/core/armeabi-v7a/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -911,26 +995,26 @@
     },
     {
       "path": "sdk/android/core/armeabi-v7a/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/android/core/armeabi-v7a/libmvs_sdk.a",
-      "size": 207106,
-      "sha256": "82dda4014109c54a27150c02fa2ef3d44e5a31fe9ce9a0603820636abedc220e",
+      "size": 318006,
+      "sha256": "f1d404e31ced0c786b22f2fba801bc9d98a864e7f854c6be788b4747fcd9840e",
       "lfs": true
     },
     {
       "path": "sdk/android/core/armeabi-v7a/libmvs_sdk.so",
-      "size": 1042716,
-      "sha256": "73fc00f3ce40376d237c728ec1a5d3efc2ed589b8bad741116ee1ba5a38daa58",
+      "size": 1375780,
+      "sha256": "3431f59fdc893308fa1bdeb0e57fa98a8bbfc7b604605b4b67558b9512aa5e09",
       "lfs": true
     },
     {
       "path": "sdk/android/core/x86/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -947,8 +1031,8 @@
     },
     {
       "path": "sdk/android/core/x86/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -965,26 +1049,26 @@
     },
     {
       "path": "sdk/android/core/x86/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/android/core/x86/libmvs_sdk.a",
-      "size": 219794,
-      "sha256": "044204b856a441928a2092339d98d81d41d8188a2ae863329b0fa3066fdb6e85",
+      "size": 352526,
+      "sha256": "69897aa2cb5b1969c4540aeab7ccd824c15fea44727375f45d62d1c2a99be7fc",
       "lfs": true
     },
     {
       "path": "sdk/android/core/x86/libmvs_sdk.so",
-      "size": 1302804,
-      "sha256": "a35a4ee4dd4fc032d4695e99dfea0e62f833dacaeb21348472b8a514185807fc",
+      "size": 1710832,
+      "sha256": "2ef362b76d5c30366916385ef38c6fee15e3baa15abe797cc03424d88cb13d38",
       "lfs": true
     },
     {
       "path": "sdk/android/core/x86_64/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1001,8 +1085,8 @@
     },
     {
       "path": "sdk/android/core/x86_64/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -1019,20 +1103,20 @@
     },
     {
       "path": "sdk/android/core/x86_64/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/android/core/x86_64/libmvs_sdk.a",
-      "size": 251704,
-      "sha256": "f4dc574a349cbf82d94597db2f286760fe5e7bf4c4c2d2b705cecdc52d7e300f",
+      "size": 415672,
+      "sha256": "c008b613c8c18edf99fc54994b27dc7e6a169b6e96270ecf604ab73839a8748e",
       "lfs": true
     },
     {
       "path": "sdk/android/core/x86_64/libmvs_sdk.so",
-      "size": 1329424,
-      "sha256": "de7b7ccb90034a07ff0eb5aad75b1a60e81e32ce96817b50ff7bebb04646de45",
+      "size": 1511360,
+      "sha256": "de91ef7e0955aa2e60ccdf4cad20afae6776f3ac19caa139038405717f13fcb7",
       "lfs": true
     },
     {
@@ -1096,33 +1180,93 @@
       "lfs": false
     },
     {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.aar",
+      "size": 6278566,
+      "sha256": "385a50188e113fee7bfca557215b5cf593478d076a3e1de61885a4ad5f99aa8b",
+      "lfs": false
+    },
+    {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.aar.md5",
+      "size": 32,
+      "sha256": "db8d0f65226bf3882c9dd297ff253b91759224a3ec2b3e2235d1b57aaa5e6b1f",
+      "lfs": false
+    },
+    {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.aar.sha1",
+      "size": 40,
+      "sha256": "0adac83a90ca191b61212c8325445e0ab0b78d1c1d54bab91d7cfba6adca448b",
+      "lfs": false
+    },
+    {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.aar.sha256",
+      "size": 64,
+      "sha256": "4c270e0446f1c64435c5e625390c490d35f16b3fb6f2d52bd98a244883fb6cfd",
+      "lfs": false
+    },
+    {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.aar.sha512",
+      "size": 128,
+      "sha256": "dfac1c10144bdb554014d017d9314a0584d9c70a817a1a7b767cf529b65e508d",
+      "lfs": false
+    },
+    {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.pom",
+      "size": 2131,
+      "sha256": "293b8992ed95330a05621929b9513f3f56e4703a3293f980c545b7d223f073c0",
+      "lfs": false
+    },
+    {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.pom.md5",
+      "size": 32,
+      "sha256": "19aa9b8596741f484138fcdd102aafd4c4978712a0514b9d4c9d1b906e3edd36",
+      "lfs": false
+    },
+    {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.pom.sha1",
+      "size": 40,
+      "sha256": "ec0a9eab07fc6418f4472be3b392dde2bb852a173a1fb9e72103efd6c9d37c7f",
+      "lfs": false
+    },
+    {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.pom.sha256",
+      "size": 64,
+      "sha256": "dc06ff3ff6523c7de2bc4dee3114e8e13a496b00abb2882bcfdbb78e0d7ed372",
+      "lfs": false
+    },
+    {
+      "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/0.4.2/mediavision-sdk-0.4.2.pom.sha512",
+      "size": 128,
+      "sha256": "d2614296e0529e9539b3b953a56b919bdf56656ba21d39624b28b241e410ddd9",
+      "lfs": false
+    },
+    {
       "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/maven-metadata.xml",
-      "size": 342,
-      "sha256": "5153a1c80307f485a8c238bdb5b2faa7968a143f8b501d8dedff0a48fd6b90e9",
+      "size": 373,
+      "sha256": "5113be47d9bb0dadd7f200c359c31f3a61f5f5a9eff59ecba4dea71e825f1747",
       "lfs": false
     },
     {
       "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/maven-metadata.xml.md5",
       "size": 32,
-      "sha256": "95ba45df34d84840bd3ecc8605c772126866aeda7e7489dfd87a15a4646b3260",
+      "sha256": "ccf9e1b26788bcd0323223d8137729ddfc0979de4cb00a05b98a0a0d5c22ce80",
       "lfs": false
     },
     {
       "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/maven-metadata.xml.sha1",
       "size": 40,
-      "sha256": "dae9a95bd39e80e4c3e3fa181e5d7f3d5d7dec78107cc6dc3347aec248df7b26",
+      "sha256": "71484ce72227502e5809f459d1c9e968287940fa07e5b083384560f5e2dcd432",
       "lfs": false
     },
     {
       "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/maven-metadata.xml.sha256",
       "size": 64,
-      "sha256": "4ef9909d57fe8415b3d193d462ff212ea2aba65ce15e77be324caf2fa73bfaea",
+      "sha256": "dae016f7a81b64d794adb75c79c121d27906beaebbd5717f90aa022d30528712",
       "lfs": false
     },
     {
       "path": "sdk/android/maven/com/moon/mediavision/mediavision-sdk/maven-metadata.xml.sha512",
       "size": 128,
-      "sha256": "1c530c8e59ce1bb50aca597baf6eb66489bb643cdea3af8e8560b72ee0bd5f25",
+      "sha256": "8f05d08ceefd81fe297e5500d32628fa59914fd88a7150c308c889742e0d34c4",
       "lfs": false
     },
     {
@@ -1151,20 +1295,20 @@
     },
     {
       "path": "sdk/ios/MediaVisionCore.xcframework/ios-arm64/Headers/mvs/sdk.h",
-      "size": 7991,
-      "sha256": "06f1f87aea7768161c7a6821d06f4c5eedd735e89e8d5cc4305c870228081be3",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/ios/MediaVisionCore.xcframework/ios-arm64/Headers/sdk.h",
-      "size": 7991,
-      "sha256": "06f1f87aea7768161c7a6821d06f4c5eedd735e89e8d5cc4305c870228081be3",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/ios/MediaVisionCore.xcframework/ios-arm64/libmvs_sdk.a",
-      "size": 820520,
-      "sha256": "9bfbb4acbb74cf097d8b7c3229d7e17c512769367b593bfe5f564eb0b0fea8d5",
+      "size": 863824,
+      "sha256": "c5180e4743877db00d5bf0054f9e648db9523d9c0e41114e161681ce8866d32e",
       "lfs": true
     },
     {
@@ -1187,20 +1331,20 @@
     },
     {
       "path": "sdk/ios/MediaVisionCore.xcframework/ios-arm64_x86_64-simulator/Headers/mvs/sdk.h",
-      "size": 7991,
-      "sha256": "06f1f87aea7768161c7a6821d06f4c5eedd735e89e8d5cc4305c870228081be3",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/ios/MediaVisionCore.xcframework/ios-arm64_x86_64-simulator/Headers/sdk.h",
-      "size": 7991,
-      "sha256": "06f1f87aea7768161c7a6821d06f4c5eedd735e89e8d5cc4305c870228081be3",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/ios/MediaVisionCore.xcframework/ios-arm64_x86_64-simulator/libmvs_sdk.a",
-      "size": 1665448,
-      "sha256": "72ceff98e0c6ea85861f1d6a86d5e8aeba5f7be8db736fbe33d075282aee8db1",
+      "size": 1776400,
+      "sha256": "ba36b96c6875e506244a799411ea8c6754afede0a474738759ae366ee9d502a6",
       "lfs": true
     },
     {
@@ -1223,20 +1367,20 @@
     },
     {
       "path": "sdk/ios/MediaVisionSDK.xcframework/ios-arm64/MediaVisionSDK.framework/Headers/sdk.h",
-      "size": 7991,
-      "sha256": "06f1f87aea7768161c7a6821d06f4c5eedd735e89e8d5cc4305c870228081be3",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/ios/MediaVisionSDK.xcframework/ios-arm64/MediaVisionSDK.framework/Info.plist",
-      "size": 719,
-      "sha256": "73e320f6f7fa73f22df9cc027fd99fa95c0f5523a1bed006d34aabbc91926293",
+      "size": 760,
+      "sha256": "fbfa0a65d1b86c9d09c21140cb221bc220972cf2e519f7ccf3612361d610ef51",
       "lfs": false
     },
     {
       "path": "sdk/ios/MediaVisionSDK.xcframework/ios-arm64/MediaVisionSDK.framework/MediaVisionSDK",
-      "size": 39067360,
-      "sha256": "25ff67e9ae597f200234deb3f6718f7386adae6e802f0a2768a22a4db4c6fdfd",
+      "size": 33903592,
+      "sha256": "856c34d3227083cee86d9e04acaef9dcfc3db0d5bcf7cc34615ee5a9eb8a33e5",
       "lfs": true
     },
     {
@@ -1253,26 +1397,26 @@
     },
     {
       "path": "sdk/ios/MediaVisionSDK.xcframework/ios-arm64_x86_64-simulator/MediaVisionSDK.framework/Headers/sdk.h",
-      "size": 7991,
-      "sha256": "06f1f87aea7768161c7a6821d06f4c5eedd735e89e8d5cc4305c870228081be3",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/ios/MediaVisionSDK.xcframework/ios-arm64_x86_64-simulator/MediaVisionSDK.framework/Info.plist",
-      "size": 699,
-      "sha256": "8070a46ef666ba30a4d52e8da18ed7c550c77ec017a01bd587c9996f442395cf",
+      "size": 740,
+      "sha256": "8375921b25713329bf7e29e7f5416b8b40a70892b898de15c83ff04c1001b540",
       "lfs": false
     },
     {
       "path": "sdk/ios/MediaVisionSDK.xcframework/ios-arm64_x86_64-simulator/MediaVisionSDK.framework/MediaVisionSDK",
-      "size": 84288656,
-      "sha256": "6c14a9db575cfe38009dafc7673289650f4de627a520c0c857d8d74a2d53481c",
+      "size": 73843344,
+      "sha256": "edbd51ff7dba786f11c2fdfc585ca454484b2b9323ce2b7ec7b9c7f82a0af6d5",
       "lfs": true
     },
     {
       "path": "sdk/linux/aarch64/shared/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1289,8 +1433,8 @@
     },
     {
       "path": "sdk/linux/aarch64/shared/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -1307,44 +1451,44 @@
     },
     {
       "path": "sdk/linux/aarch64/shared/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "4131b87472e0cae1b77c6fc235fc5433264f77c4b2551e52e6b85c3e32f0ff67",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 868,
-      "sha256": "39c6b3ee9409517aad5847c8bc59bd03ed8738bffe11097c5a85527843259c33",
+      "size": 837,
+      "sha256": "b61f20478deaf60432b84d0d5b60504fb21484e7da619ff5ccfbfa278c195a29",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4327,
-      "sha256": "e84a4ca4581d0fc3e79f170463921e25889b23a61aaf4b62d2ede8c5b67152e3",
+      "size": 3361,
+      "sha256": "e7ea477c50792de6e2eaf5e1149cd46497965b4d01c12edc65913188bb5dacc9",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/shared/lib/libmvs_sdk.so",
-      "size": 7660048,
-      "sha256": "438b8a08f647a369a93a238a9b51404b0f31842de7eb2dcc6b2d584987cc826d",
+      "size": 1299904,
+      "sha256": "54033983b28197e519bbc7b92145a08d2cb39941a856640298a2d028bcd4e40d",
       "lfs": true
     },
     {
       "path": "sdk/linux/aarch64/static/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1361,8 +1505,8 @@
     },
     {
       "path": "sdk/linux/aarch64/static/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -1379,44 +1523,44 @@
     },
     {
       "path": "sdk/linux/aarch64/static/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "4131b87472e0cae1b77c6fc235fc5433264f77c4b2551e52e6b85c3e32f0ff67",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 874,
-      "sha256": "a386a7471660b26af1903b73504d006999efce9114505aa8f9ff70540086be69",
+      "size": 843,
+      "sha256": "e1ef78a7dc0d75f1096a6f7ab8b9bbfa74085c1688ad4f31a55c397c7cdd50c2",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4349,
-      "sha256": "5341edf3a4039cc988c1984e888847f00a9bd0e835ec953a016752717fbdf437",
+      "size": 3512,
+      "sha256": "d3c47cabac9cd84c68d7083a8bc4dae7333fa9ea55db049c9f9735583d5fe784",
       "lfs": false
     },
     {
       "path": "sdk/linux/aarch64/static/lib/libmvs_sdk.a",
-      "size": 4145564,
-      "sha256": "262ea28aefff0b1ed5390779a7a8dbd7581ea370f5302ca26bd1d44bf2f655ce",
+      "size": 442300,
+      "sha256": "76a4101cadc92143a8f470f2fe8bc2ecdf313bdb27ddd1751b141a1e98c6f1c9",
       "lfs": true
     },
     {
       "path": "sdk/linux/armv7/shared/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1433,8 +1577,8 @@
     },
     {
       "path": "sdk/linux/armv7/shared/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -1451,44 +1595,44 @@
     },
     {
       "path": "sdk/linux/armv7/shared/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "6e65cbc52fa3c5218a29798433b3f94d918f070b5d7ca38691f71ea90289ae25",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 868,
-      "sha256": "39c6b3ee9409517aad5847c8bc59bd03ed8738bffe11097c5a85527843259c33",
+      "size": 837,
+      "sha256": "b61f20478deaf60432b84d0d5b60504fb21484e7da619ff5ccfbfa278c195a29",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4327,
-      "sha256": "e84a4ca4581d0fc3e79f170463921e25889b23a61aaf4b62d2ede8c5b67152e3",
+      "size": 3361,
+      "sha256": "e7ea477c50792de6e2eaf5e1149cd46497965b4d01c12edc65913188bb5dacc9",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/shared/lib/libmvs_sdk.so",
-      "size": 7143364,
-      "sha256": "e31884b7ef5148c5194bd22db9e242ebdbc256367fe599de14eb0ea849c1d77b",
+      "size": 1158864,
+      "sha256": "a65c4c242aba6cb026caadb9622ea7e115ea314f9794639b821a43e4db52a95c",
       "lfs": true
     },
     {
       "path": "sdk/linux/armv7/static/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1505,8 +1649,8 @@
     },
     {
       "path": "sdk/linux/armv7/static/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -1523,44 +1667,44 @@
     },
     {
       "path": "sdk/linux/armv7/static/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "6e65cbc52fa3c5218a29798433b3f94d918f070b5d7ca38691f71ea90289ae25",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 874,
-      "sha256": "a386a7471660b26af1903b73504d006999efce9114505aa8f9ff70540086be69",
+      "size": 843,
+      "sha256": "e1ef78a7dc0d75f1096a6f7ab8b9bbfa74085c1688ad4f31a55c397c7cdd50c2",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4349,
-      "sha256": "5341edf3a4039cc988c1984e888847f00a9bd0e835ec953a016752717fbdf437",
+      "size": 3512,
+      "sha256": "d3c47cabac9cd84c68d7083a8bc4dae7333fa9ea55db049c9f9735583d5fe784",
       "lfs": false
     },
     {
       "path": "sdk/linux/armv7/static/lib/libmvs_sdk.a",
-      "size": 2980826,
-      "sha256": "e695104e71e27a3f3ec91920e4d30f3aa5b21d8da563a5a69b68cdef183ea37c",
+      "size": 420186,
+      "sha256": "b06618e961377c90fea119357c7399535f89a50de84e7f44801bde03f93a878f",
       "lfs": true
     },
     {
       "path": "sdk/linux/x86/shared/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1577,8 +1721,8 @@
     },
     {
       "path": "sdk/linux/x86/shared/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -1595,44 +1739,44 @@
     },
     {
       "path": "sdk/linux/x86/shared/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "6e65cbc52fa3c5218a29798433b3f94d918f070b5d7ca38691f71ea90289ae25",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 868,
-      "sha256": "39c6b3ee9409517aad5847c8bc59bd03ed8738bffe11097c5a85527843259c33",
+      "size": 837,
+      "sha256": "b61f20478deaf60432b84d0d5b60504fb21484e7da619ff5ccfbfa278c195a29",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4327,
-      "sha256": "e84a4ca4581d0fc3e79f170463921e25889b23a61aaf4b62d2ede8c5b67152e3",
+      "size": 3361,
+      "sha256": "e7ea477c50792de6e2eaf5e1149cd46497965b4d01c12edc65913188bb5dacc9",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/shared/lib/libmvs_sdk.so",
-      "size": 6249972,
-      "sha256": "3476a3dd9f29f559934b08909067647f936a52a57f8a368215be5e0f9f117a64",
+      "size": 1127844,
+      "sha256": "8dc5cda10e139389d1277b596575cbdbf909634489a5a947f56627758382b82c",
       "lfs": true
     },
     {
       "path": "sdk/linux/x86/static/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1649,8 +1793,8 @@
     },
     {
       "path": "sdk/linux/x86/static/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -1667,44 +1811,44 @@
     },
     {
       "path": "sdk/linux/x86/static/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "6e65cbc52fa3c5218a29798433b3f94d918f070b5d7ca38691f71ea90289ae25",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 874,
-      "sha256": "a386a7471660b26af1903b73504d006999efce9114505aa8f9ff70540086be69",
+      "size": 843,
+      "sha256": "e1ef78a7dc0d75f1096a6f7ab8b9bbfa74085c1688ad4f31a55c397c7cdd50c2",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4349,
-      "sha256": "5341edf3a4039cc988c1984e888847f00a9bd0e835ec953a016752717fbdf437",
+      "size": 3512,
+      "sha256": "d3c47cabac9cd84c68d7083a8bc4dae7333fa9ea55db049c9f9735583d5fe784",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86/static/lib/libmvs_sdk.a",
-      "size": 2871274,
-      "sha256": "715effed4bb3a061b235f9d28a97783baf012f0ce043a0ca5366a55a665bb9ca",
+      "size": 467530,
+      "sha256": "db92fe4b0076e1372d64f2007e500fada8387c80fc2bfb2fdadc0d89d6da36c3",
       "lfs": true
     },
     {
       "path": "sdk/linux/x86_64/shared/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1721,8 +1865,8 @@
     },
     {
       "path": "sdk/linux/x86_64/shared/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -1739,44 +1883,44 @@
     },
     {
       "path": "sdk/linux/x86_64/shared/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "4131b87472e0cae1b77c6fc235fc5433264f77c4b2551e52e6b85c3e32f0ff67",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 868,
-      "sha256": "39c6b3ee9409517aad5847c8bc59bd03ed8738bffe11097c5a85527843259c33",
+      "size": 837,
+      "sha256": "b61f20478deaf60432b84d0d5b60504fb21484e7da619ff5ccfbfa278c195a29",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4327,
-      "sha256": "e84a4ca4581d0fc3e79f170463921e25889b23a61aaf4b62d2ede8c5b67152e3",
+      "size": 3361,
+      "sha256": "e7ea477c50792de6e2eaf5e1149cd46497965b4d01c12edc65913188bb5dacc9",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/shared/lib/libmvs_sdk.so",
-      "size": 7380160,
-      "sha256": "ce99a5b53aa54378bf018e3718afc9233f9ba95700576fb5ea60f2e7952ef3f2",
+      "size": 1129152,
+      "sha256": "cecc7be9e7854fcfb7354021779e628065e1c23411f9e87faf6a83b06ffde0e0",
       "lfs": true
     },
     {
       "path": "sdk/linux/x86_64/static/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1793,8 +1937,8 @@
     },
     {
       "path": "sdk/linux/x86_64/static/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -1811,44 +1955,188 @@
     },
     {
       "path": "sdk/linux/x86_64/static/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "4131b87472e0cae1b77c6fc235fc5433264f77c4b2551e52e6b85c3e32f0ff67",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 874,
-      "sha256": "a386a7471660b26af1903b73504d006999efce9114505aa8f9ff70540086be69",
+      "size": 843,
+      "sha256": "e1ef78a7dc0d75f1096a6f7ab8b9bbfa74085c1688ad4f31a55c397c7cdd50c2",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4349,
-      "sha256": "5341edf3a4039cc988c1984e888847f00a9bd0e835ec953a016752717fbdf437",
+      "size": 3512,
+      "sha256": "d3c47cabac9cd84c68d7083a8bc4dae7333fa9ea55db049c9f9735583d5fe784",
       "lfs": false
     },
     {
       "path": "sdk/linux/x86_64/static/lib/libmvs_sdk.a",
-      "size": 4030198,
-      "sha256": "ac086a1d25e023f6e4332f070ae40e6f3b158abb3f22fa6ad1e90bedf7944723",
+      "size": 524866,
+      "sha256": "21d2291798a9040db4c8b3c74789292ab0546975f2ebd386570defb2d3c190b9",
+      "lfs": true
+    },
+    {
+      "path": "sdk/macos/arm64/shared/include/mvs/android.h",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/include/mvs/desktop.h",
+      "size": 1696,
+      "sha256": "9889ec35f7602034f96c11652befe481681c10d80211fe1f74b6b398daa27bb0",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/include/mvs/inference.h",
+      "size": 904,
+      "sha256": "cf40ca35549e7f7c378a35b8e573236629a4c2087fe57011de62f5a254f3b66e",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/include/mvs/models.h",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/include/mvs/mvs.h",
+      "size": 252,
+      "sha256": "1c18e5fd5df5d7bcf2f11c64811feb606db5894d01ebc0881f4177ba8c172f95",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/include/mvs/mvs.hpp",
+      "size": 1618,
+      "sha256": "5c1b499c270cfc686a7fa3cb99f00dd03e0053aff319e1b47b828ef21d258225",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/include/mvs/sdk.h",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
+      "size": 2762,
+      "sha256": "40df91eecd7fa7ce3672c81da42077f928bb866078876a97cabb2fc250583df0",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
+      "size": 865,
+      "sha256": "59b9b2c2221d3a9db85cf2383ca11840be1eb878fd39b80a9f393c840f6a424c",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
+      "size": 4219,
+      "sha256": "e5e60e42ad3eec55827a7e1979a559eafe72bf31d3f7122206ccc7b1cab1357e",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/shared/lib/libmvs_sdk.dylib",
+      "size": 647024,
+      "sha256": "250941ec6b6f5760267380ed04631c10c1883ddef42109c0700770abc0d229f3",
+      "lfs": true
+    },
+    {
+      "path": "sdk/macos/arm64/static/include/mvs/android.h",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/include/mvs/desktop.h",
+      "size": 1696,
+      "sha256": "9889ec35f7602034f96c11652befe481681c10d80211fe1f74b6b398daa27bb0",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/include/mvs/inference.h",
+      "size": 904,
+      "sha256": "cf40ca35549e7f7c378a35b8e573236629a4c2087fe57011de62f5a254f3b66e",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/include/mvs/models.h",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/include/mvs/mvs.h",
+      "size": 252,
+      "sha256": "1c18e5fd5df5d7bcf2f11c64811feb606db5894d01ebc0881f4177ba8c172f95",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/include/mvs/mvs.hpp",
+      "size": 1618,
+      "sha256": "5c1b499c270cfc686a7fa3cb99f00dd03e0053aff319e1b47b828ef21d258225",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/include/mvs/sdk.h",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
+      "size": 2762,
+      "sha256": "40df91eecd7fa7ce3672c81da42077f928bb866078876a97cabb2fc250583df0",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
+      "size": 855,
+      "sha256": "c84c35ab978291e2b8c4597182744aea7cc753957ee6690e4a0873aea94d29ce",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
+      "size": 4268,
+      "sha256": "e616a2162038a29e08b784d510e42fd82e0386e1b14a11468ae1182a7cfaa200",
+      "lfs": false
+    },
+    {
+      "path": "sdk/macos/arm64/static/lib/libmvs_sdk.a",
+      "size": 860736,
+      "sha256": "0e7f002f49aa32090b8c509a630d81fa89f1528811baf99fcbfe42b485b605c0",
       "lfs": true
     },
     {
       "path": "sdk/macos/x86_64/shared/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1883,8 +2171,8 @@
     },
     {
       "path": "sdk/macos/x86_64/shared/include/mvs/sdk.h",
-      "size": 7991,
-      "sha256": "06f1f87aea7768161c7a6821d06f4c5eedd735e89e8d5cc4305c870228081be3",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
@@ -1896,7 +2184,7 @@
     {
       "path": "sdk/macos/x86_64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
       "size": 2762,
-      "sha256": "0d339e9795fbed49fc80aa3460af81d0cb0eff4a5f5eb2ea20a6a4aa98afc9fe",
+      "sha256": "40df91eecd7fa7ce3672c81da42077f928bb866078876a97cabb2fc250583df0",
       "lfs": false
     },
     {
@@ -1913,14 +2201,14 @@
     },
     {
       "path": "sdk/macos/x86_64/shared/lib/libmvs_sdk.dylib",
-      "size": 703664,
-      "sha256": "7f77925e43062ea6c8e4013c8c2ef84b43f74ded1c6bd5391176c451221dcfdf",
+      "size": 691344,
+      "sha256": "b59b86dc311235be2b8986972d7a91ce825600c0654b75da1044c1ca50824bbc",
       "lfs": true
     },
     {
       "path": "sdk/macos/x86_64/static/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -1955,8 +2243,8 @@
     },
     {
       "path": "sdk/macos/x86_64/static/include/mvs/sdk.h",
-      "size": 7991,
-      "sha256": "06f1f87aea7768161c7a6821d06f4c5eedd735e89e8d5cc4305c870228081be3",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
@@ -1968,7 +2256,7 @@
     {
       "path": "sdk/macos/x86_64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
       "size": 2762,
-      "sha256": "0d339e9795fbed49fc80aa3460af81d0cb0eff4a5f5eb2ea20a6a4aa98afc9fe",
+      "sha256": "40df91eecd7fa7ce3672c81da42077f928bb866078876a97cabb2fc250583df0",
       "lfs": false
     },
     {
@@ -1985,20 +2273,20 @@
     },
     {
       "path": "sdk/macos/x86_64/static/lib/libmvs_sdk.a",
-      "size": 796632,
-      "sha256": "6a8e82b0528a964f6a5f9549d0aa6761606c10fc52c9a6709bb8250dd7007d1e",
+      "size": 904664,
+      "sha256": "747327e131fab48b177ffc219a7e1862348804b88209be4f46abcc7472280f3e",
       "lfs": true
     },
     {
-      "path": "sdk/windows/arm64/shared/bin/libmvs_sdk.dll",
-      "size": 793088,
-      "sha256": "7dd2fbcbd9ae10778778a5b6b81e6cbdf03cfdaf429917ea91cc5559c2417eaa",
+      "path": "sdk/windows/arm64/shared/bin/mvs_sdk.dll",
+      "size": 460800,
+      "sha256": "7c7c44ae0a5508309d6b1c9f8a0cdd8045e47640252ab38c05d810e4522015bb",
       "lfs": true
     },
     {
       "path": "sdk/windows/arm64/shared/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -2015,8 +2303,8 @@
     },
     {
       "path": "sdk/windows/arm64/shared/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -2033,44 +2321,44 @@
     },
     {
       "path": "sdk/windows/arm64/shared/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/windows/arm64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/windows/arm64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "4131b87472e0cae1b77c6fc235fc5433264f77c4b2551e52e6b85c3e32f0ff67",
       "lfs": false
     },
     {
       "path": "sdk/windows/arm64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 936,
-      "sha256": "eae89c8553460a62a903f513e0cf91218765f6e4a406e25b1ee3c6e177a22c14",
+      "size": 889,
+      "sha256": "9395a505a180ac6f4df84d497714c3dafefa203c6e24ea2c894cb443009a5c25",
       "lfs": false
     },
     {
       "path": "sdk/windows/arm64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4327,
-      "sha256": "e84a4ca4581d0fc3e79f170463921e25889b23a61aaf4b62d2ede8c5b67152e3",
+      "size": 3361,
+      "sha256": "e7ea477c50792de6e2eaf5e1149cd46497965b4d01c12edc65913188bb5dacc9",
       "lfs": false
     },
     {
-      "path": "sdk/windows/arm64/shared/lib/libmvs_sdk.dll.a",
-      "size": 9664,
-      "sha256": "1bdd8e6177a2108941c601859e152c0132825b0d196377d8c98875ba7e533e30",
+      "path": "sdk/windows/arm64/shared/lib/mvs_sdk.lib",
+      "size": 7656,
+      "sha256": "1f81acc3ce4dc50b83a033c9b047cba1d1d9f51a7242a579267bde3fb1292db6",
       "lfs": true
     },
     {
       "path": "sdk/windows/arm64/static/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -2087,8 +2375,8 @@
     },
     {
       "path": "sdk/windows/arm64/static/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -2105,50 +2393,50 @@
     },
     {
       "path": "sdk/windows/arm64/static/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/windows/arm64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/windows/arm64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2824,
-      "sha256": "281efe9646888529a17ecf0f70c05dff22c08e1b434422415dcc6a72a91dcbc3",
+      "size": 2878,
+      "sha256": "4131b87472e0cae1b77c6fc235fc5433264f77c4b2551e52e6b85c3e32f0ff67",
       "lfs": false
     },
     {
       "path": "sdk/windows/arm64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 874,
-      "sha256": "a386a7471660b26af1903b73504d006999efce9114505aa8f9ff70540086be69",
+      "size": 841,
+      "sha256": "cb56cf15fae8aa24234b797975fe6a7e0524bd11b0e97acd2008c63cd7c64fe6",
       "lfs": false
     },
     {
       "path": "sdk/windows/arm64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4281,
-      "sha256": "df64f54ab94c28af685287c4ae004ea5819b0e7026104e37370b7dae7d792b54",
+      "size": 3316,
+      "sha256": "3bcf86d8c679389b0382a99fdb22f4596d185070a3f0f9da9ccd1337e8753ee2",
       "lfs": false
     },
     {
-      "path": "sdk/windows/arm64/static/lib/libmvs_sdk.a",
-      "size": 2156990,
-      "sha256": "ba4afb135d47fc2e51f8280d12d43a93e22a5b702c3a2478e50e042269db0621",
+      "path": "sdk/windows/arm64/static/lib/mvs_sdk.lib",
+      "size": 676966,
+      "sha256": "5c88b9f49736859a62209461d8d65d5f98d6a1f6e7ccbc977330cb8d93163bc6",
       "lfs": true
     },
     {
       "path": "sdk/windows/x64/shared/bin/mvs_sdk.dll",
-      "size": 257536,
-      "sha256": "dc259377b1da740a320af6051642f78e6af1fc0acba89e0c2c8b2951302f8c24",
+      "size": 542208,
+      "sha256": "31cac3f0803311e2f8c506caf32bc3b33562a4dea2b02d924bfd6a7efa0313e1",
       "lfs": true
     },
     {
       "path": "sdk/windows/x64/shared/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -2165,8 +2453,8 @@
     },
     {
       "path": "sdk/windows/x64/shared/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -2183,44 +2471,44 @@
     },
     {
       "path": "sdk/windows/x64/shared/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2827,
-      "sha256": "c87b8482946b1496faa4751922d343fe2d8674164cf3cc105da6275eceb3dfb9",
+      "size": 2878,
+      "sha256": "4131b87472e0cae1b77c6fc235fc5433264f77c4b2551e52e6b85c3e32f0ff67",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 920,
-      "sha256": "df02018c739ff95c83cc165fc6253e4159d37d1a696bb1aee618714b011516d2",
+      "size": 889,
+      "sha256": "9395a505a180ac6f4df84d497714c3dafefa203c6e24ea2c894cb443009a5c25",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4327,
-      "sha256": "e84a4ca4581d0fc3e79f170463921e25889b23a61aaf4b62d2ede8c5b67152e3",
+      "size": 3361,
+      "sha256": "e7ea477c50792de6e2eaf5e1149cd46497965b4d01c12edc65913188bb5dacc9",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/shared/lib/mvs_sdk.lib",
-      "size": 7508,
-      "sha256": "2644d2bd84bf4667c2e52f8a12af6062c2c4e869323cb1b4da72b7fd033f18c3",
+      "size": 7656,
+      "sha256": "43d4fe806c5eadd6f2b623c2a82e2a6fb36c248dd2353b390f52fdaa3177b598",
       "lfs": true
     },
     {
       "path": "sdk/windows/x64/static/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -2237,8 +2525,8 @@
     },
     {
       "path": "sdk/windows/x64/static/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -2255,50 +2543,50 @@
     },
     {
       "path": "sdk/windows/x64/static/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2827,
-      "sha256": "c87b8482946b1496faa4751922d343fe2d8674164cf3cc105da6275eceb3dfb9",
+      "size": 2878,
+      "sha256": "4131b87472e0cae1b77c6fc235fc5433264f77c4b2551e52e6b85c3e32f0ff67",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 872,
-      "sha256": "9e2b3b3992c80196395334779aa469a2aed4de307747d94a72a76f1cd40f9d1d",
+      "size": 841,
+      "sha256": "cb56cf15fae8aa24234b797975fe6a7e0524bd11b0e97acd2008c63cd7c64fe6",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4281,
-      "sha256": "df64f54ab94c28af685287c4ae004ea5819b0e7026104e37370b7dae7d792b54",
+      "size": 3316,
+      "sha256": "3bcf86d8c679389b0382a99fdb22f4596d185070a3f0f9da9ccd1337e8753ee2",
       "lfs": false
     },
     {
       "path": "sdk/windows/x64/static/lib/mvs_sdk.lib",
-      "size": 2144516,
-      "sha256": "7ba275d573e328a57a90df8957f77b1d1a5da9eccb473e6d1544b514bd3db9fe",
+      "size": 853862,
+      "sha256": "5d5f64a1a06ef84217cb995802a1f8ac4b88cd7a86c3f1fc549b7c7d7539a03b",
       "lfs": true
     },
     {
       "path": "sdk/windows/x86/shared/bin/mvs_sdk.dll",
-      "size": 239616,
-      "sha256": "2771d83a3c10eec2cf3c1d5cdc9276e755843647b43f22c60151efd24057d433",
+      "size": 489984,
+      "sha256": "70df645d619a701a4022a8e1867280c7718ed780a9220876499583c4fe03c591",
       "lfs": true
     },
     {
       "path": "sdk/windows/x86/shared/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -2315,8 +2603,8 @@
     },
     {
       "path": "sdk/windows/x86/shared/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -2333,44 +2621,44 @@
     },
     {
       "path": "sdk/windows/x86/shared/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2827,
-      "sha256": "e4c399e15d38164bb81de17297e25ce93af0728608a6f6bcba3ee8ac8347f8c7",
+      "size": 2878,
+      "sha256": "6e65cbc52fa3c5218a29798433b3f94d918f070b5d7ca38691f71ea90289ae25",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 920,
-      "sha256": "df02018c739ff95c83cc165fc6253e4159d37d1a696bb1aee618714b011516d2",
+      "size": 889,
+      "sha256": "9395a505a180ac6f4df84d497714c3dafefa203c6e24ea2c894cb443009a5c25",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4327,
-      "sha256": "e84a4ca4581d0fc3e79f170463921e25889b23a61aaf4b62d2ede8c5b67152e3",
+      "size": 3361,
+      "sha256": "e7ea477c50792de6e2eaf5e1149cd46497965b4d01c12edc65913188bb5dacc9",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/shared/lib/mvs_sdk.lib",
-      "size": 7650,
-      "sha256": "1c29334a879bef3cc38b71f2b90795b21d87397b82ff05fe072c8c3d483a92ea",
+      "size": 7808,
+      "sha256": "fcad940142c9f33b6da124adb45b1447fa77a33f86e5beed9fec7d462e868c59",
       "lfs": true
     },
     {
       "path": "sdk/windows/x86/static/include/mvs/android.h",
-      "size": 4756,
-      "sha256": "9afaa03316e9d34ce863872dd2d1d5f8648faa070b17a3eb9d8db8abe3953a40",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
       "lfs": false
     },
     {
@@ -2387,8 +2675,8 @@
     },
     {
       "path": "sdk/windows/x86/static/include/mvs/models.h",
-      "size": 1548,
-      "sha256": "b6fb7e09ee3dab843d990cf9603d8082e173d151aef3f8d1cb4ca7566e9793a4",
+      "size": 1618,
+      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
       "lfs": false
     },
     {
@@ -2405,38 +2693,38 @@
     },
     {
       "path": "sdk/windows/x86/static/include/mvs/sdk.h",
-      "size": 7267,
-      "sha256": "68a989dd44f6ec9b5311264828ac77cab3ce3489ad7eaa9553a6b992b8006c7f",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
-      "size": 1058,
-      "sha256": "255e2224fcf62df4a4478840b5fdddbf39b7fb7da252c5bf5480adb9de289d33",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
-      "size": 2827,
-      "sha256": "e4c399e15d38164bb81de17297e25ce93af0728608a6f6bcba3ee8ac8347f8c7",
+      "size": 2878,
+      "sha256": "6e65cbc52fa3c5218a29798433b3f94d918f070b5d7ca38691f71ea90289ae25",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
-      "size": 872,
-      "sha256": "9e2b3b3992c80196395334779aa469a2aed4de307747d94a72a76f1cd40f9d1d",
+      "size": 841,
+      "sha256": "cb56cf15fae8aa24234b797975fe6a7e0524bd11b0e97acd2008c63cd7c64fe6",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
-      "size": 4281,
-      "sha256": "df64f54ab94c28af685287c4ae004ea5819b0e7026104e37370b7dae7d792b54",
+      "size": 3316,
+      "sha256": "3bcf86d8c679389b0382a99fdb22f4596d185070a3f0f9da9ccd1337e8753ee2",
       "lfs": false
     },
     {
       "path": "sdk/windows/x86/static/lib/mvs_sdk.lib",
-      "size": 1547950,
-      "sha256": "a9ed0be4b73cc9c59a1ce21a0cc7fd3bf8327c9296c80354669fed43d47f3180",
+      "size": 760020,
+      "sha256": "4bb3420dfabd6c585d86ccb88da78e3501ebeb9b71692ed6e6587d54ddda32ed",
       "lfs": true
     },
     {
@@ -2466,7 +2754,7 @@
     {
       "path": "tools/package_distribution.py",
       "size": 1176,
-      "sha256": "df914b26c3ca86efc2b05eca492aededfa75106750a4c283252d23de8dff6ea4",
+      "sha256": "7c078cfc683370da52363f2f313113fde9d3314495d4620778a9f69da215fa58",
       "lfs": false
     },
     {
@@ -2478,13 +2766,13 @@
     {
       "path": "tools/publish_jitpack.sh",
       "size": 377,
-      "sha256": "3d1646b182a72a90598508fbe78d16e0e6ba1c114c2634ad2dbd93feb9e4c8e4",
+      "sha256": "13b8173db366e476ac528b61b792e3ad904a3d266c345cd81486aaab8a67fd44",
       "lfs": false
     },
     {
       "path": "tools/update_manifest.py",
       "size": 1647,
-      "sha256": "48ac8c1034da880800c04497faee42dab5a3ad54f2912df2cbda1853540c5d09",
+      "sha256": "22c0cea7828a17924be76257841726cf56aa5e947c2a810fbdd125b8b6e2c87d",
       "lfs": false
     },
     {

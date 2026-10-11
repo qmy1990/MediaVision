@@ -9,6 +9,8 @@ MediaVision brings beauty filters, face reshaping, makeup and background effects
 
 **The released SDK is free for commercial use.**
 
+Current release: **0.4.2** · [Changelog](CHANGELOG.md) · [API guide](docs/API.md)
+
 ## Features and plans
 
 “Refining” means the feature is available and its quality or performance is being improved. Planned features follow the order below.
@@ -32,7 +34,7 @@ MediaVision brings beauty filters, face reshaping, makeup and background effects
 | Reshaping | Eye spacing | Available | Extreme settings and pose stability |
 | Reshaping | Cheekbone adjustment | Refining | Alignment with background boundaries |
 | Makeup | Lipstick, colors and intensity | Refining | Lip boundaries and occlusion |
-| Makeup | Blush | Available | Placement and natural blending |
+| Makeup | Blush / 14 colors / cheeks and nose-tip modes | Available | Tracking and natural falloff |
 | Makeup | Eyebrow darkening | Available | Hair detail and occlusion |
 | Accessories | Basic mesh props | Basic | More models and materials |
 | Accessories | Headwear | Basic | Pose tracking and occlusion |
@@ -68,6 +70,7 @@ Looping GIFs play directly below and preserve the original comparison sequence.
 | **Eye enlargement**<br><img src="docs/media/eye-enlargement.gif" width="300" alt="Eye enlargement"> | **Face slimming**<br><img src="docs/media/face-slimming.gif" width="300" alt="Face slimming"> |
 | **Nose reshaping**<br><img src="docs/media/nose-reshaping.gif" width="300" alt="Nose reshaping"> | **Lipstick**<br><img src="docs/media/lipstick.gif" width="300" alt="Lipstick"> |
 | **Eyebrows**<br><img src="docs/media/eyebrows.gif" width="300" alt="Eyebrows"> | **Skin tone**<br><img src="docs/media/skin-tone.gif" width="300" alt="Skin tone"> |
+| **Blush**<br><img src="docs/media/blush.gif" width="300" alt="Blush"> | **Cheekbone adjustment**<br><img src="docs/media/cheekbone-adjustment.gif" width="300" alt="Cheekbone adjustment"> |
 
 ## Android integration
 
@@ -78,14 +81,14 @@ Keep `google()` and `mavenCentral()`, then add:
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:0.4.1'
+implementation 'com.github.qmy1990:MediaVision:0.4.2'
 ```
 
 The Java package is `com.moon.mediavision`:
 
 ```java
 VisionSdk sdk = new VisionSdk(context, VisionSdk.AUTO);
-sdk.configure(VisionOptions.builder()
+sdk.configure(new VisionOptions.Builder()
     .beauty(0.55f).blemishRemoval(0.35f).build());
 ```
 

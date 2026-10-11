@@ -17,7 +17,7 @@
 extern "C" {
 #endif
 
-#define MVS_ABI_VERSION 9
+#define MVS_ABI_VERSION 11
 typedef struct MvsEngine* MvsHandle;
 typedef enum MvsStatus {
   MVS_OK = 0,
@@ -112,10 +112,31 @@ typedef struct MvsAnalysis {
    * mask. */
   float person_mask_offset_x, person_mask_offset_y;
 } MvsAnalysis;
+typedef enum MvsBlushMode {
+  MVS_BLUSH_CHEEKS = 0,
+  MVS_BLUSH_CHEEKS_AND_NOSE = 1
+} MvsBlushMode;
+/* Common blush tints; custom 0xRRGGBB values are also supported. */
+typedef enum MvsBlushColor {
+  MVS_BLUSH_SAKURA_PINK = 0xF3A6BA,
+  MVS_BLUSH_PEACH_PINK = 0xF4A18F,
+  MVS_BLUSH_ROSE_PINK = 0xD96D8F,
+  MVS_BLUSH_BARBIE_PINK = 0xEA70AA,
+  MVS_BLUSH_COOL_PINK = 0xD982B3,
+  MVS_BLUSH_PEACH_ORANGE = 0xF29D68,
+  MVS_BLUSH_CORAL_ORANGE = 0xF18373,
+  MVS_BLUSH_APRICOT = 0xDEA281,
+  MVS_BLUSH_APPLE_RED = 0xEB5263,
+  MVS_BLUSH_STRAWBERRY_RED = 0xE65D7D,
+  MVS_BLUSH_BERRY_RED = 0xAE4E78,
+  MVS_BLUSH_NUDE_APRICOT = 0xC79380,
+  MVS_BLUSH_MILK_TEA = 0xBE907C,
+  MVS_BLUSH_BEAN_PASTE = 0xB97983
+} MvsBlushColor;
 typedef struct MvsOptions {
   uint32_t struct_size;
   float beauty, whitening,
-      sharpen; /* [0,1]; beauty uses person matte + skin probability */
+      sharpen; /* [0,1] effect strengths */
   MvsBackground background;
   uint32_t blur_radius;             /* [1,32] pixels at processing resolution */
   float mask_smoothing;             /* [0,0.95], motion-aware temporal filter */
@@ -138,6 +159,8 @@ typedef struct MvsOptions {
    * They are disabled by default and require face landmarks. */
   uint32_t debug_landmarks;
   uint32_t debug_face_mesh;
+  MvsBlushMode blush_mode; /* cheek-only by default; optional nose-tip tint */
+  uint32_t blush_color;   /* 0xRRGGBB, see MvsBlushColor; default apple red */
 } MvsOptions;
 /* Optional inference provider: callback populates borrowed views, valid until
  * process returns. The host owns model loading. Mobile SDK wrappers implement
@@ -152,6 +175,15 @@ typedef MvsStatus (*MvsEffectFn)(void* user, uint8_t* rgba, uint32_t width,
 typedef struct MvsVertex {
   float x, y, z, r, g, b;
 } MvsVertex;
+/* CPU wall time for the last successfully processed frame, in milliseconds.
+ * Rendering includes GPU submission, execution wait and readback. */
+typedef struct MvsPerformance {
+  double packing_ms, mask_ms, preparation_ms, rendering_ms, output_ms, total_ms;
+  /* Optional Metal float32-reference check, enabled only by test environment.
+   */
+  uint32_t precision_samples, precision_max_error;
+  double precision_mean_error;
+} MvsPerformance;
 
 MVS_API const char* mvs_version(void);
 MVS_API const char* mvs_status_string(MvsStatus status);
@@ -160,8 +192,12 @@ MVS_API MvsOptions mvs_default_options(void);
 MVS_API MvsStatus mvs_create(const MvsConfig* config, MvsHandle* output);
 MVS_API void mvs_destroy(MvsHandle engine);
 MVS_API MvsBackend mvs_backend(MvsHandle engine);
+MVS_API MvsStatus mvs_last_performance(MvsHandle engine,
+                                       MvsPerformance* output);
 MVS_API MvsStatus mvs_set_options(MvsHandle engine, const MvsOptions* options);
 MVS_API uint32_t mvs_analysis_requirements(MvsHandle engine);
+/* Same requirements query for a queued frame's immutable options snapshot. */
+MVS_API uint32_t mvs_options_analysis_requirements(const MvsOptions* options);
 MVS_API MvsStatus mvs_set_analyzer(MvsHandle engine, MvsAnalyzeFn analyze,
                                    void* user);
 MVS_API MvsStatus mvs_process(MvsHandle engine, const MvsFrame* input,

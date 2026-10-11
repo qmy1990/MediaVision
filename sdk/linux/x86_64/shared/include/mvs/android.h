@@ -8,6 +8,9 @@ extern "C" {
 #endif
 struct AHardwareBuffer;
 struct ANativeWindow;
+/* Analysis for the camera transport's reference whitening path. Use the
+ * common requirements API for packed-frame/CPU processing instead. */
+MVS_API uint32_t mvs_android_camera_analysis_requirements(MvsHandle engine);
 /* Optional platform transport; the common SDK options/analysis remain
  * unchanged. The caller must wait for the camera acquire fence before this
  * call. The input Image and HardwareBuffer must remain acquired until the call

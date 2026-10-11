@@ -13,7 +13,7 @@
 namespace {
 constexpr NSInteger kEffectCount = 19;
 const char *kNames[] = {"磨皮", "祛痘", "肤色", "增强", "大眼", "小头", "瘦脸", "鼻翼",    "眼距",
-                        "颧骨", "口红", "晒红", "眉毛", "道具", "头饰", "首饰", "背景虚化", "Mask", "换背景"};
+                        "颧骨", "口红", "腮红", "眉毛", "道具", "头饰", "首饰", "背景虚化", "Mask", "换背景"};
 // 83 preserves the previous radius 24. Maximum is round(24 * 1.2) = 29.
 constexpr float kDefaultBlurStrength = 83;
 const float kDefaults[] = {
@@ -90,6 +90,20 @@ const uint32_t kLipColors[] = {MVS_LIP_CLASSIC_RED, MVS_LIP_CORAL,          MVS_
                                MVS_LIP_BEAN_PASTE,  MVS_LIP_ORANGE_RED,     MVS_LIP_NUDE,
                                MVS_LIP_PINK,        MVS_LIP_PEACH,          MVS_LIP_GRAPEFRUIT,
                                MVS_LIP_SAKURA_PINK, MVS_LIP_STRAWBERRY_RED, MVS_LIP_WATER_GLOSS};
+const uint32_t kBlushColors[] = {
+    MVS_BLUSH_SAKURA_PINK, MVS_BLUSH_PEACH_PINK, MVS_BLUSH_ROSE_PINK,
+    MVS_BLUSH_BARBIE_PINK, MVS_BLUSH_COOL_PINK, MVS_BLUSH_PEACH_ORANGE,
+    MVS_BLUSH_CORAL_ORANGE, MVS_BLUSH_APRICOT, MVS_BLUSH_APPLE_RED,
+    MVS_BLUSH_STRAWBERRY_RED, MVS_BLUSH_BERRY_RED, MVS_BLUSH_NUDE_APRICOT,
+    MVS_BLUSH_MILK_TEA, MVS_BLUSH_BEAN_PASTE};
+NSArray<NSString *> *BlushNames() {
+  return @[@"樱花粉", @"蜜桃粉", @"玫瑰粉", @"芭比粉", @"冷调粉", @"蜜桃橘", @"珊瑚橘",
+           @"杏色", @"苹果红", @"草莓红", @"浆果红", @"裸杏", @"奶茶", @"豆沙"];
+}
+NSInteger BlushColorIndex(uint32_t rgb) {
+  for (NSInteger i = 0; i < 14; ++i) if (kBlushColors[i] == rgb) return i;
+  return 8;
+}
 UIColor *PanelColor(CGFloat alpha) {
   return [UIColor colorWithRed:12 / 255. green:25 / 255. blue:54 / 255. alpha:alpha];
 }
@@ -118,6 +132,7 @@ UIColor *PanelColor(CGFloat alpha) {
   UIButton *_landmarkButton;
   UIButton *_meshButton;
   UIButton *_colorButton;
+  UIButton *_blushModeButton;
   NSArray<UIButton *> *_effectButtons;
   NSInteger _selectedEffect;
   NSInteger _lipColorIndex;
@@ -341,11 +356,16 @@ UIColor *PanelColor(CGFloat alpha) {
                            UIControlEventTouchCancel];
   _colorButton = [self button:@"经典红 ▾" action:nil identifier:@"colorButton"];
   _colorButton.showsMenuAsPrimaryAction = YES;
-  NSLayoutConstraint *colorWidth = [_colorButton.widthAnchor constraintEqualToConstant:96];
+  NSLayoutConstraint *colorWidth = [_colorButton.widthAnchor constraintEqualToConstant:88];
   colorWidth.priority = 999;  // UIStackView gives hidden arranged views a zero width.
   colorWidth.active = YES;
+  _blushModeButton = [self button:@"脸颊 ▾" action:nil identifier:@"blushModeButton"];
+  _blushModeButton.showsMenuAsPrimaryAction = YES;
+  NSLayoutConstraint *modeWidth = [_blushModeButton.widthAnchor constraintEqualToConstant:102];
+  modeWidth.priority = 999;
+  modeWidth.active = YES;
   UIStackView *editor = [[UIStackView alloc] initWithArrangedSubviews:@[
-    _effectLabel, _effectSwitch, _effectSlider, _colorButton
+    _effectLabel, _effectSwitch, _effectSlider, _blushModeButton, _colorButton
   ]];
   editor.spacing = 6;
   editor.alignment = UIStackViewAlignmentCenter;
@@ -395,11 +415,12 @@ UIColor *PanelColor(CGFloat alpha) {
 }
 - (void)syncColorMenu {
   BOOL skin = _selectedEffect == 2;
-  NSArray *names = skin ? @[ @"自然白", @"冷白皮", @"红润白", @"美黑" ] : @[
+  BOOL blush = _selectedEffect == 11;
+  NSArray *names = blush ? BlushNames() : skin ? @[ @"自然白", @"冷白皮", @"红润白", @"美黑" ] : @[
     @"经典红", @"珊瑚", @"玫瑰", @"豆沙", @"橘红", @"裸色", @"粉红色", @"蜜桃色", @"西柚色",
     @"樱花粉", @"草莓红", @"水光唇釉"
   ];
-  NSInteger selected = skin ? _options.skin_tone : _lipColorIndex;
+  NSInteger selected = blush ? BlushColorIndex(_options.blush_color) : skin ? _options.skin_tone : _lipColorIndex;
   NSMutableArray *actions = [NSMutableArray array];
   __weak MVSCameraViewController *weakSelf = self;
   for (NSInteger i = 0; i < names.count; ++i) {
@@ -412,14 +433,16 @@ UIColor *PanelColor(CGFloat alpha) {
                                              return;
                                            }
                                            @synchronized(owner) {
-                                             if (skin) {
+                                             if (blush) {
+                                               owner->_options.blush_color = kBlushColors[i];
+                                             } else if (skin) {
                                                owner->_options.skin_tone = (MvsSkinTone)i;
                                              } else {
                                                owner->_lipColorIndex = i;
                                                owner->_options.lipstick_color = kLipColors[i];
                                              }
                                            }
-                                           [owner syncColorMenu];
+                                           [owner syncEffectEditor];
                                          }];
     action.state = selected == i ? UIMenuElementStateOn : UIMenuElementStateOff;
     [actions addObject:action];
@@ -427,6 +450,23 @@ UIColor *PanelColor(CGFloat alpha) {
   _colorButton.menu = [UIMenu menuWithChildren:actions];
   [_colorButton setTitle:[names[selected] stringByAppendingString:@" ▾"]
                 forState:UIControlStateNormal];
+}
+- (void)syncBlushModeMenu {
+  NSArray *names = @[@"脸颊", @"脸颊＋鼻尖"];
+  NSMutableArray *actions = [NSMutableArray array];
+  __weak MVSCameraViewController *weakSelf = self;
+  for (NSInteger i = 0; i < 2; ++i) {
+    UIAction *action = [UIAction actionWithTitle:names[i] image:nil identifier:nil handler:^(UIAction *a) {
+      MVSCameraViewController *owner = weakSelf;
+      if (!owner) return;
+      @synchronized(owner) { owner->_options.blush_mode = (MvsBlushMode)i; }
+      [owner syncBlushModeMenu];
+    }];
+    action.state = _options.blush_mode == i ? UIMenuElementStateOn : UIMenuElementStateOff;
+    [actions addObject:action];
+  }
+  _blushModeButton.menu = [UIMenu menuWithChildren:actions];
+  [_blushModeButton setTitle:[names[_options.blush_mode] stringByAppendingString:@" ▾"] forState:UIControlStateNormal];
 }
 - (void)syncEffectEditor {
   MvsOptions options;
@@ -436,6 +476,7 @@ UIColor *PanelColor(CGFloat alpha) {
   for (NSInteger i = 0; i < kEffectCount; ++i) {
     int value = (int)lroundf(Value(options, i, _blurStrength));
     NSString *name = [NSString stringWithUTF8String:kNames[i]];
+    if (i == 11) name = [name stringByAppendingFormat:@"-%@", BlushNames()[BlushColorIndex(options.blush_color)]];
     BOOL boolean = (i >= 13 && i <= 15) || i >= 17;
     [_effectButtons[i]
         setTitle:boolean ? [NSString stringWithFormat:@"%@(%@)", name, value ? @"开" : @"关"]
@@ -457,7 +498,9 @@ UIColor *PanelColor(CGFloat alpha) {
   _effectSlider.value = value;
   _effectSlider.hidden = (_selectedEffect >= 13 && _selectedEffect <= 15) || _selectedEffect >= 17;
   _effectSlider.accessibilityLabel = [_effectLabel.text stringByAppendingString:@"强度"];
-  _colorButton.hidden = _selectedEffect != 2 && _selectedEffect != 10;
+  _colorButton.hidden = _selectedEffect != 2 && _selectedEffect != 10 && _selectedEffect != 11;
+  _blushModeButton.hidden = _selectedEffect != 11;
+  if (!_blushModeButton.hidden) [self syncBlushModeMenu];
   if (!_colorButton.hidden) {
     [self syncColorMenu];
   }

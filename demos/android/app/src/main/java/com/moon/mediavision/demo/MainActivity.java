@@ -53,6 +53,21 @@ public final class MainActivity extends ComponentActivity {
   private Button allBeautyButton;
   private Spinner lipstickColorSpinner;
   private Spinner skinToneSpinner;
+  private Spinner blushModeSpinner;
+  private Spinner blushColorSpinner;
+  private static final String[] BLUSH_NAMES = {
+    "樱花粉", "蜜桃粉", "玫瑰粉", "芭比粉", "冷调粉", "蜜桃橘", "珊瑚橘", "杏色",
+    "苹果红", "草莓红", "浆果红", "裸杏", "奶茶", "豆沙"
+  };
+  private static final int[] BLUSH_COLORS = {
+    VisionOptions.BLUSH_SAKURA_PINK, VisionOptions.BLUSH_PEACH_PINK,
+    VisionOptions.BLUSH_ROSE_PINK, VisionOptions.BLUSH_BARBIE_PINK,
+    VisionOptions.BLUSH_COOL_PINK, VisionOptions.BLUSH_PEACH_ORANGE,
+    VisionOptions.BLUSH_CORAL_ORANGE, VisionOptions.BLUSH_APRICOT,
+    VisionOptions.BLUSH_APPLE_RED, VisionOptions.BLUSH_STRAWBERRY_RED,
+    VisionOptions.BLUSH_BERRY_RED, VisionOptions.BLUSH_NUDE_APRICOT,
+    VisionOptions.BLUSH_MILK_TEA, VisionOptions.BLUSH_BEAN_PASTE
+  };
   private RecyclerView effectList;
   private EffectAdapter effectAdapter;
   private final List<EffectControl> effects = new ArrayList<>();
@@ -239,6 +254,15 @@ public final class MainActivity extends ComponentActivity {
       if (intent.hasExtra("blemish")) {
         b.blemishRemoval(clampUnit(intent.getFloatExtra("blemish", 0f)));
       }
+      if (intent.hasExtra("blush")) {
+        b.blush(clampUnit(intent.getFloatExtra("blush", 0f)));
+      }
+      if (intent.hasExtra("blush_mode")) {
+        b.blushMode(intent.getIntExtra("blush_mode", VisionOptions.BLUSH_CHEEKS));
+      }
+      if (intent.hasExtra("blush_color")) {
+        b.blushColor(intent.getIntExtra("blush_color", VisionOptions.BLUSH_APPLE_RED));
+      }
     }
     if (intent.hasExtra("beauty")) {
       b.beauty(clampUnit(intent.getFloatExtra("beauty", options.beauty)));
@@ -408,6 +432,32 @@ public final class MainActivity extends ComponentActivity {
             }
           }
         });
+    blushModeSpinner = compactSpinner(new String[] {"脸颊", "脸颊＋鼻尖"});
+    LinearLayout.LayoutParams blushParams = new LinearLayout.LayoutParams(dp(108), dp(38));
+    blushParams.leftMargin = dp(4);
+    editor.addView(blushModeSpinner, blushParams);
+    blushModeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      public void onNothingSelected(AdapterView<?> parent) {}
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (!syncingEffectUi && position >= 0 && position <= 1 && options.blushMode != position) {
+          options = options.toBuilder().blushMode(position).build();
+        }
+      }
+    });
+    blushColorSpinner = compactSpinner(BLUSH_NAMES);
+    LinearLayout.LayoutParams blushColorParams = new LinearLayout.LayoutParams(dp(94), dp(38));
+    blushColorParams.leftMargin = dp(4);
+    editor.addView(blushColorSpinner, blushColorParams);
+    blushColorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      public void onNothingSelected(AdapterView<?> parent) {}
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (!syncingEffectUi && position >= 0 && position < BLUSH_COLORS.length &&
+            options.blushColor != BLUSH_COLORS[position]) {
+          options = options.toBuilder().blushColor(BLUSH_COLORS[position]).build();
+          if (effectAdapter != null) effectAdapter.notifyItemChanged(findEffect("腮红"));
+        }
+      }
+    });
     bottom.addView(editor, new LinearLayout.LayoutParams(-1, dp(44)));
     effectList = new RecyclerView(this);
     effectList.setOverScrollMode(View.OVER_SCROLL_NEVER);
@@ -503,12 +553,17 @@ public final class MainActivity extends ComponentActivity {
   private Spinner compactSpinner(String[] values) {
     Spinner spinner = new Spinner(this, Spinner.MODE_DROPDOWN);
     ArrayAdapter<String> adapter =
-        new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, values) {
+        new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, values) {
           private TextView style(View view, boolean dropdown) {
             TextView text = (TextView) view;
             text.setTextSize(12);
             text.setTextColor(dropdown ? Color.rgb(24, 32, 48) : Color.WHITE);
-            text.setPadding(dp(10), 0, dp(8), 0);
+            text.setPadding(dp(dropdown ? 10 : 6), 0, dp(dropdown ? 8 : 4), 0);
+            text.setSingleLine(true);
+            if (!dropdown) {
+              text.setAutoSizeTextTypeUniformWithConfiguration(10, 12, 1,
+                  android.util.TypedValue.COMPLEX_UNIT_SP);
+            }
             return text;
           }
 
@@ -523,7 +578,9 @@ public final class MainActivity extends ComponentActivity {
             return style(super.getDropDownView(position, convertView, parent), true);
           }
         };
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinner.setAdapter(adapter);
+    spinner.setPadding(dp(2), 0, dp(2), 0);
     GradientDrawable background = new GradientDrawable();
     background.setColor(Color.argb(205, 48, 86, 156));
     background.setStroke(dp(1), Color.argb(220, 30, 69, 145));
@@ -620,7 +677,7 @@ public final class MainActivity extends ComponentActivity {
             v -> options = options.toBuilder().lipstick(v / 100f).build()));
     effects.add(
         strength(
-            "晒红",
+            "腮红",
             0,
             20,
             () -> pct(options.blush),
@@ -770,6 +827,13 @@ public final class MainActivity extends ComponentActivity {
     if (skinTone) {
       skinToneSpinner.setSelection(options.skinTone, false);
     }
+    boolean blush = "腮红".equals(effect.name);
+    blushModeSpinner.setVisibility(blush ? View.VISIBLE : View.GONE);
+    blushColorSpinner.setVisibility(blush ? View.VISIBLE : View.GONE);
+    if (blush) {
+      blushModeSpinner.setSelection(options.blushMode, false);
+      blushColorSpinner.setSelection(blushColorIndex(options.blushColor), false);
+    }
     boolean enabled = value != effect.neutral;
     effectSwitch.setChecked(enabled);
     effectSwitch.setText(enabled ? "开" : "关");
@@ -862,6 +926,9 @@ public final class MainActivity extends ComponentActivity {
   }
 
   private String displayLabel(EffectControl effect) {
+    if ("腮红".equals(effect.name)) {
+      return "腮红-" + BLUSH_NAMES[blushColorIndex(options.blushColor)] + "-" + effect.value();
+    }
     if ("口红".equals(effect.name)) {
       return "口红-" + lipstickColorName(options.lipstickColor) + "-" + effect.value();
     }
@@ -869,6 +936,12 @@ public final class MainActivity extends ComponentActivity {
       return "肤色-" + skinToneName(options.skinTone) + "-" + effect.value();
     }
     return effect.label();
+  }
+
+  private static int blushColorIndex(int rgb) {
+    for (int i = 0; i < BLUSH_COLORS.length; ++i)
+      if (BLUSH_COLORS[i] == rgb) return i;
+    return 8;
   }
 
   private static final class EffectHolder extends RecyclerView.ViewHolder {

@@ -9,7 +9,13 @@ extern "C" {
  * must keep a reference while using a view. Model IDs may be extended freely.
  */
 typedef struct MvsModels* MvsModelsHandle;
-enum { MVS_MODEL_FACE = 1, MVS_MODEL_PERSON = 2, MVS_MODEL_MATTING = 3 };
+enum {
+  MVS_MODEL_FACE = 1,
+  MVS_MODEL_PERSON = 2,
+  MVS_MODEL_MATTING = 3,
+  MVS_MODEL_PERSON_COREML = 101,
+  MVS_MODEL_FACE_COREML = 102
+};
 typedef struct MvsModelView {
   const uint8_t* data;
   size_t size_bytes;

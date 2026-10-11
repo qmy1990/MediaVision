@@ -1,33 +1,28 @@
-# 平台与交付状态 / Platforms and delivery status
+# 平台与交付状态 / Platforms and delivery
 
-SDK 0.4.0，C ABI 9。平台包装层与 Maven 坐标采用 `com.moon.mediavision`；原生 C ABI 保留 `mvs_*`。
+所有平台 SDK **0.4.2 / C ABI 11**。使用配套库与头文件；原生 ABI 保留 `mvs_*`，Android 包名为 `com.moon.mediavision`。
 
-| 平台 | 架构 | 产物与路径 | 本次范围 |
+| 平台 | 架构 | SDK / Demo | 构建与验证 |
 |---|---|---|---|
-| Android Camera SDK | arm64-v8a / armeabi-v7a / x86 | `sdk/android/maven`、AAR、`camera-native`、APK | 新包名与 JNI 重编译，Release 实现混淆；公开 Maven 消费工程验证 |
-| Android C/C++ core | 上述三种 + x86_64 | `sdk/android/core` 静态/动态库 | 保留已有独立 core 交付，移除调试信息；宿主提供推理 |
-| iOS | device arm64；simulator arm64/x86_64 | `MediaVisionSDK.xcframework`、`MediaVisionCore.xcframework` | 重新构建，Apple 自有 shader 预编译；公开 Demo 编译；本次无 iPhone 实机验收 |
-| macOS | x86_64（Intel） | `sdk/macos/x86_64` 静态/动态库、CLI | 新建二进制交付；6 项 native 测试；公开 C++ Demo 编译运行 |
-| Windows MSVC | x86 / x64 | `.dll` / import `.lib` / static `.lib`、CLI | 保留之前已构建的交付文件；本次未在 Windows 重编译/运行 |
-| Windows GNU | ARM64 | CPU `.dll` / `.dll.a` / `.a`、CLI | 之前的 Zig 交叉编译产物；未做 ARM64 Windows 实机验收，不能当成 MSVC `.lib` |
-| Linux glibc | x86 / x86_64 / ARMv7 hard-float / aarch64 | `.so` / `.a`、CLI | 保留之前的 glibc 2.28 交叉编译交付；本次无 Linux 实机验收 |
+| Android 相机 | arm64-v8a、armeabi-v7a、x86 | AAR、JNI、APK | Release SDK、Debug/Release Demo；Vulkan 相机与平台推理适配 |
+| Android C/C++ | 上述三种及 x86_64 | `.a`、`.so`、头文件 | 四架构重新编译；宿主提供分析数据 |
+| iOS | device arm64；simulator arm64/x86_64 | SDK/Core XCFramework、未签名 IPA、Demo 工程 | 封装与 core 重编译，公开工程链接二进制 SDK |
+| macOS | x86_64、arm64 | `.a`、`.dylib`、CLI | 两架构重新编译；Intel 原生测试和 Metal 图片效果验证；ARM64 尚无本机运行验证 |
+| Windows | x86、x64、ARM64 | MSVC `.lib`、`.dll`、CLI | 使用 clang-cl/MSVC CRT 和 Windows SDK 交叉编译；静态、动态接入示例编译通过 |
+| Linux glibc | x86、x86_64、ARMv7 hard-float、aarch64 | `.a`、`.so`、CLI | Zig/Clang，glibc 2.28 目标；静态、动态接入示例编译通过 |
 
-Apple Silicon macOS 的独立桌面库本次没有提供，iOS simulator arm64 不能当成 macOS arm64 库。macOS 提供 native core/CLI；完整 Python 图片/视频/相机 Demo 的当前目标是 Windows/Linux。
+美白和磨皮采用相同参考公式；腮红区域随 468/478 点网格变化，统一支持两种模式与 14 种颜色。渲染后端采用 Metal / Vulkan，CPU 可回退；采样精度与输出取整可能产生少量像素差异。原生 core 的分析数据、模型推理或平台推理适配由宿主提供；Android/iOS 相机封装包含推理适配。
 
 ## 运行依赖
 
-- Android：API 26+；Java/Kotlin App 必须解析 SDK POM 声明的 Tasks/LiteRT/QNN 依赖。非高通设备不因可选 FastRPC 声明而被禁止安装。不同后端失败时仍有回退策略。
-- iOS：iOS 15+。SDK framework 仅依赖系统框架和已静态链接的运行库；公开 Demo 不需 Pods。App 真机安装需自己签名，仓库 IPA 未签名。
-- macOS：此次在 macOS 13.7.8 / Intel 构建并测试。动态库依赖系统 Metal/Foundation/QuartzCore 和 C++ runtime；选择合适的 SDK 路径构建 C++ Demo。
-- Windows：MSVC 库需匹配的 Visual C++ runtime；Vulkan 后端需可用驱动。桌面抠像使用附带 ONNX Runtime，x64 可选 DirectML；选择错误架构不会自动转换 ABI。
-- Linux：glibc 2.28 目标，不适用于 Android Bionic 或 Alpine musl。共享库依赖系统 loader/glibc/libm/libpthread/libdl。静态库采用 Clang/libc++ ABI，需要匹配链接工具链；共享 C ABI 通常更便于跨编译器接入。
+- Android：API 26+，保留 `google()`、`mavenCentral()` 与 JitPack，解析 POM 的 MediaPipe/LiteRT/QNN 依赖。
+- iOS：iOS 15+，App 使用自己的开发团队签名。公开 IPA 未签名，推荐从 Demo 工程构建安装。
+- macOS：macOS 13+，系统 Metal/Foundation/QuartzCore；arm64 桌面库与 iOS simulator arm64 是不同产物。
+- Windows：MSVC C/C++ ABI；Release 使用静态 CRT，Windows 系统需提供 Universal CRT；Vulkan 需可用驱动。桌面抠像需相同架构的 ONNX Runtime，随仓库的运行库以实际目录为准。ARM64 用户需提供匹配的 ONNX Runtime。
+- Linux：glibc 2.28+，共享 C ABI 通常更方便；静态 `.a` 需匹配 Clang/libc++ 工具链，不可假定 GCC/libstdc++ 能直接链接。桌面 ONNX Runtime 需匹配架构。不是 Android Bionic 或 Alpine musl 库。
 
-Windows/Linux Python Demo 依赖 `demos/desktop/requirements.txt` 与 `dependencies/desktop-runtime`。执行时默认加载对应平台 `models/.../mediavision.mvsmodels`，不需要运行时下载模型。
+Windows/Linux 交叉编译完成不等于已在所有目标设备运行。本次发布没有新增 Windows/Linux 本机性能验收；实际验证范围见 [VALIDATION.md](VALIDATION.md)。
 
-## 安装与示例
+## English
 
-Android 可安装 `installers/android/MediaVisionDemo-debug.apk`；`release-unsigned.apk` 需自己签名。iOS `MediaVisionDemo-unsigned.ipa` 仅为待签名产物，建议用公开工程选择自己的 Team 构建运行。Mac/Windows/Linux CLI 处理 P6 PPM，测试锐化与 C++ 调用，不代表自动启用了完整人像推理。
-
-## English notes
-
-Platform/architecture binaries are not interchangeable. The Android Camera AAR and standalone native core have different scopes. Apple XCFrameworks include device/simulator slices, not a macOS ARM64 desktop build. The current macOS deliverable is Intel native core/CLI. Windows/Linux binaries retain their previous build provenance; cross-compiled targets have not all been run on native devices. The iOS IPA and Android release APK are unsigned and require the application's own signing workflow.
+Every 0.4.2 platform ships ABI 11 headers and newly built SDK libraries. Whitening, smoothing, landmark-aligned blush regions, colors, and the nose-tip mode are synchronized. Platform rendering, inference adapters, and precision may differ. Windows x86/x64/ARM64 libraries now use the MSVC ABI, including ARM64; rebuild consumers of the previous GNU ARM64 package. Linux targets glibc 2.28 and uses Clang/libc++ for static linking. Windows/Linux cross builds and macOS ARM64 builds have not received new native-device performance tests. The iOS IPA and Android release APK require application signing.
