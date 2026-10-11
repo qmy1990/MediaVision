@@ -1,11 +1,11 @@
 # 平台与交付状态 / Platforms and delivery
 
-所有平台 SDK **0.4.2 / C ABI 11**。使用配套库与头文件；原生 ABI 保留 `mvs_*`，Android 包名为 `com.moon.mediavision`。
+所有平台 SDK **0.4.3 / C ABI 11**。使用配套库与头文件；原生 ABI 保留 `mvs_*`，Android 包名为 `com.moon.mediavision`。
 
 | 平台 | 架构 | SDK / Demo | 构建与验证 |
 |---|---|---|---|
-| Android 相机 | arm64-v8a、armeabi-v7a、x86 | AAR、JNI、APK | Release SDK、Debug/Release Demo；Vulkan 相机与平台推理适配 |
-| Android C/C++ | 上述三种及 x86_64 | `.a`、`.so`、头文件 | 四架构重新编译；宿主提供分析数据 |
+| Android 相机 | arm64-v8a、armeabi-v7a、x86、x86_64 | AAR、JNI、APK | Release SDK、Debug/Release Demo；Vulkan 相机与平台推理适配 |
+| Android C/C++ | 上述四种 | `.a`、`.so`、头文件 | 四架构重新编译；独立 LiteRT 推理库或宿主分析数据 |
 | iOS | device arm64；simulator arm64/x86_64 | SDK/Core XCFramework、未签名 IPA、Demo 工程 | 封装与 core 重编译，公开工程链接二进制 SDK |
 | macOS | x86_64、arm64 | `.a`、`.dylib`、CLI | 两架构重新编译；Intel 原生测试和 Metal 图片效果验证；ARM64 尚无本机运行验证 |
 | Windows | x86、x64、ARM64 | MSVC `.lib`、`.dll`、CLI | 使用 clang-cl/MSVC CRT 和 Windows SDK 交叉编译；静态、动态接入示例编译通过 |
@@ -15,7 +15,7 @@
 
 ## 运行依赖
 
-- Android：API 26+，保留 `google()`、`mavenCentral()` 与 JitPack，解析 POM 的 MediaPipe/LiteRT/QNN 依赖。
+- Android：API 26+，保留 `google()`、`mavenCentral()` 与 JitPack，解析 POM 的 LiteRT/QNN 依赖。
 - iOS：iOS 15+，App 使用自己的开发团队签名。公开 IPA 未签名，推荐从 Demo 工程构建安装。
 - macOS：macOS 13+，系统 Metal/Foundation/QuartzCore；arm64 桌面库与 iOS simulator arm64 是不同产物。
 - Windows：MSVC C/C++ ABI；Release 使用静态 CRT，Windows 系统需提供 Universal CRT；Vulkan 需可用驱动。桌面抠像需相同架构的 ONNX Runtime，随仓库的运行库以实际目录为准。ARM64 用户需提供匹配的 ONNX Runtime。
@@ -25,4 +25,6 @@ Windows/Linux 交叉编译完成不等于已在所有目标设备运行。本次
 
 ## English
 
-Every 0.4.2 platform ships ABI 11 headers and newly built SDK libraries. Whitening, smoothing, landmark-aligned blush regions, colors, and the nose-tip mode are synchronized. Platform rendering, inference adapters, and precision may differ. Windows x86/x64/ARM64 libraries now use the MSVC ABI, including ARM64; rebuild consumers of the previous GNU ARM64 package. Linux targets glibc 2.28 and uses Clang/libc++ for static linking. Windows/Linux cross builds and macOS ARM64 builds have not received new native-device performance tests. The iOS IPA and Android release APK require application signing.
+Every 0.4.3 platform ships ABI 11 headers and newly built SDK libraries. Whitening, smoothing, landmark-aligned blush regions, colors, and the nose-tip mode are synchronized. Platform rendering, inference adapters, and precision may differ. Windows x86/x64/ARM64 libraries now use the MSVC ABI, including ARM64; rebuild consumers of the previous GNU ARM64 package. Linux targets glibc 2.28 and uses Clang/libc++ for static linking. Windows/Linux cross builds and macOS ARM64 builds have not received new native-device performance tests. The iOS IPA and Android release APK require application signing.
+
+Android 0.4.3 增加四 ABI 的 `libmvs_inference.so`；`sdk/android/native-runtime` 提供配套 LiteRT/GPU/C++ 运行库，arm64 额外提供可选 QNN HTP 运行库。单独使用效果 core 时不需要这些模型运行库。iOS、macOS、Windows、Linux 沿用各自的 Core ML/Vision/ONNX Runtime 适配，未切换为 Android LiteRT 库。

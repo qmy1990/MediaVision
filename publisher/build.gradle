@@ -1,6 +1,6 @@
 plugins { id 'base'; id 'maven-publish' }
 
-def sdkVersion = providers.gradleProperty('sdkVersion').getOrElse('0.4.2')
+def sdkVersion = providers.gradleProperty('sdkVersion').getOrElse('0.4.3')
 def publicationGroup = providers.gradleProperty('publicationGroup').getOrElse('com.moon.mediavision')
 def publicationArtifact = providers.gradleProperty('publicationArtifact').getOrElse('mediavision-sdk')
 def publicationVersion = providers.gradleProperty('publicationVersion').getOrElse(sdkVersion)
@@ -25,7 +25,6 @@ def stageSdkAar = tasks.register('stageSdkAar') {
 }
 
 def runtimeDependencies = [
-  ['com.google.mediapipe', 'tasks-vision', '0.10.28'],
   ['com.google.ai.edge.litert', 'litert', '1.4.2'],
   ['com.google.ai.edge.litert', 'litert-gpu', '1.4.2'],
   ['com.google.ai.edge.litert', 'litert-gpu-api', '1.4.2'],

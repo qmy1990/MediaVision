@@ -1,5 +1,31 @@
 # 更新日志 / Changelog
 
+## 0.4.3 · 2026-10-12
+
+### 中文
+
+- Android LiteRT 模型执行迁移到 C/C++，Java 通过 JNI 提交模型、帧和参数。
+- 新增纯 C/NDK 推理接口，支持 Tensor 输入输出、人物分割、478 点人脸检测和 ROI 跟踪。
+- 保留 QNN HTP、NNAPI、GPU、CPU/XNNPACK 后端及回退；增加实际委派算子数量，避免把 CPU 回退误标成 NPU。
+- 修正原生 GPU 精度配置，补齐 XNNPACK 回退，并移除生产 Android 的 Java Interpreter/MediaPipe Tasks 推理依赖。
+- SDK AAR 支持四种 Android ABI；更新所有系统的库、公共头文件、Demo、安装包及接入文档。
+- `sdk/android/aar` 更新为 `mediavision-sdk-0.4.3.aar`；历史 Maven 版本保留供旧项目使用。
+
+### English
+
+- Moved Android LiteRT model execution to C/C++; Java submits models, frames, and parameters through JNI.
+- Added standalone C/NDK tensor, portrait segmentation, 478-point face detection, and ROI tracking APIs.
+- Retained QNN HTP, NNAPI, GPU, and CPU/XNNPACK selection and fallback, with actual delegated operator counts.
+- Aligned native GPU precision settings, restored XNNPACK fallback, and removed production Java Interpreter/MediaPipe Tasks inference dependencies.
+- Added four-ABI Android AAR support and refreshed every platform library, public header, demo, installer, and integration guide.
+- Replaced the canonical AAR with SDK 0.4.3; historical Maven versions remain available.
+
+### 兼容 / Compatibility
+
+效果 C ABI 仍为 11，现有美颜参数及 Java API 保留。新增原生推理符号由 Android `libmvs_inference.so` 提供，需同时部署配套运行库；其他系统沿用原有推理适配器。
+
+The effect ABI remains 11 and existing Java/options APIs are retained. New Android inference symbols require `libmvs_inference.so` and matching runtimes; other systems keep their established adapters.
+
 ## 0.4.2 · 2026-10-11
 
 ### 中文

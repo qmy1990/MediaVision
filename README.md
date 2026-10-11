@@ -9,7 +9,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 
 **发布的 SDK 可以免费商用。**
 
-当前版本：**0.4.2** · [更新日志](CHANGELOG.md) · [接口说明](docs/API.md)
+当前版本：**0.4.3** · [更新日志](CHANGELOG.md) · [接口说明](docs/API.md)
 
 ## 功能与计划
 
@@ -81,7 +81,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:v0.4.2'
+implementation 'com.github.qmy1990:MediaVision:v0.4.3'
 ```
 
 Java 包名为 `com.moon.mediavision`：
@@ -112,3 +112,5 @@ git clone https://github.com/qmy1990/MediaVision.git
 ```
 
 SDK 位于 `sdk/`，Demo 位于 `demos/`，安装包位于 `installers/`。直接下载源码 ZIP 的使用方法见 [集成指南](docs/INTEGRATION.md)。
+
+Android 0.4.3 支持纯 C/C++ 模型推理与效果处理，无需 Java；[原生接入说明](docs/ANDROID_NATIVE.md)包含运行库、参数和完整示例。

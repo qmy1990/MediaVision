@@ -1,13 +1,14 @@
 {
   "sdk": "com.moon.mediavision",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "c_abi": 11,
-  "generated_date": "2026-10-11",
+  "generated_date": "2026-10-12",
   "android": {
     "camera_abis": [
       "arm64-v8a",
       "armeabi-v7a",
-      "x86"
+      "x86",
+      "x86_64"
     ],
     "core_abis": [
       "arm64-v8a",
@@ -17,22 +18,70 @@
     ],
     "camera_rebuilt": true,
     "public_maven_consumer_build": true,
-    "new_package_device_test": false,
+    "new_package_device_test": true,
     "jitpack": {
-      "coordinate": "com.github.qmy1990:MediaVision:v0.4.2",
-      "binary_sdk_version": "0.4.2",
-      "remote_publication_verified": true,
-      "remote_aar_identical_to_sdk": true,
-      "aar_sha256": "385a50188e113fee7bfca557215b5cf593478d076a3e1de61885a4ad5f99aa8b",
-      "runtime_dependency_count": 6,
-      "consumer_debug_and_release_build": true,
-      "consumer_build_abis": [
+      "coordinate": "com.github.qmy1990:MediaVision:v0.4.3",
+      "status": "pending",
+      "remote_publication_verified": false
+    },
+    "native_inference": {
+      "abis": [
         "arm64-v8a",
         "armeabi-v7a",
-        "x86"
+        "x86",
+        "x86_64"
       ],
-      "status": "ok",
-      "build_log": "https://jitpack.io/com/github/qmy1990/MediaVision/v0.4.2/build.log"
+      "pure_c_cpu_test": true,
+      "pure_c_gpu_test": true,
+      "device": "Infinix X6878 / SM7635",
+      "qnn_device_test": false
+    },
+    "rear_camera_sample": {
+      "release_aar_sha256": "35d17412336e7bea5284a8aefebb27a13731d31dc9cd89161b6a53eb8048c9ce",
+      "device": "Infinix X6878 / SM7635",
+      "scene": "screen portrait; not direct live-person motion validation",
+      "tiers": [
+        {
+          "tier": "480p",
+          "camera": "rear",
+          "scene": "screen portrait captured by rear camera",
+          "seconds": 15,
+          "metric_windows": 15,
+          "actual_size": "480x864",
+          "preview_fps": 29.37,
+          "unique_fps": 27.34,
+          "p50_ms": 13.4,
+          "inference_ms": 19.6,
+          "rear_confirmed": true
+        },
+        {
+          "tier": "720p",
+          "camera": "rear",
+          "scene": "screen portrait captured by rear camera",
+          "seconds": 15,
+          "metric_windows": 14,
+          "actual_size": "720x1280",
+          "preview_fps": 26.7,
+          "unique_fps": 21.4,
+          "p50_ms": 19.14,
+          "inference_ms": 24.0,
+          "rear_confirmed": true
+        },
+        {
+          "tier": "1080p",
+          "camera": "rear",
+          "scene": "screen portrait captured by rear camera",
+          "seconds": 15,
+          "metric_windows": 14,
+          "actual_size": "1080x1920",
+          "preview_fps": 22.27,
+          "unique_fps": 15.23,
+          "p50_ms": 27.79,
+          "inference_ms": 28.79,
+          "rear_confirmed": true
+        }
+      ],
+      "target_met": false
     }
   },
   "ios": {
@@ -65,7 +114,8 @@
       "photo_cases": 68,
       "single_effect_max_rgb_difference": 3,
       "combined_effect_max_rgb_difference": 5,
-      "p99_rgb_difference_at_most": 2
+      "p99_rgb_difference_at_most": 2,
+      "release": "0.4.2 reference validation; effect implementation unchanged in 0.4.3"
     }
   },
   "windows": {
@@ -99,5 +149,5 @@
     "fps": 15,
     "infinite_loop": true
   },
-  "limits": "Cross compilation is not target-device runtime or FPS validation. No new mobile-device installation/runtime tests for these final release artifacts."
+  "limits": "Camera results are device-specific short real-face samples; cross compilation is not target-device runtime or FPS validation. No new iPhone, Snapdragon 8 Gen 2, Dimensity 9400, Windows/Linux or macOS ARM64 runtime validation for this release."
 }

@@ -1,6 +1,6 @@
 # 集成指南 / Integration
 
-SDK 标识：`com.moon.mediavision`。Android 命名空间与 Maven group 使用同一标识；Demo 应用 ID 为 `com.moon.mediavision.demo`。C/C++ 保留公共 `mvs_*` 符号。所有平台 0.4.2 库使用 ABI 11，新增腮红模式和颜色；使用配套头文件与库重新编译。
+SDK 标识：`com.moon.mediavision`。Android 命名空间与 Maven group 使用同一标识；Demo 应用 ID 为 `com.moon.mediavision.demo`。C/C++ 保留公共 `mvs_*` 符号。所有平台 0.4.3 库使用 ABI 11，新增腮红模式和颜色；使用配套头文件与库重新编译。
 
 ## Android
 
@@ -37,7 +37,7 @@ App 集成 `MediaVisionSDK.xcframework` 并 Embed & Sign。模型加入资源并
 
 基本调用顺序：`mvs_default_config` → `mvs_create` → `mvs_set_options` → `mvs_process` / `mvs_process_with_analysis` → `mvs_destroy`。尺寸、stride、像素格式、内存大小和时间戳必须有效；输入输出缓冲在同步调用期间借用。RGBA8/BGRA8 的格式与各平台输入封装不能混淆。
 
-核心库不自动提供模型推理。宿主可以实现 `MvsAnalyzeFn`，或向 `mvs_process_with_analysis` 提供与输入方向/时间戳一致的人物概率 Mask 和 468/478 点人脸布局。仅锐化等不依赖分析的效果可直接处理输入。自定义 C 回调按注册顺序执行，用于应用扩展效果。
+效果核心库不自动提供模型推理。Android 0.4.3 可同时链接 `libmvs_inference.so`，通过原生模型 API 或 `mvs_inference_analyze` 提供分析，无需 Java，见 [Android 原生接入](ANDROID_NATIVE.md)。宿主可以实现 `MvsAnalyzeFn`，或向 `mvs_process_with_analysis` 提供与输入方向/时间戳一致的人物概率 Mask 和 468/478 点人脸布局。仅锐化等不依赖分析的效果可直接处理输入。自定义 C 回调按注册顺序执行，用于应用扩展效果。
 
 CMake 可用 `find_package(MediaVisionSDK CONFIG REQUIRED)` 与 `MediaVision::SDK`，将选定库的安装前缀加入 `CMAKE_PREFIX_PATH`。仓库根目录工程提供纯上层 `mvs_demo_cli` 示例；它不编译 SDK 内部源文件。
 
@@ -52,7 +52,7 @@ GitHub 源码 ZIP 可能只包含大型二进制的 LFS 指针。在解压目录
 ```bash
 python3 tools/prepare_model_assets.py --platform android \
   --output /path/to/app/src/main/assets/mediavision.mvsmodels
-python3 tools/package_distribution.py --output distribution-output/MediaVision-0.4.2.zip
+python3 tools/package_distribution.py --output distribution-output/MediaVision-0.4.3.zip
 ```
 
 模型加密、量化和内部 SDK 编译在私有工程完成。公开工具只校验/部署已打包模型及分发文件，不公开加密密钥或内部编译流水线。候选模型不同输入/输出合约不能直接替换生产包。
@@ -65,4 +65,4 @@ README 的效果预览为循环 GIF，保留完整视频时长。需要更新预
 
 ## English summary
 
-Use the platform wrapper for camera/inference integration, or link the public C ABI for native applications. Android uses `com.github.qmy1990:MediaVision:v0.4.2` via JitPack; the POM resolves external runtimes. The iOS demo links the prebuilt framework and requires your own signing team. Native callers supply valid buffers and, when needed, matching inference analysis. Select the correct platform/architecture/toolchain. Public tooling deploys existing encrypted packages and builds demos only; proprietary SDK/model compilation and signing credentials are not published.
+Use the platform wrapper for camera/inference integration, or link the public C ABI for native applications. Android uses `com.github.qmy1990:MediaVision:v0.4.3` via JitPack; the POM resolves external runtimes. The iOS demo links the prebuilt framework and requires your own signing team. Android native callers can load the optional inference adapter without Java; other native callers supply matching analysis when needed. Select the correct platform/architecture/toolchain. Public tooling deploys existing encrypted packages and builds demos only; proprietary SDK/model compilation and signing credentials are not published.

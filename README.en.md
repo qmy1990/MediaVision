@@ -9,7 +9,7 @@ MediaVision brings beauty filters, face reshaping, makeup and background effects
 
 **The released SDK is free for commercial use.**
 
-Current release: **0.4.2** · [Changelog](CHANGELOG.md) · [API guide](docs/API.md)
+Current release: **0.4.3** · [Changelog](CHANGELOG.md) · [API guide](docs/API.md)
 
 ## Features and plans
 
@@ -81,7 +81,7 @@ Keep `google()` and `mavenCentral()`, then add:
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:v0.4.2'
+implementation 'com.github.qmy1990:MediaVision:v0.4.3'
 ```
 
 The Java package is `com.moon.mediavision`:
@@ -112,3 +112,5 @@ git clone https://github.com/qmy1990/MediaVision.git
 ```
 
 SDKs are in `sdk/`, demos in `demos/`, and installers in `installers/`. Source ZIP download instructions are in the [integration guide](docs/INTEGRATION.md).
+
+Android 0.4.3 supports native C/C++ inference and effects without Java. See the [native integration guide](docs/ANDROID_NATIVE.md) for runtime libraries, tensor contracts, and a standalone example.
