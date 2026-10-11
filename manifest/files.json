@@ -35,14 +35,14 @@
     },
     {
       "path": "README.en.md",
-      "size": 6586,
-      "sha256": "d7dda9e2e60b7032a446ad4ba24d1e61b80fb12b84bafad87c4647323f414b95",
+      "size": 6734,
+      "sha256": "8de736fda379a37c1b46b2f16781388ee04024c2c4371b19182fffbdec4fcf36",
       "lfs": false
     },
     {
       "path": "README.md",
-      "size": 5950,
-      "sha256": "672e323bc9445c95ea00fc2e1aea198714e296fcbc45421955ba9bab013a0243",
+      "size": 6077,
+      "sha256": "ca6aa449eaedc9ac8bfc31a234025fceafb9c800ee2b18903c555b7261dda4fb",
       "lfs": false
     },
     {
@@ -479,8 +479,8 @@
     },
     {
       "path": "docs/MAVEN.md",
-      "size": 4345,
-      "sha256": "cae6981cf2ca1cd81aae558ef6412336a06e28e4e78f9228458fbbc864083adc",
+      "size": 4536,
+      "sha256": "f5d5bfb80389b3fb31293a454e96536968b868532f96cd497c99c96b043f0c5f",
       "lfs": false
     },
     {
@@ -503,8 +503,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "size": 3523,
-      "sha256": "6d12d655879c26c6263a915ec2cde40d03be1136cf6f3839a1d5c63694ba4b74",
+      "size": 3719,
+      "sha256": "49ff9869933840da668ed60bcd1927ca2f8eb730b8600e272e41a39cb3c547c9",
       "lfs": false
     },
     {
@@ -767,8 +767,8 @@
     },
     {
       "path": "manifest/platforms.json",
-      "size": 2308,
-      "sha256": "71a05165b78aca598280b5f477896de47a9c658ecff11c794c1579e79bdcdd51",
+      "size": 2659,
+      "sha256": "cf246d755bfad861c7f471e41be185075d0501f820ea795dc8906320a32ce062",
       "lfs": false
     },
     {

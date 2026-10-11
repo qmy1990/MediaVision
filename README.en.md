@@ -74,6 +74,8 @@ Looping GIFs play directly below and preserve the original comparison sequence.
 
 ## Android integration
 
+JitPack `0.4.2` is awaiting a server-side retry after JDK installation failed. Compiled SDKs and demo installers are available in this repository.
+
 Keep `google()` and `mavenCentral()`, then add:
 
 ```groovy

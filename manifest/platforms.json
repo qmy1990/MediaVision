@@ -23,7 +23,12 @@
       "binary_sdk_version": "0.4.2",
       "remote_publication_verified": false,
       "remote_aar_identical_to_sdk": false,
-      "consumer_debug_and_release_build": false
+      "consumer_debug_and_release_build": false,
+      "status": "Error",
+      "failure_stage": "JDK bootstrap before the publication script",
+      "failure_reason": "JitPack worker reported Internet unreachable while installing Java 17; no JDK 17 or newer was available.",
+      "build_log": "https://jitpack.io/com/github/qmy1990/MediaVision/0.4.2/build.log",
+      "requires_owner_retry": true
     }
   },
   "ios": {

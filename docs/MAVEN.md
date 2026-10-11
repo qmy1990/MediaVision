@@ -1,5 +1,7 @@
 # Maven 发布与引用 / Maven publishing and consumption
 
+发布状态：首次远程构建在 JDK 17 安装阶段失败，SDK 发布脚本未执行；仓库所有者重试后再验收远程依赖。已编译 AAR 与本地 Maven 可正常使用。
+
 推荐坐标：`com.github.qmy1990:MediaVision:0.4.2`。Java 包：`com.moon.mediavision`。
 
 ## JitPack

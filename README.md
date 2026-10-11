@@ -74,6 +74,8 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 
 ## Android 接入
 
+JitPack `0.4.2` 正待服务器重试：首次构建在 JDK 安装阶段失败。已编译 SDK 和 Demo 安装包已上传。
+
 保留 `google()` 和 `mavenCentral()`，添加以下仓库和依赖：
 
 ```groovy
