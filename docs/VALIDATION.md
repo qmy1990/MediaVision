@@ -12,7 +12,7 @@
 | 原生分割耗时 | 384×384 RGBA → 256×256 模型/Mask，20 次中后 15 次平均：CPU 4.17 ms、GPU 4.25 ms，包含预后处理；不是完整相机帧率 |
 | 最终产物复跑 | Demo 相机保持运行时，公开 C 示例的分割平均 CPU 4.98 ms、GPU 12.05 ms；不同于关闭相机的独立计时，说明单模型 GPU 热身值不能代替组合吞吐 |
 | 原生接入编译 | 公开 C 示例仅链接已发布 `.so` 和头文件，四种 Android ABI 均通过 |
-| Android Demo | 公开 Demo 使用候选发布 AAR/POM 的本地依赖编译 Debug/Release，覆盖四种 ABI；远程 JitPack 验证在发布后记录 |
+| Android Demo | 公开 Demo 使用本地发布 AAR 和 JitPack `com.github.qmy1990:MediaVision:0.4.3` 的 Debug/Release 构建均通过，覆盖四种 ABI；远程 AAR 与发布库逐字节一致 |
 | iOS | device arm64、simulator arm64/x86_64 的 Core 与封装重编译；公开二进制 Demo 的未签名 Release 构建通过；此次无 iPhone 运行验收 |
 | macOS | x86_64/arm64 静态、动态库与公开 C++ 示例重编译；Intel 示例在 Metal 处理图片成功，9 项原生测试全部通过 |
 | Windows / Linux | Windows x86/x64/ARM64，Linux x86/x86_64/ARMv7/aarch64 的静态、动态库及公开 C++ 接入示例交叉编译通过 |
@@ -44,8 +44,14 @@ All five platforms ship SDK 0.4.3 with matching effect ABI 11 headers. The new A
 
 Four foreground Android fixture tests pass, covering segmentation, an eight-frame face comparison, and CPU/Vulkan effects and replacement. CPU segmentation matches the previous implementation pixel-for-pixel. The maximum normalized landmark difference is approximately 0.0018. Standalone segmentation including preprocessing/postprocessing averages 4.17 ms on CPU and 4.25 ms on GPU for a 384×384 input and 256×256 model/mask; these numbers are not end-to-end camera FPS.
 
-The iOS device/simulator SDKs and unsigned public demo compile. Intel macOS runs the public examples with Metal and passes all nine native tests. Windows/Linux and macOS ARM64 are build/link checks rather than target-device runtime tests. This SM7635 device could not use the configured QNN HTP FP16 path, and no new Snapdragon 8 Gen 2, Dimensity 9400, or iPhone performance claim is made. JitPack remote verification is recorded after publication.
+The iOS device/simulator SDKs and unsigned public demo compile. Intel macOS runs the public examples with Metal and passes all nine native tests. Windows/Linux and macOS ARM64 are build/link checks rather than target-device runtime tests. This SM7635 device could not use the configured QNN HTP FP16 path, and no new Snapdragon 8 Gen 2, Dimensity 9400, or iPhone performance claim is made. JitPack `com.github.qmy1990:MediaVision:0.4.3` is published. Its downloaded AAR matches the local release byte-for-byte, and the public demo builds both Debug and Release using the remote dependency.
 
 Final Release-AAR rear-camera sampling used the public Debug demo on the same SM7635 device, with rear-facing state and actual frame dimensions checked. The camera captured a portrait on a screen, so this is a processing-load check rather than a direct live-person motion-quality sign-off. Each tier was sampled for about 15 seconds with default combined effects. Preview / unique-frame FPS was 29.37 / 27.34 at 480x864, 26.70 / 21.40 at 720x1280, 22.27 / 15.23 at 1080x1920. Repeated display frames are excluded from unique FPS. The 480p/30 and 720p/25 unique-frame targets have not been met on this device; no sustained thermal-performance claim is made.
 
 The final public C executable and shared libraries were rerun successfully on CPU and GPU. With the camera demo still running, segmentation averaged 4.98 ms on CPU and 12.05 ms on GPU; this concurrent workload is different from isolated inference and reinforces the need to measure complete camera throughput.
+
+## 远程发布校验 / Remote publication verification
+
+JitPack 坐标：`com.github.qmy1990:MediaVision:0.4.3`，构建提交 `876dcaf4bda1f7521765ba53470968353c78ebdf`。POM 包含 5 项 LiteRT/GPU/QNN 运行依赖，不再包含生产 MediaPipe Tasks 依赖。GitHub Maven 与 Gradle 从 JitPack 解析的 AAR 均与当前 AAR 相同；SHA-256：`35d17412336e7bea5284a8aefebb27a13731d31dc9cd89161b6a53eb8048c9ce`。公开 Demo 远程依赖构建通过，安装包内自有 SDK 库与 AAR 的四 ABI 库一致。
+
+The published coordinate is `com.github.qmy1990:MediaVision:0.4.3`, built from commit `876dcaf4bda1f7521765ba53470968353c78ebdf`. The POM contains five LiteRT/GPU/QNN runtime dependencies and no production MediaPipe Tasks dependency. Both the GitHub Maven AAR and Gradle-resolved JitPack AAR match the release SHA-256 above. Public Debug/Release builds and their four-ABI SDK library contents are verified.

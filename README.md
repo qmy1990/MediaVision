@@ -81,7 +81,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:v0.4.3'
+implementation 'com.github.qmy1990:MediaVision:0.4.3'
 ```
 
 Java 包名为 `com.moon.mediavision`：

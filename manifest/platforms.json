@@ -20,9 +20,14 @@
     "public_maven_consumer_build": true,
     "new_package_device_test": true,
     "jitpack": {
-      "coordinate": "com.github.qmy1990:MediaVision:v0.4.3",
-      "status": "pending",
-      "remote_publication_verified": false
+      "coordinate": "com.github.qmy1990:MediaVision:0.4.3",
+      "status": "ok",
+      "remote_publication_verified": true,
+      "aar_sha256": "35d17412336e7bea5284a8aefebb27a13731d31dc9cd89161b6a53eb8048c9ce",
+      "build_commit": "876dcaf4bda1f7521765ba53470968353c78ebdf",
+      "pom_runtime_dependencies": 5,
+      "public_debug_consumer_build": true,
+      "public_release_consumer_build": true
     },
     "native_inference": {
       "abis": [

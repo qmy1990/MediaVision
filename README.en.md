@@ -81,7 +81,7 @@ Keep `google()` and `mavenCentral()`, then add:
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:v0.4.3'
+implementation 'com.github.qmy1990:MediaVision:0.4.3'
 ```
 
 The Java package is `com.moon.mediavision`:

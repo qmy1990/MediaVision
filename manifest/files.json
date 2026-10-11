@@ -35,26 +35,26 @@
     },
     {
       "path": "README.en.md",
-      "size": 6786,
-      "sha256": "2f208cf4f6d7a48dd35051f389bb19c2a9c8ecfa82b40892e7885dda189fb195",
+      "size": 6785,
+      "sha256": "ee4db0afaaf7014fd8fa040f10d79eb33fd06f984b1ea5caffdd0d35305ffcd6",
       "lfs": false
     },
     {
       "path": "README.md",
-      "size": 6113,
-      "sha256": "7b8cf9064942324b37b334ba399a885b987d8eb8ff09b72ee7fcf3d42e1b4eb5",
+      "size": 6112,
+      "sha256": "5d3e0b8949e929735c70730779ecc596df6de7bd646be04fcd606f6c1cbc71c9",
       "lfs": false
     },
     {
       "path": "demos/android/README.md",
-      "size": 1719,
-      "sha256": "1c915de560624cc49cc63ce4897efdcb179c57593c3bf5bf915ec27fcb4b4d89",
+      "size": 1717,
+      "sha256": "fc1d25abd7c0216a7e7fc90c37fc551431833d93ac2c25917222a49b75aaa0a3",
       "lfs": false
     },
     {
       "path": "demos/android/app/build.gradle",
-      "size": 1060,
-      "sha256": "8bd2646c3c4da3816a13a7fa87d81810a84e5a6e37b82507ee884f55d81e0d5a",
+      "size": 1059,
+      "sha256": "7851e9d2194594e94c4f329089682ed12d9d9686372165040a17f52c6dc7a507",
       "lfs": false
     },
     {
@@ -485,20 +485,20 @@
     },
     {
       "path": "docs/API.md",
-      "size": 8252,
-      "sha256": "4110f3532d7703e153d12a847f63391496620d46ef43cdcfe3f587f653ea535a",
+      "size": 8251,
+      "sha256": "f8c09ca57028668751cf21117761283f86d71801de0019b3c799aa3976adb697",
       "lfs": false
     },
     {
       "path": "docs/INTEGRATION.md",
-      "size": 5724,
-      "sha256": "95656ddc4080b7fcafbf359c87e8f76d68f4853aa08987419dabaa9f50bd9b27",
+      "size": 5723,
+      "sha256": "9a638fa9a38f686cdda1efe40458880a0400b452a85bad1ca870fda18cdfa223",
       "lfs": false
     },
     {
       "path": "docs/MAVEN.md",
-      "size": 4519,
-      "sha256": "b6fd303fe6302fc9ad9fd9584bdccfcfde60f5aa5ccae74518f06e26b0951e46",
+      "size": 4547,
+      "sha256": "ec0b385ace3b46b60d88896dedb4a1f947a26796498b085d2a03f5dd714d2eed",
       "lfs": false
     },
     {
@@ -521,8 +521,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "size": 6898,
-      "sha256": "d29488145725ac749afff33a695d9db3a6430b29664b42bf9af61592f993a5f5",
+      "size": 8008,
+      "sha256": "024724dcafbd3fa327175252ab60785f3f8e05bbdad32de08deaaacace1bc72b",
       "lfs": false
     },
     {
@@ -701,8 +701,8 @@
     },
     {
       "path": "installers/android/MediaVisionDemo-debug.apk",
-      "size": 243481468,
-      "sha256": "ad02660ef243cb399bf93587013f7990fbf3e5cb8f7c8d2f79333167214fd762",
+      "size": 245745333,
+      "sha256": "b56c76b46ff0fe9c6e1fcbd6a8928d84e7c4bda9eff17b1462d1f89e474d3595",
       "lfs": true
     },
     {
@@ -791,8 +791,8 @@
     },
     {
       "path": "manifest/platforms.json",
-      "size": 4130,
-      "sha256": "e7142f5db817d6d6e0b0afbb854317ae11c51c7d081935fb3808a90632e1c1e5",
+      "size": 4402,
+      "sha256": "83b22edcd1134ce57c6d24d1f0e2d2c9435d9227c3ce2820dc1c56f25e70cf1f",
       "lfs": false
     },
     {
@@ -3221,8 +3221,8 @@
     },
     {
       "path": "tools/publish_jitpack.sh",
-      "size": 378,
-      "sha256": "672472f87d3bdd2ce45285543d0864e69c215c184ef5903ff423019e38835834",
+      "size": 377,
+      "sha256": "058fe14fd0afcc659f60a4fc26e3012e4cbbeb3cdd6c4cc63d864efba6738562",
       "lfs": false
     },
     {
