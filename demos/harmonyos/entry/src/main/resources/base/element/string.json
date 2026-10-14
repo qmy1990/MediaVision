@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "MediaVision"
+    },
+    {
+      "name": "module_desc",
+      "value": "Moon MediaVision HarmonyOS API 20 demo"
+    },
+    {
+      "name": "camera_reason",
+      "value": "用于实时预览并处理美颜与背景效果"
+    }
+  ]
+}

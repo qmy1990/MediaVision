@@ -2,7 +2,7 @@
   "sdk": "com.moon.mediavision",
   "version": "0.4.3",
   "c_abi": 11,
-  "generated_date": "2026-10-12",
+  "generated_date": "2026-10-15",
   "android": {
     "camera_abis": [
       "arm64-v8a",
@@ -154,5 +154,71 @@
     "fps": 15,
     "infinite_loop": true
   },
-  "limits": "Camera results are device-specific short real-face samples; cross compilation is not target-device runtime or FPS validation. No new iPhone, Snapdragon 8 Gen 2, Dimensity 9400, Windows/Linux or macOS ARM64 runtime validation for this release."
+  "limits": "Camera results are device-specific short real-face samples; cross compilation is not target-device runtime or FPS validation. No new iPhone, Snapdragon 8 Gen 2, Dimensity 9400, Windows/Linux or macOS ARM64 runtime validation for this release.",
+  "harmonyos": {
+    "min_api": 20,
+    "minimum_system": "HarmonyOS 6.0.0",
+    "sdk_version": "0.4.3",
+    "effect_c_abi": 11,
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "core_shared_static_build": true,
+    "native_inference_and_napi_shared_build": true,
+    "official_huawei_full_sdk_build": true,
+    "official_har_hap_build": true,
+    "public_c_consumer_build": true,
+    "api19_rejected": true,
+    "public_binary_only_demo_rebuild": true,
+    "har_hap_library_model_consistency": true,
+    "model_format": "MindIR Lite (.ms)",
+    "converter": "MindSpore Lite 2.7.0 Linux x86_64 + PReLU schema repair",
+    "model_bundle_sha256": "2c35a092d679625779f653bf53d2e7cde4748ab3381d0161eb808a1c390a7c41",
+    "inference_backend": "strict system MindSpore Lite NNRT accelerator",
+    "cpu_model_inference": false,
+    "cpu_model_fallback": false,
+    "npu_validation_passed": true,
+    "npu_comparison_cases": 201,
+    "gpu_effects_backend": "Vulkan",
+    "native_camera_vulkan_import": true,
+    "native_window_direct_fragment_output": true,
+    "native_camera_explicit_plane_layout": true,
+    "latest_camera_buffer_acquisition": true,
+    "realtime_max_analysis_age_ms": 33,
+    "device_test": true,
+    "device": {
+      "model": "ADA-AL00",
+      "system": "6.1.0.135",
+      "api": 24
+    },
+    "device_test_scope": "ARM64 strict NNRT model comparisons, static pixels, native camera preview, resolution switching and padding. x86_64 compile-only; API20 device runtime not tested.",
+    "native_camera_480p_profile": [
+      864,
+      480
+    ],
+    "output_sizes": [
+      [
+        480,
+        864
+      ],
+      [
+        720,
+        1280
+      ],
+      [
+        1080,
+        1920
+      ]
+    ],
+    "crop_480p": false,
+    "padding_cpu_cases": 288,
+    "padding_gpu_device_cases": 128,
+    "padding_max_rgb_error": 0,
+    "private_shader_source_published": false,
+    "unsigned_hap": "installers/harmonyos/MediaVisionDemo-api20-unsigned.hap",
+    "own_signature_required": true,
+    "model_validation_report": "models/harmonyos/conversion-validation-2.7.json",
+    "integration_guide": "docs/HARMONYOS.md"
+  }
 }

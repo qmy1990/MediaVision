@@ -55,3 +55,9 @@ The final public C executable and shared libraries were rerun successfully on CP
 JitPack 坐标：`com.github.qmy1990:MediaVision:0.4.3`，构建提交 `876dcaf4bda1f7521765ba53470968353c78ebdf`。POM 包含 5 项 LiteRT/GPU/QNN 运行依赖，不再包含生产 MediaPipe Tasks 依赖。GitHub Maven 与 Gradle 从 JitPack 解析的 AAR 均与当前 AAR 相同；SHA-256：`35d17412336e7bea5284a8aefebb27a13731d31dc9cd89161b6a53eb8048c9ce`。公开 Demo 远程依赖构建通过，安装包内自有 SDK 库与 AAR 的四 ABI 库一致。
 
 The published coordinate is `com.github.qmy1990:MediaVision:0.4.3`, built from commit `876dcaf4bda1f7521765ba53470968353c78ebdf`. The POM contains five LiteRT/GPU/QNN runtime dependencies and no production MediaPipe Tasks dependency. Both the GitHub Maven AAR and Gradle-resolved JitPack AAR match the release SHA-256 above. Public Debug/Release builds and their four-ABI SDK library contents are verified.
+
+## HarmonyOS 编译与接入验证 · 2026-10-15
+
+ARM64/x86_64 SDK、HAR、HAP和纯C示例官方工具链编译通过。ADA-AL00 / HarmonyOS6.1.0.135 / API24完成NNRT三模型201组输出对照、原生GPU输入128组padding像素对照及实时预览验证。HAR/HAP内的SDK库和模型与独立分发文件一致；x86_64为编译验证。接入说明见 [HARMONYOS.md](HARMONYOS.md)。
+
+Official ARM64/x86_64 SDK, HAR, HAP and C example builds pass. NNRT output checks pass 201 cases and native GPU padding checks pass 128 cases on an ARM64/API24 device. Packaged libraries/models match the distribution. x86_64 is compile-tested.

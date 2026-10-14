@@ -66,3 +66,5 @@ README 的效果预览为循环 GIF，保留完整视频时长。需要更新预
 ## English summary
 
 Use the platform wrapper for camera/inference integration, or link the public C ABI for native applications. Android uses `com.github.qmy1990:MediaVision:0.4.3` via JitPack; the POM resolves external runtimes. The iOS demo links the prebuilt framework and requires your own signing team. Android native callers can load the optional inference adapter without Java; other native callers supply matching analysis when needed. Select the correct platform/architecture/toolchain. Public tooling deploys existing encrypted packages and builds demos only; proprietary SDK/model compilation and signing credentials are not published.
+
+HarmonyOS 6.0.0 / API20 集成见 [HARMONYOS.md](HARMONYOS.md)，请使用 OHOS 专用库和模型，不要复用 Android 的 `.so` 或 AAR。

@@ -119,3 +119,14 @@ python demos/desktop/desktop_demo.py --input portrait.jpg --output output.jpg \
 | `mvs_inference_analyze` | 帧、需求位 | `MvsAnalysis`，可接 `mvs_set_analyzer` |
 
 Android 0.4.3 runs model ownership, tensors, delegates, segmentation preprocessing/postprocessing, and face ROI tracking in native C++. Java supplies lifecycle and input/output orchestration. The standalone library supports the same public C API without JNI or a JVM. These inference symbols are Android-specific; iOS and desktop retain their existing inference adapters.
+
+## HarmonyOS / API20+
+
+新增 `mvs/harmonyos.h`：原生 MindIR Tensor 会话、`mvs_harmony_create/configure/process/process_nv21/process_pixelmap/reset/destroy`，新增可选 `set_cache_dir/set_realtime/warmup/last_performance`、背景设置、统计和借用核心句柄。ArkTS `VisionSdk` 支持 PixelMap / RGBA / 相机 NV21 异步处理；最低 HarmonyOS 6.0.0 / API20。接口、线程与模型合约见 [HARMONYOS.md](HARMONYOS.md)。
+
+
+### HarmonyOS 原生相机 / Native camera
+
+`mvs_harmony_camera_open()`连接NativeWindow并返回相机输入Surface ID；`mvs_harmony_camera_process()`处理最新原生缓冲并返回MvsHarmonySurfaceFrame及统计；`mvs_harmony_camera_close()`在停止相机后关闭消费端。须先启用set_realtime，所有调用保持processor的owner线程。ArkTS对应openSurface/processSurface/closeSurface，返回值不包含PixelMap。最低API20，API22最新帧接口按运行时动态选择；具体代码、生命周期和延迟统计边界见[鸿蒙接入](HARMONYOS.md)。
+
+新增 `mvs_harmony_process_yuv420()` 和 `mvs_harmony_camera_set_input_layout()`，支持Y/U/V独立偏移、行跨度及像素跨度；RGBA/BGRA输出使用独立stride并保留padding。ArkTS对应processYuv420/setSurfaceInputLayout。原生相机显式布局由GPU读取，Host内存接口使用CPU图像颜色转换，模型保持NPU推理。见[鸿蒙输入输出布局说明](HARMONYOS.md#padding与平面布局)。

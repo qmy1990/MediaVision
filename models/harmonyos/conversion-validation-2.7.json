@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-15",
+  "min_api": 20,
+  "tested_device_api": 24,
+  "runtime": "System MindSpore Lite OH_AI / NNRT accelerator-only",
+  "cpu_inference": false,
+  "gpu_inference_available": false,
+  "input_data": {
+    "photos": 52,
+    "videos": 3,
+    "sampled_video_frames": 15,
+    "cases": 201,
+    "reference": "original float32 TFLite offline validation"
+  },
+  "prelu_fix": {
+    "per_channel_operators": 69,
+    "channel_shared": false,
+    "slope_shape": "[channels]",
+    "model_math_unchanged": true
+  },
+  "metrics": {
+    "portrait": {
+      "count": 67,
+      "passed": 67,
+      "min_mask_iou": 0.9821083690987125
+    },
+    "detector": {
+      "count": 67,
+      "passed": 67,
+      "min_box_iou": 0.9999994546381185
+    },
+    "landmarker": {
+      "count": 67,
+      "passed": 67,
+      "max_nme": 0.0017940736142918468
+    }
+  },
+  "maximum_landmark_point_error": 0.00520063191652298,
+  "models": [
+    {
+      "role": "portrait",
+      "sha256": "b48c9213c1bc033ebc7ea681b73abf40dc36a19096deb17f090fda96185be7e2"
+    },
+    {
+      "role": "detector",
+      "sha256": "544c53b6826dfdc0cf272585927a9158c6e42f7dd44c1a15c75d2790b1f4971d"
+    },
+    {
+      "role": "landmarker",
+      "sha256": "33c221be7c18e0743a2bf1af51cf9c34b55c34f8badf88e876aa3c75da5a9c4b"
+    }
+  ],
+  "encrypted_package_sha256": "2c35a092d679625779f653bf53d2e7cde4748ab3381d0161eb808a1c390a7c41"
+}

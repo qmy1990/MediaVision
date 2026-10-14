@@ -5,8 +5,8 @@
   "files": [
     {
       "path": ".gitattributes",
-      "size": 938,
-      "sha256": "d3c4bc39e9d8424f01ac5f1a2a7588ff0cc7c51e1976dd446d96ebf7df4bb67b",
+      "size": 1269,
+      "sha256": "253b9089982dacf61b309d55d9ce7cefd12ac0bbe18b36368200ce0829a8db35",
       "lfs": false
     },
     {
@@ -17,8 +17,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size": 3761,
-      "sha256": "b012e7c2d43c926d07861f94f22585a3d867b550533a9f70e2db33fdc9e7beb5",
+      "size": 3921,
+      "sha256": "a2e33e6892e0dbab1e56340ad7488fcb33d3840b6723dd6a147327f835dbf81a",
       "lfs": false
     },
     {
@@ -35,14 +35,14 @@
     },
     {
       "path": "README.en.md",
-      "size": 6785,
-      "sha256": "ee4db0afaaf7014fd8fa040f10d79eb33fd06f984b1ea5caffdd0d35305ffcd6",
+      "size": 7658,
+      "sha256": "4e65b30e1e7aa1d9e6fd9347db48bd0df9179c803e6c4363f783ae61eac50b3a",
       "lfs": false
     },
     {
       "path": "README.md",
-      "size": 6112,
-      "sha256": "5d3e0b8949e929735c70730779ecc596df6de7bd646be04fcd606f6c1cbc71c9",
+      "size": 6943,
+      "sha256": "3beeca12354e363e20d50d98f9a40f19192c13ee688f2901640d58f545d7fa03",
       "lfs": false
     },
     {
@@ -169,6 +169,192 @@
       "path": "demos/desktop/requirements.txt",
       "size": 57,
       "sha256": "13e0d1a107eaa324b1027fb62747dd1ae0132a458e468e63caf5004798d3ebfc",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/.gitignore",
+      "size": 72,
+      "sha256": "4982302d157d84e5994fbbbb4ad6b7a67cc03b5e320800d13c07376cfd241594",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/AppScope/app.json5",
+      "size": 201,
+      "sha256": "c7e6e8722896be4b81eb69594e02bfe7e5d06c9d377b363e6d991bb4330edf17",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/AppScope/resources/base/element/string.json",
+      "size": 89,
+      "sha256": "c4ba49a550e198b74fb54e0f295af610d70ffcceb9d405c98d8c771adebf8152",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/AppScope/resources/base/media/app_icon.svg",
+      "size": 246,
+      "sha256": "5cdb94aa1e627cdcf1da52f98e1f37fe08fed478a01bc14a565f707e41f18f8a",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/README.md",
+      "size": 1188,
+      "sha256": "6f86e19231123e223f2976a4514ad395cee4cca524e4adda487d8455d17faae0",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/build-profile.json5",
+      "size": 758,
+      "sha256": "389af1cf6eca0519411e4ef68fc378f0ba75bc18b4c3caf47240e7eb95af4d74",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/build-profile.json5",
+      "size": 189,
+      "sha256": "993d8662614f08a8e1a8d0097c4862aa3fc2b34732d2872d09f386f50f823f53",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/hvigorfile.ts",
+      "size": 103,
+      "sha256": "f547983dcab9c8fff87cc3ddedb22bb98063663c5b8afe18bb32e131311ec289",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/oh-package.json5",
+      "size": 116,
+      "sha256": "dba719f6a48c080cbc86f30d2d524211ad9ff18a622430d550b793f6c209072f",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/src/main/ets/camera/LiveCamera.ets",
+      "size": 21252,
+      "sha256": "92a74dfcb109eee145c299bf735f1b530de1705ffa6d949ac02bb3e11849ff8b",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/src/main/ets/entryability/EntryAbility.ets",
+      "size": 523,
+      "sha256": "d56992baad4e4c38368fdaed3dea2731b87194b79cfa55203aa914aad375e3a7",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/src/main/ets/pages/Index.ets",
+      "size": 12367,
+      "sha256": "02514d39b186a61766ffed431831f526ef1962a53570728be6ffc236d8a46b29",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/src/main/module.json5",
+      "size": 1155,
+      "sha256": "601c7d91ad667520546fae6275f08856c5cd4a5e9da1935eaea19d424be3bc1b",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/src/main/resources/base/element/color.json",
+      "size": 98,
+      "sha256": "d674ba10bed21c9a85bcc45d00d34d331649c2ef870c3977c93cfb72e7e10b41",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/src/main/resources/base/element/string.json",
+      "size": 297,
+      "sha256": "44339cd51af9f34c330ebd03b8b4cffba139dca3c2dd1b555f0ba1cfadf163b5",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/src/main/resources/base/media/app_icon.svg",
+      "size": 246,
+      "sha256": "5cdb94aa1e627cdcf1da52f98e1f37fe08fed478a01bc14a565f707e41f18f8a",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/entry/src/main/resources/base/profile/main_pages.json",
+      "size": 37,
+      "sha256": "f21984fb1d5096f0db41314da0bb94c573e7ad018e5afae3044f8d5ff71b0bfc",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/hvigor/hvigor-config.json5",
+      "size": 52,
+      "sha256": "322eaec60323114fe17400b00062d98b8ad23ca6f6310651ffc9756622d5869f",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/hvigorfile.ts",
+      "size": 103,
+      "sha256": "2378c5e0c5246005ada73a67e8c9834fa08adb9ffd6fb6c219051456753bed5a",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/mediavision/Index.ets",
+      "size": 265,
+      "sha256": "717dbbba9c3e41f823a8b6074cdbd81a5782a0080f3402a9d1acde1f1f2c8acc",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/mediavision/build-profile.json5",
+      "size": 189,
+      "sha256": "993d8662614f08a8e1a8d0097c4862aa3fc2b34732d2872d09f386f50f823f53",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/mediavision/hvigorfile.ts",
+      "size": 103,
+      "sha256": "ec10a36e82caa46c6e8acc7475d6a889080c130e6d825335745a52d03dd3b0de",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/mediavision/oh-package.json5",
+      "size": 269,
+      "sha256": "014c69d023edec8942b5e955b14cf3b04bf5f39820442719802d186069fa179f",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/mediavision/src/main/cpp/types/libmediavision/Index.d.ts",
+      "size": 4234,
+      "sha256": "cd70bdd91970edd614b5757a776f68b0fd7149d8011ecee994b35df7ce32426e",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/mediavision/src/main/cpp/types/libmediavision/oh-package.json5",
+      "size": 83,
+      "sha256": "34fb09ddcdeb9d29c95ccec4554c841b808f79d45c82f54320c0d9c90a621e34",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/mediavision/src/main/ets/VisionSdk.ets",
+      "size": 7295,
+      "sha256": "9b15174947c32155bec01e904689e3d46fa13e00d9ce8c3816c93b89fbaa44f9",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/mediavision/src/main/module.json5",
+      "size": 139,
+      "sha256": "89c9071a8c36a631e8570318d29d3726159595d57e9b793cd795aec09d151716",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos/oh-package.json5",
+      "size": 113,
+      "sha256": "9f7a72d03630a3409201ca637e531258b00f1334a2424fcb419c086c38dc87ae",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos-native/CMakeLists.txt",
+      "size": 977,
+      "sha256": "421123b179f51e4df87dc481ae2c222bde9088c482f68cac7a3f27a47acfbcde",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos-native/README.md",
+      "size": 1090,
+      "sha256": "39b1f19a434edf3c752d99a21e6263d4ab222af1d36198dd53609ce4c35b9129",
+      "lfs": false
+    },
+    {
+      "path": "demos/harmonyos-native/main.c",
+      "size": 2390,
+      "sha256": "1bf8961a5eefbdb11b5265b50193d84c58f29fa859c63a06316d06556e11598b",
       "lfs": false
     },
     {
@@ -485,14 +671,20 @@
     },
     {
       "path": "docs/API.md",
-      "size": 8251,
-      "sha256": "f8c09ca57028668751cf21117761283f86d71801de0019b3c799aa3976adb697",
+      "size": 9706,
+      "sha256": "e6c7ed0194e1cf85e28d28f0b11150db329568cd86a7fb9f8f4ecb0794f75b2c",
+      "lfs": false
+    },
+    {
+      "path": "docs/HARMONYOS.md",
+      "size": 9246,
+      "sha256": "f7a9a382aac737ed7eaef61506b464b86870aa9c516944063e1e5a7396ea8ae5",
       "lfs": false
     },
     {
       "path": "docs/INTEGRATION.md",
-      "size": 5723,
-      "sha256": "9a638fa9a38f686cdda1efe40458880a0400b452a85bad1ca870fda18cdfa223",
+      "size": 5867,
+      "sha256": "f64aeb4f479bfb7f46944fb7f9fa4d85142cd98533dd8fb7bb88f310478b3374",
       "lfs": false
     },
     {
@@ -509,8 +701,8 @@
     },
     {
       "path": "docs/PLATFORMS.md",
-      "size": 3549,
-      "sha256": "9ffeba59772362f080d4e5c7fecdb0be2204eb115ee93e74bc6a2f45d86304fe",
+      "size": 3931,
+      "sha256": "ce31d893ebf8b93fc6a9121d0bfe9bf30beb4207644e550136adeee9b2f6fdac",
       "lfs": false
     },
     {
@@ -521,8 +713,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "size": 8008,
-      "sha256": "024724dcafbd3fa327175252ab60785f3f8e05bbdad32de08deaaacace1bc72b",
+      "size": 8646,
+      "sha256": "03ec0fe5e17c7f388b37f06168991bcccb68dfd01babde58738020ebb759b386",
       "lfs": false
     },
     {
@@ -664,6 +856,12 @@
       "lfs": false
     },
     {
+      "path": "include/mvs/harmonyos.h",
+      "size": 10332,
+      "sha256": "fc2f84fdb9270622cf489c64ead034bb1510cfb01f927bdddc96f31457c65b7f",
+      "lfs": false
+    },
+    {
       "path": "include/mvs/inference.h",
       "size": 1370,
       "sha256": "ef124777b2faf523655140b81543dcf38b691d4cc4766d8341184ca4ce62ac34",
@@ -677,8 +875,8 @@
     },
     {
       "path": "include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -712,6 +910,12 @@
       "lfs": true
     },
     {
+      "path": "installers/harmonyos/MediaVisionDemo-api20-unsigned.hap",
+      "size": 9803147,
+      "sha256": "43acdaf2b5e06f302cc2291e9777c10a7b956469fee7b986c9fdcd58946a0d1a",
+      "lfs": true
+    },
+    {
       "path": "installers/ios/MediaVisionDemo-unsigned.ipa",
       "size": 24530101,
       "sha256": "3b92e771f5f58871a605344f9837c97b848387f890bcc7ebef6b0028f977874f",
@@ -737,8 +941,8 @@
     },
     {
       "path": "licenses/THIRD_PARTY_NOTICES.md",
-      "size": 2626,
-      "sha256": "ec846495a277d032684ba53ce38a2687d4cd8b66a50d5802b4756464bb8afe99",
+      "size": 3223,
+      "sha256": "0c4d5a9b16be096fe49d95b34f8c5c03dbbbf94f39594a81de0238474f7a56a0",
       "lfs": false
     },
     {
@@ -757,6 +961,12 @@
       "path": "licenses/third-party/MediaPipeTasksVision-LICENSE.txt",
       "size": 12331,
       "sha256": "8707eef0533987efc5b155d64761eeb6e20793f50b9bd1a68dad1cf4719d0ed8",
+      "lfs": false
+    },
+    {
+      "path": "licenses/third-party/OHOS-libcxx-NOTICE.txt",
+      "size": 166566,
+      "sha256": "22208a1d78a9271ec1d6eaf7d21db5dda6049ed14af09d7d0f8d7787b6bffb77",
       "lfs": false
     },
     {
@@ -791,14 +1001,26 @@
     },
     {
       "path": "manifest/platforms.json",
-      "size": 4402,
-      "sha256": "83b22edcd1134ce57c6d24d1f0e2d2c9435d9227c3ce2820dc1c56f25e70cf1f",
+      "size": 6545,
+      "sha256": "6e5043ca3862fc8478843ebea8db0b9561bf1ac1c26e92c5fbf81129d8a3c111",
       "lfs": false
     },
     {
       "path": "models/android/mediavision.mvsmodels",
       "size": 4008596,
       "sha256": "085a803a70887f68bcda839ebd85fb2148948f5ef10c42c8d4604f09c0ce14a7",
+      "lfs": true
+    },
+    {
+      "path": "models/harmonyos/conversion-validation-2.7.json",
+      "size": 1393,
+      "sha256": "51f6ed5eced9664ebc1e4526ae8d833048cce09725844a6e97a3f352e800fea8",
+      "lfs": false
+    },
+    {
+      "path": "models/harmonyos/mediavision.mvsmodels",
+      "size": 5764264,
+      "sha256": "2c35a092d679625779f653bf53d2e7cde4748ab3381d0161eb808a1c390a7c41",
       "lfs": true
     },
     {
@@ -872,6 +1094,18 @@
       "size": 29647488,
       "sha256": "89d0b7ab0d108f0595538db772b26c2177fb185832e3a3f847662afaafcebb67",
       "lfs": true
+    },
+    {
+      "path": "packages/harmonyos/MediaVision-harmonyos-0.4.3.zip",
+      "size": 16770986,
+      "sha256": "16aa724c53eb0b688c3fa89724f2450e2a625dbda3eba9e165c827be5c7531d2",
+      "lfs": false
+    },
+    {
+      "path": "packages/harmonyos/MediaVision-harmonyos-0.4.3.zip.sha256",
+      "size": 98,
+      "sha256": "f3e4d74896cd3785a1382496b550efb19a12d60ada3731cabab1fe55144e2c10",
+      "lfs": false
     },
     {
       "path": "publisher/build.gradle",
@@ -989,8 +1223,8 @@
     },
     {
       "path": "sdk/android/core/arm64-v8a/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -1049,8 +1283,8 @@
     },
     {
       "path": "sdk/android/core/armeabi-v7a/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -1109,8 +1343,8 @@
     },
     {
       "path": "sdk/android/core/x86/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -1169,8 +1403,8 @@
     },
     {
       "path": "sdk/android/core/x86_64/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -1618,6 +1852,390 @@
       "lfs": true
     },
     {
+      "path": "sdk/harmonyos/arm64-v8a/shared/include/mvs/android.h",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/include/mvs/desktop.h",
+      "size": 1696,
+      "sha256": "9889ec35f7602034f96c11652befe481681c10d80211fe1f74b6b398daa27bb0",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/include/mvs/harmonyos.h",
+      "size": 10332,
+      "sha256": "fc2f84fdb9270622cf489c64ead034bb1510cfb01f927bdddc96f31457c65b7f",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/include/mvs/inference.h",
+      "size": 1370,
+      "sha256": "ef124777b2faf523655140b81543dcf38b691d4cc4766d8341184ca4ce62ac34",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/include/mvs/litert.h",
+      "size": 3969,
+      "sha256": "5c781fb4d4f6787c9125e6fbbdd890e64e10d611b6ee96c2df72b3999ec10672",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/include/mvs/models.h",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/include/mvs/mvs.h",
+      "size": 252,
+      "sha256": "1c18e5fd5df5d7bcf2f11c64811feb606db5894d01ebc0881f4177ba8c172f95",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/include/mvs/mvs.hpp",
+      "size": 1618,
+      "sha256": "5c1b499c270cfc686a7fa3cb99f00dd03e0053aff319e1b47b828ef21d258225",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/include/mvs/sdk.h",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
+      "size": 2762,
+      "sha256": "399cdcab4cb5d4fb2d20d0880b29169913705f75e0eacd4dc24d8a53af716da8",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
+      "size": 849,
+      "sha256": "8ed2ba2a00d3bd513e8bd6259b2b58ccbd70b6fa02d1ea6bfce9605a7ac120e1",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
+      "size": 4001,
+      "sha256": "22ef7503351b2f3c4249c9f1530a0a8c7a13994306fb1cc5427f0058b19e8377",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/lib/libc++_shared.so",
+      "size": 1262504,
+      "sha256": "965803c3fe53e02452e4c0479ad13c88f166c04207d27e3c531161a7c75a6c17",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/lib/libmediavision.so",
+      "size": 106560,
+      "sha256": "53e8ba617b5f52f09673e332c235fe057804cccada4a318c574700901e4d90b1",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/lib/libmvs_harmony.so",
+      "size": 111288,
+      "sha256": "d982945af2e5d6e3282acbedaa9cd6013d6ad471d55831e1ebe6f869fd1067ee",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/shared/lib/libmvs_sdk.so",
+      "size": 433296,
+      "sha256": "b466709df06e63c6202778c78fac5a27db01d94bdaa52cdab4702712b70ac2f8",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/include/mvs/android.h",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/include/mvs/desktop.h",
+      "size": 1696,
+      "sha256": "9889ec35f7602034f96c11652befe481681c10d80211fe1f74b6b398daa27bb0",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/include/mvs/harmonyos.h",
+      "size": 10332,
+      "sha256": "fc2f84fdb9270622cf489c64ead034bb1510cfb01f927bdddc96f31457c65b7f",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/include/mvs/inference.h",
+      "size": 1370,
+      "sha256": "ef124777b2faf523655140b81543dcf38b691d4cc4766d8341184ca4ce62ac34",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/include/mvs/litert.h",
+      "size": 3969,
+      "sha256": "5c781fb4d4f6787c9125e6fbbdd890e64e10d611b6ee96c2df72b3999ec10672",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/include/mvs/models.h",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/include/mvs/mvs.h",
+      "size": 252,
+      "sha256": "1c18e5fd5df5d7bcf2f11c64811feb606db5894d01ebc0881f4177ba8c172f95",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/include/mvs/mvs.hpp",
+      "size": 1618,
+      "sha256": "5c1b499c270cfc686a7fa3cb99f00dd03e0053aff319e1b47b828ef21d258225",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/include/mvs/sdk.h",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
+      "size": 2762,
+      "sha256": "399cdcab4cb5d4fb2d20d0880b29169913705f75e0eacd4dc24d8a53af716da8",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
+      "size": 855,
+      "sha256": "c84c35ab978291e2b8c4597182744aea7cc753957ee6690e4a0873aea94d29ce",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
+      "size": 4217,
+      "sha256": "c26738495d4ed8bc6d47d16e061f0a2e4de4bbc4df9aa58f4f85f0fc1b61050e",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/arm64-v8a/static/lib/libmvs_sdk.a",
+      "size": 693492,
+      "sha256": "a498050d0ebf394e02a2ac4d8f44fe4bbb6117423cdf49793bc3c5dc62dcdc7a",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/build-info.json",
+      "size": 861,
+      "sha256": "107a52973327dc17a72688a981b0d2662a2ec54a7a7d1aede47a1545523a8f04",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/har/mediavision-sdk-0.4.3.har",
+      "size": 1479271,
+      "sha256": "cbde9f5ce496fef89750c3e24999bd2a9047a391c31b9324c567e1728d98e161",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/include/mvs/android.h",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/include/mvs/desktop.h",
+      "size": 1696,
+      "sha256": "9889ec35f7602034f96c11652befe481681c10d80211fe1f74b6b398daa27bb0",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/include/mvs/harmonyos.h",
+      "size": 10332,
+      "sha256": "fc2f84fdb9270622cf489c64ead034bb1510cfb01f927bdddc96f31457c65b7f",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/include/mvs/inference.h",
+      "size": 1370,
+      "sha256": "ef124777b2faf523655140b81543dcf38b691d4cc4766d8341184ca4ce62ac34",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/include/mvs/litert.h",
+      "size": 3969,
+      "sha256": "5c781fb4d4f6787c9125e6fbbdd890e64e10d611b6ee96c2df72b3999ec10672",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/include/mvs/models.h",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/include/mvs/mvs.h",
+      "size": 252,
+      "sha256": "1c18e5fd5df5d7bcf2f11c64811feb606db5894d01ebc0881f4177ba8c172f95",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/include/mvs/mvs.hpp",
+      "size": 1618,
+      "sha256": "5c1b499c270cfc686a7fa3cb99f00dd03e0053aff319e1b47b828ef21d258225",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/include/mvs/sdk.h",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
+      "size": 2762,
+      "sha256": "399cdcab4cb5d4fb2d20d0880b29169913705f75e0eacd4dc24d8a53af716da8",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
+      "size": 849,
+      "sha256": "8ed2ba2a00d3bd513e8bd6259b2b58ccbd70b6fa02d1ea6bfce9605a7ac120e1",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
+      "size": 4001,
+      "sha256": "22ef7503351b2f3c4249c9f1530a0a8c7a13994306fb1cc5427f0058b19e8377",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/lib/libc++_shared.so",
+      "size": 1294904,
+      "sha256": "a411fee450ad8e60ee12a3b282d3609f9623307b3f6d2b244e1428091cf54603",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/lib/libmediavision.so",
+      "size": 113552,
+      "sha256": "358c988deeb2a72fced001687964d7c903298f9912ce7423fab0c9ec0103e983",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/lib/libmvs_harmony.so",
+      "size": 116120,
+      "sha256": "324892258cddd81a9d3b2789b71bb1fc2defc704779be7e109f585777a6d7065",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/shared/lib/libmvs_sdk.so",
+      "size": 476040,
+      "sha256": "201f90dfffa1867d1f8199454d9d48e696e973b51d804234356a7d0ed6d05f9d",
+      "lfs": true
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/include/mvs/android.h",
+      "size": 4977,
+      "sha256": "33e4a1bf7e8f0c9a690eea8021fabe52559141858e215df1b6d1860bc3694286",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/include/mvs/desktop.h",
+      "size": 1696,
+      "sha256": "9889ec35f7602034f96c11652befe481681c10d80211fe1f74b6b398daa27bb0",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/include/mvs/harmonyos.h",
+      "size": 10332,
+      "sha256": "fc2f84fdb9270622cf489c64ead034bb1510cfb01f927bdddc96f31457c65b7f",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/include/mvs/inference.h",
+      "size": 1370,
+      "sha256": "ef124777b2faf523655140b81543dcf38b691d4cc4766d8341184ca4ce62ac34",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/include/mvs/litert.h",
+      "size": 3969,
+      "sha256": "5c781fb4d4f6787c9125e6fbbdd890e64e10d611b6ee96c2df72b3999ec10672",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/include/mvs/models.h",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/include/mvs/mvs.h",
+      "size": 252,
+      "sha256": "1c18e5fd5df5d7bcf2f11c64811feb606db5894d01ebc0881f4177ba8c172f95",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/include/mvs/mvs.hpp",
+      "size": 1618,
+      "sha256": "5c1b499c270cfc686a7fa3cb99f00dd03e0053aff319e1b47b828ef21d258225",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/include/mvs/sdk.h",
+      "size": 8829,
+      "sha256": "6d2ee4c96c5b89a489096012a2cd8798f22302813b53eb50fa8d538ba47011be",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfig.cmake",
+      "size": 1028,
+      "sha256": "7d3b6a06269b5fa0acdc12744cb4eac23d01e02eb248d92f723ea4a901211bda",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKConfigVersion.cmake",
+      "size": 2762,
+      "sha256": "399cdcab4cb5d4fb2d20d0880b29169913705f75e0eacd4dc24d8a53af716da8",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets-release.cmake",
+      "size": 855,
+      "sha256": "c84c35ab978291e2b8c4597182744aea7cc753957ee6690e4a0873aea94d29ce",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/lib/cmake/MediaVisionSDK/MediaVisionSDKTargets.cmake",
+      "size": 4217,
+      "sha256": "c26738495d4ed8bc6d47d16e061f0a2e4de4bbc4df9aa58f4f85f0fc1b61050e",
+      "lfs": false
+    },
+    {
+      "path": "sdk/harmonyos/x86_64/static/lib/libmvs_sdk.a",
+      "size": 788166,
+      "sha256": "d310407d2255268eefb4dc92b6b64042280a2131b5a7ee2b07f347075216d798",
+      "lfs": true
+    },
+    {
       "path": "sdk/ios/MediaVisionCore.xcframework/Info.plist",
       "size": 1256,
       "sha256": "6ed483891553aa9c3d3052860b7f875b107e78f8a28847ab64dcefc8d992dc5f",
@@ -1787,8 +2405,8 @@
     },
     {
       "path": "sdk/linux/aarch64/shared/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -1865,8 +2483,8 @@
     },
     {
       "path": "sdk/linux/aarch64/static/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -1943,8 +2561,8 @@
     },
     {
       "path": "sdk/linux/armv7/shared/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2021,8 +2639,8 @@
     },
     {
       "path": "sdk/linux/armv7/static/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2099,8 +2717,8 @@
     },
     {
       "path": "sdk/linux/x86/shared/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2177,8 +2795,8 @@
     },
     {
       "path": "sdk/linux/x86/static/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2255,8 +2873,8 @@
     },
     {
       "path": "sdk/linux/x86_64/shared/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2333,8 +2951,8 @@
     },
     {
       "path": "sdk/linux/x86_64/static/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2411,8 +3029,8 @@
     },
     {
       "path": "sdk/macos/arm64/shared/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2489,8 +3107,8 @@
     },
     {
       "path": "sdk/macos/arm64/static/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2567,8 +3185,8 @@
     },
     {
       "path": "sdk/macos/x86_64/shared/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2645,8 +3263,8 @@
     },
     {
       "path": "sdk/macos/x86_64/static/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2729,8 +3347,8 @@
     },
     {
       "path": "sdk/windows/arm64/shared/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2807,8 +3425,8 @@
     },
     {
       "path": "sdk/windows/arm64/static/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2891,8 +3509,8 @@
     },
     {
       "path": "sdk/windows/x64/shared/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -2969,8 +3587,8 @@
     },
     {
       "path": "sdk/windows/x64/static/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -3053,8 +3671,8 @@
     },
     {
       "path": "sdk/windows/x86/shared/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -3131,8 +3749,8 @@
     },
     {
       "path": "sdk/windows/x86/static/include/mvs/models.h",
-      "size": 1618,
-      "sha256": "1a2ad1df8d3a57636d774a25c02a2306beac7bbd6f3df60598f4294d5f3b91b9",
+      "size": 1731,
+      "sha256": "026bd075f4f966004e8c25f87261e3998f7c0b5a12c2a5ce137402cba5d32b07",
       "lfs": false
     },
     {
@@ -3196,9 +3814,21 @@
       "lfs": false
     },
     {
+      "path": "tools/build_harmonyos_demo.py",
+      "size": 4556,
+      "sha256": "6f37eb8916d4da3110bce749f067ba120a37b1a9afa9be8f3b53ab233b9c6eaf",
+      "lfs": false
+    },
+    {
       "path": "tools/convert_comparisons.py",
       "size": 1301,
       "sha256": "451dd4265c01326f4dbaf7bb5dcedfde9c512cab6e08e43e01b3192e12b9ed7f",
+      "lfs": false
+    },
+    {
+      "path": "tools/convert_harmonyos_models.py",
+      "size": 4281,
+      "sha256": "28af8c619c666d9fefd42fc50efc5b7b8437583282e23491413c05723dc73e5c",
       "lfs": false
     },
     {
@@ -3208,9 +3838,21 @@
       "lfs": false
     },
     {
+      "path": "tools/fix_harmonyos_prelu.py",
+      "size": 3670,
+      "sha256": "685abf6a7ce9d42373f76fe766b4a98d684acf3b584d9b18e49664c7dad5a588",
+      "lfs": false
+    },
+    {
       "path": "tools/package_distribution.py",
       "size": 1176,
       "sha256": "b33e5b51e9f19abe3d5de146f887c0fab20fc0b9b74c42727d1992d0a58e12f6",
+      "lfs": false
+    },
+    {
+      "path": "tools/package_harmonyos.py",
+      "size": 5318,
+      "sha256": "7a57db0c747035b082dc764b2ce762106153e7008d49883a29888f2b3a54b69a",
       "lfs": false
     },
     {

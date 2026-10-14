@@ -1,0 +1,30 @@
+{
+  "sdk_version": "0.4.3",
+  "min_api": 20,
+  "minimum_system": "HarmonyOS 6.0.0",
+  "native_sdk": {
+    "apiVersion": "26",
+    "displayName": "Native",
+    "meta": {
+      "metaVersion": "3.0.2"
+    },
+    "path": "native",
+    "platformVersion": "26.0.0",
+    "releaseType": "Release",
+    "version": "26.0.0.105"
+  },
+  "architectures": [
+    "arm64-v8a",
+    "x86_64"
+  ],
+  "device_test": true,
+  "gpu_timing_diagnostics": false,
+  "direct_pixel_validation": false,
+  "models_backend": "system MindSpore Lite / strict NNRT, no CPU inference or fallback",
+  "effects_backend": "Vulkan with CPU fallback",
+  "device_test_date": "2026-10-15",
+  "device_test_scope": "ARM64 / ADA-AL00 / HarmonyOS 6.1.0.135 API24; x86_64 compile-only; API20 runtime not tested",
+  "padding_input": true,
+  "padding_gpu_device_cases": 128,
+  "diagnostics_in_release": false
+}

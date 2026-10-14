@@ -1,0 +1,7 @@
+{
+  "name": "entry",
+  "version": "0.4.3",
+  "dependencies": {
+    "@moon/mediavision": "file:../mediavision"
+  }
+}

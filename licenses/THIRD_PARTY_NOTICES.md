@@ -14,3 +14,9 @@
 - **Gradle Wrapper**：Gradle，Apache-2.0；公开 Android Demo 保留上游 Wrapper 与其文件声明。
 
 Third-party software, model weights and datasets retain their original terms. The SDK binary integration license grants rights to Moon-authored SDK components, not a replacement license for upstream components. Research packages are separate from production assets and do not establish unrestricted commercial rights to every model. Preserve the bundled upstream license and notice files when redistributing relevant components.
+
+## HarmonyOS adapter
+
+Uses target-system MindSpore Lite / NNRT, Image Kit, Vulkan and N-API. System SDK link stubs are not redistributed. The matching OHOS libc++ runtime uses the LLVM license and runtime exception. Converted MediaPipe-derived models retain their original notices; MindSpore Lite conversion does not change model ownership or licensing. Full-SDK installation and signing use the application developer’s tools and credentials.
+
+The SDK-provided LLVM component notice accompanying the OHOS C++ runtime is retained in [OHOS-libcxx-NOTICE.txt](third-party/OHOS-libcxx-NOTICE.txt).

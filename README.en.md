@@ -1,7 +1,7 @@
 # MediaVision · Moon
 
 **A cross-platform SDK for real-time portrait effects**  
-Android / iOS / Windows / macOS / Linux · `com.moon.mediavision`
+Android / iOS / HarmonyOS / Windows / macOS / Linux · `com.moon.mediavision`
 
 [中文](README.md) | English
 
@@ -44,7 +44,7 @@ Current release: **0.4.3** · [Changelog](CHANGELOG.md) · [API guide](docs/API.
 | Demo | Master toggle / per-effect intensity | Available | Consistent controls |
 | Demo | FPS / resolution / camera switching | Available | Sustained performance and preview |
 | Input | Images / video / camera | Available | Platform input pipelines |
-| Integration | Android / iOS / Windows / macOS / Linux | Distributed | Effect parity across platforms |
+| Integration | Android / iOS / HarmonyOS / Windows / macOS / Linux | Distributed | Effect parity across platforms |
 | Integration | C / C++ and mobile APIs | Available | Examples and wrappers |
 | Integration | Custom effect callbacks | Available | Extension APIs and examples |
 | Acceleration | GPU rendering and processing | Available | Fewer copies and less CPU work |
@@ -93,6 +93,21 @@ sdk.configure(new VisionOptions.Builder()
 ```
 
 See the [Android demo](demos/android) for camera integration and the [integration instructions](docs/MAVEN.md) for complete configuration. Android API 26+.
+
+## HarmonyOS integration
+
+Supports **HarmonyOS 6.0.0 / API 20+** with a native C/C++ SDK, ArkTS HAR, encrypted models, and a live-camera demo. Add the [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.3.har) to your project and place the model package in `resources/rawfile`:
+
+```typescript
+import { VisionSdk, VisionOptions } from '@moon/mediavision';
+const bytes = await context.resourceManager.getRawFileContent('mediavision.mvsmodels');
+const sdk = await VisionSdk.create(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+const options = new VisionOptions();
+options.beauty = 0.55;
+await sdk.configure(options);
+```
+
+[Complete download](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.3.zip) · [Camera demo](demos/harmonyos) · [Integration guide](docs/HARMONYOS.md)
 
 ## iOS / C++ integration
 

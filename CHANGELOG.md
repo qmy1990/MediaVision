@@ -1,5 +1,10 @@
 # 更新日志 / Changelog
 
+## 0.4.3 · HarmonyOS · 2026-10-15
+
+- 添加对鸿蒙系统的支持（HarmonyOS 6.0.0 / API 20+）。
+- Added HarmonyOS support (HarmonyOS 6.0.0 / API 20+).
+
 ## 0.4.3 · 2026-10-12
 
 ### 中文

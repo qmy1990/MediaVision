@@ -1,0 +1,10 @@
+{
+  "name": "@moon/mediavision",
+  "version": "0.4.3",
+  "description": "Moon MediaVision native image SDK, HarmonyOS API 20+",
+  "main": "Index.ets",
+  "types": "Index.ets",
+  "dependencies": {
+    "libmediavision.so": "file:./src/main/cpp/types/libmediavision"
+  }
+}

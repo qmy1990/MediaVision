@@ -1,0 +1,5 @@
+{
+  "name": "libmediavision.so",
+  "version": "0.4.3",
+  "types": "./Index.d.ts"
+}

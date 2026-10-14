@@ -6,6 +6,7 @@
 |---|---|---|---|
 | Android 相机 | arm64-v8a、armeabi-v7a、x86、x86_64 | AAR、JNI、APK | Release SDK、Debug/Release Demo；Vulkan 相机与平台推理适配 |
 | Android C/C++ | 上述四种 | `.a`、`.so`、头文件 | 四架构重新编译；独立 LiteRT 推理库或宿主分析数据 |
+| HarmonyOS 6.0.0+ / API20 | arm64-v8a、x86_64 | 共享/静态核心、原生推理库、ArkTS HAR、专用模型、HAP | 官方 SDK 构建；API24真机NNRT/NPU＋Vulkan、201组模型对照及实时相机 |
 | iOS | device arm64；simulator arm64/x86_64 | SDK/Core XCFramework、未签名 IPA、Demo 工程 | 封装与 core 重编译，公开工程链接二进制 SDK |
 | macOS | x86_64、arm64 | `.a`、`.dylib`、CLI | 两架构重新编译；Intel 原生测试和 Metal 图片效果验证；ARM64 尚无本机运行验证 |
 | Windows | x86、x64、ARM64 | MSVC `.lib`、`.dll`、CLI | 使用 clang-cl/MSVC CRT 和 Windows SDK 交叉编译；静态、动态接入示例编译通过 |
@@ -28,3 +29,5 @@ Windows/Linux 交叉编译完成不等于已在所有目标设备运行。本次
 Every 0.4.3 platform ships ABI 11 headers and newly built SDK libraries. Whitening, smoothing, landmark-aligned blush regions, colors, and the nose-tip mode are synchronized. Platform rendering, inference adapters, and precision may differ. Windows x86/x64/ARM64 libraries now use the MSVC ABI, including ARM64; rebuild consumers of the previous GNU ARM64 package. Linux targets glibc 2.28 and uses Clang/libc++ for static linking. Windows/Linux cross builds and macOS ARM64 builds have not received new native-device performance tests. The iOS IPA and Android release APK require application signing.
 
 Android 0.4.3 增加四 ABI 的 `libmvs_inference.so`；`sdk/android/native-runtime` 提供配套 LiteRT/GPU/C++ 运行库，arm64 额外提供可选 QNN HTP 运行库。单独使用效果 core 时不需要这些模型运行库。iOS、macOS、Windows、Linux 沿用各自的 Core ML/Vision/ONNX Runtime 适配，未切换为 Android LiteRT 库。
+
+HarmonyOS 本次适配及验证范围见 [HARMONYOS.md](HARMONYOS.md)。Native binary and public-API compatibility builds are not signed Huawei-device runtime validation.

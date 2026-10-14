@@ -1,7 +1,7 @@
 # MediaVision · Moon
 
 **跨平台实时人像视觉 SDK**  
-Android / iOS / Windows / macOS / Linux · `com.moon.mediavision`
+Android / iOS / HarmonyOS / Windows / macOS / Linux · `com.moon.mediavision`
 
 中文 | [English](README.en.md)
 
@@ -44,7 +44,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 | Demo | 效果总开关 / 独立强度 | 已支持 | 交互一致性 |
 | Demo | 帧率 / 分辨率 / 相机切换 | 已支持 | 持续性能与预览体验 |
 | 输入 | 图片 / 视频 / 摄像头 | 已支持 | 各平台输入链路完善 |
-| 接入 | Android / iOS / Windows / macOS / Linux | 已提供 | 平台效果一致性 |
+| 接入 | Android / iOS / HarmonyOS / Windows / macOS / Linux | 已提供 | 平台效果一致性 |
 | 接入 | C / C++ 与移动端 API | 已支持 | 接入示例与封装 |
 | 接入 | 自定义效果回调 | 已支持 | 扩展能力与示例 |
 | 加速 | GPU 渲染与处理 | 已支持 | 减少拷贝与 CPU 工作 |
@@ -93,6 +93,21 @@ sdk.configure(new VisionOptions.Builder()
 ```
 
 相机接入示例见 [Android Demo](demos/android)，完整配置见 [接入文档](docs/MAVEN.md)。支持 Android API 26+。
+
+## HarmonyOS 接入
+
+支持 **HarmonyOS 6.0.0 / API 20+**，提供 C/C++ SDK、ArkTS HAR、加密模型和实时相机 Demo。将 [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.3.har) 加入项目，模型包放入 `resources/rawfile`：
+
+```typescript
+import { VisionSdk, VisionOptions } from '@moon/mediavision';
+const bytes = await context.resourceManager.getRawFileContent('mediavision.mvsmodels');
+const sdk = await VisionSdk.create(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+const options = new VisionOptions();
+options.beauty = 0.55;
+await sdk.configure(options);
+```
+
+[完整下载包](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.3.zip) · [相机 Demo](demos/harmonyos) · [接入说明](docs/HARMONYOS.md)
 
 ## iOS / C++ 接入
 

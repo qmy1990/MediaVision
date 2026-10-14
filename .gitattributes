@@ -18,3 +18,10 @@ demos/linux/**/mvs_demo_cli filter=lfs diff=lfs merge=lfs -text
 demos/macos/**/mvs_demo_cli filter=lfs diff=lfs merge=lfs -text
 *.mp4 binary
 *.gif binary
+
+*.har filter=lfs diff=lfs merge=lfs -text
+*.hap filter=lfs diff=lfs merge=lfs -text
+# Complete HarmonyOS ZIP contains actual binaries even in GitHub source downloads.
+packages/harmonyos/*.zip -filter -diff -merge -text
+# Preserve the SDK's upstream license notice verbatim.
+licenses/third-party/OHOS-libcxx-NOTICE.txt -whitespace
