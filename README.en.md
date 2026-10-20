@@ -9,7 +9,7 @@ MediaVision brings beauty filters, face reshaping, makeup and background effects
 
 **The released SDK is free for commercial use.**
 
-Current release: **0.4.3** · [Changelog](CHANGELOG.md) · [API guide](docs/API.md)
+Current release: **0.4.4** · [Changelog](CHANGELOG.md) · [API guide](docs/API.md)
 
 ## Features and plans
 
@@ -81,7 +81,7 @@ Keep `google()` and `mavenCentral()`, then add:
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:0.4.3'
+implementation 'com.github.qmy1990:MediaVision:0.4.4'
 ```
 
 The Java package is `com.moon.mediavision`:
@@ -96,7 +96,7 @@ See the [Android demo](demos/android) for camera integration and the [integratio
 
 ## HarmonyOS integration
 
-Supports **HarmonyOS 6.0.0 / API 20+** with a native C/C++ SDK, ArkTS HAR, encrypted models, and a live-camera demo. Add the [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.3.har) to your project and place the model package in `resources/rawfile`:
+Supports **HarmonyOS 6.0.0 / API 20+** with a native C/C++ SDK, ArkTS HAR, encrypted models, and a live-camera demo. Add the [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.4.har) to your project and place the model package in `resources/rawfile`:
 
 ```typescript
 import { VisionSdk, VisionOptions } from '@moon/mediavision';
@@ -107,7 +107,7 @@ options.beauty = 0.55;
 await sdk.configure(options);
 ```
 
-[Complete download](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.3.zip) · [Camera demo](demos/harmonyos) · [Integration guide](docs/HARMONYOS.md)
+[Complete download](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.4.zip) · [Camera demo](demos/harmonyos) · [Integration guide](docs/HARMONYOS.md)
 
 ## iOS / C++ integration
 
@@ -128,4 +128,4 @@ git clone https://github.com/qmy1990/MediaVision.git
 
 SDKs are in `sdk/`, demos in `demos/`, and installers in `installers/`. Source ZIP download instructions are in the [integration guide](docs/INTEGRATION.md).
 
-Android 0.4.3 supports native C/C++ inference and effects without Java. See the [native integration guide](docs/ANDROID_NATIVE.md) for runtime libraries, tensor contracts, and a standalone example.
+Android 0.4.4 supports native C/C++ inference and effects without Java. See the [native integration guide](docs/ANDROID_NATIVE.md) for runtime libraries, tensor contracts, and a standalone example.

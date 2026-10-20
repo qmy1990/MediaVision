@@ -15,7 +15,7 @@ int main(int argc,char** argv){
  int w=atoi(argv[3]),h=atoi(argv[4]);if(w<1 || w>4096 || h<1 || h>4096)return 2;
  size_t model_size=0,image_size=0;unsigned char* models=load(argv[1],&model_size),*input=load(argv[2],&image_size);
  if(!models || !input || image_size!=(size_t)w*h*4){free(models);free(input);return 2;}
- MvsHarmonyConfig config=mvs_harmony_default_config();config.effects_backend=MVS_VULKAN;config.inference_backend=MVS_HARMONY_NNRT;
+ MvsHarmonyConfig config=mvs_harmony_default_config();config.effects_backend=MVS_CPU;
  MvsHarmonyHandle sdk=NULL;check(mvs_harmony_create(&config,models,model_size,&sdk),"create");free(models);
  MvsOptions options=mvs_default_options();options.beauty=.55f;options.whitening=.25f;options.blush=.35f;
  options.blush_mode=MVS_BLUSH_CHEEKS_AND_NOSE;options.background=MVS_BACKGROUND_BLUR;options.blur_radius=8;

@@ -1,5 +1,17 @@
 # 更新日志 / Changelog
 
+## 0.4.4 · 2026-10-21
+
+### 中文
+
+- 优化腮红效果。
+- 优化磨皮效果。
+
+### English
+
+- Improved blush effects.
+- Improved skin smoothing.
+
 ## 0.4.3 · HarmonyOS · 2026-10-15
 
 - 添加对鸿蒙系统的支持（HarmonyOS 6.0.0 / API 20+）。

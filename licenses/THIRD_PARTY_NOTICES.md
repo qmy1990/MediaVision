@@ -2,7 +2,7 @@
 
 第三方授权不被 Moon SDK 授权替代。以下是本次二进制分发所涉及的主要组件；平台运行库自身附带的 notices 同样适用。
 
-- **MediaPipe Tasks Vision / Tasks Common**：Google，Apache-2.0。0.4.2 的 Android 使用 Tasks 0.10.28；0.4.3 的 Android 生产推理不再依赖 Tasks，沿用官方模型布局。iOS 使用 Tasks 0.10.14。原始许可保存在 `licenses/third-party/MediaPipe*-LICENSE.txt`。SDK 不宣称包含从公开 Demo 可重建这些上游二进制的源码。
+- **MediaPipe Tasks Vision / Tasks Common**：Google，Apache-2.0。0.4.2 的 Android 使用 Tasks 0.10.28；自 0.4.3 起，Android 生产推理不再依赖 Tasks，沿用官方模型布局。iOS 使用 Tasks 0.10.14。原始许可保存在 `licenses/third-party/MediaPipe*-LICENSE.txt`。SDK 不宣称包含从公开 Demo 可重建这些上游二进制的源码。
 - **Google LiteRT**：Google，Apache-2.0；Android 运行依赖由 Maven POM 声明，版本 1.4.2；`sdk/android/native-runtime` 同时分发其原生运行库。上游组件与传递依赖保留各自声明。
 - **Qualcomm QNN**：Qualcomm 专有运行库，受其原始授权约束，见 `licenses/third-party/qnn/QUALCOMM_LICENSE.pdf` 和 `NOTICE.txt`。Maven 依赖使用 2.45.0。
 - **模型**：生产模型、变体及研究归档的来源资料见 `docs/MODEL_MANIFEST.json`、`manifest/models.json`。包括官方 MediaPipe 模型、Qualcomm AI Hub 转换、MODNet、SlimNet 和人脸解析研究模型。研究模型未被统一重新许可为 MIT 或 Moon SDK 免费商用；使用者须遵循各自上游权重、数据集及转换分发条款，不能把代码许可证等同于训练数据或权重的授权。

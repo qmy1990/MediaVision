@@ -1,4 +1,4 @@
-# Android C/C++ 原生推理 · 0.4.3
+# Android C/C++ 原生推理 · 0.4.4
 
 Android 的 LiteRT 会话、Delegate 选择、Tensor、分割预处理/后处理、人脸检测、ROI 跟踪及坐标投影均在 `libmvs_inference.so` 中执行。Java 封装通过 JNI 提交模型、输入和参数，管理 Android 生命周期、异步缓冲及显示；生产代码不再使用 Java LiteRT Interpreter 或 MediaPipe Tasks 执行模型。
 
@@ -129,7 +129,7 @@ adb shell 'cd /data/local/tmp/mvs-native && chmod +x mvs_native_inference && LD_
 
 ## English
 
-SDK 0.4.3 executes Android LiteRT models entirely in C++: sessions, tensors, delegate selection, segmentation preprocessing/postprocessing, face detection, ROI tracking, and coordinate projection. Java handles Android lifecycle, asynchronous buffer orchestration, and display through JNI. Native consumers can use `mvs/litert.h`, `mvs/inference.h`, `libmvs_inference.so`, and `libmvs_sdk.so` without JNI or a JVM.
+SDK 0.4.4 executes Android LiteRT models entirely in C++: sessions, tensors, delegate selection, segmentation preprocessing/postprocessing, face detection, ROI tracking, and coordinate projection. Java handles Android lifecycle, asynchronous buffer orchestration, and display through JNI. Native consumers can use `mvs/litert.h`, `mvs/inference.h`, `libmvs_inference.so`, and `libmvs_sdk.so` without JNI or a JVM.
 
 Deploy matching ABI/version runtimes from `sdk/android/native-runtime`; LiteRT 1.4.2's library retains the filename `libtensorflowlite_jni.so`, but its exported C API works in a standalone process. GPU uses `libtensorflowlite_gpu_jni.so`; QNN 2.45 HTP is optional and arm64-only. A Maven app receives these dependencies through the POM. Native apps must arrange Android linker visibility themselves and avoid conflicting C++ runtimes.
 

@@ -1,4 +1,4 @@
-# Android native runtimes · 0.4.3
+# Android native runtimes · 0.4.4
 
 LiteRT 1.4.2 CPU/GPU and NDK 27 C++ runtime binaries are supplied for four Android ABIs. QNN 2.45 HTP host, stub, prepare, system and skeleton libraries are optional and arm64-only. Use matching ABI libraries with `sdk/android/camera-native/<ABI>/libmvs_inference.so`. Maven apps resolve the same dependencies automatically.
 

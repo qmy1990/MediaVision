@@ -136,8 +136,10 @@ class SDK:
         l.mvs_default_config.restype = Config
         config = l.mvs_default_config()
         if config.abi_version != 11:
-            raise RuntimeError("This demo requires the matching MediaVision 0.4.3 ABI 11 library")
+            raise RuntimeError("This demo requires the matching MediaVision 0.4.4 ABI 11 library")
         l.mvs_default_options.restype = Options
+        if C.sizeof(Options) != l.mvs_default_options().struct_size:
+            raise RuntimeError("Options layout does not match this SDK library")
         l.mvs_create.argtypes = [C.POINTER(Config), C.POINTER(C.c_void_p)]
         l.mvs_destroy.argtypes = [C.c_void_p]
         l.mvs_reset.argtypes = [C.c_void_p]

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Process;
 import android.os.SystemClock;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.moon.mediavision.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -42,6 +44,7 @@ public final class MainActivity extends ComponentActivity {
                   "MvsRender"));
   private final AtomicBoolean pending = new AtomicBoolean();
   private final AtomicLong cameraGeneration = new AtomicLong();
+  private final AtomicLong surfaceGeneration = new AtomicLong();
   private final AtomicBoolean cameraRetryScheduled = new AtomicBoolean();
   private final AtomicInteger cameraRetryAttempts = new AtomicInteger();
   private final Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -77,8 +80,11 @@ public final class MainActivity extends ComponentActivity {
   private int blurStrength = DEFAULT_BLUR_STRENGTH;
   private int blurStrengthBeforeDrag = DEFAULT_BLUR_STRENGTH;
   private boolean syncingEffectUi;
-  private VisionSdk sdk;
+  private volatile VisionSdk sdk;
   private volatile Camera2Frames camera2;
+  // Owned by worker. Retiring an old session must not detach a newer session.
+  private long cameraOwnerGeneration = -1;
+  private long boundSurfaceGeneration = -1;
   private VisionOptions configuredOptions;
   private long displayedFrames;
   private long lastFpsTick;
@@ -87,7 +93,8 @@ public final class MainActivity extends ComponentActivity {
   private long uniqueFrames;
   private long lastPresentedToken = -1;
   private int uniqueFps;
-  private long lastStatusTick;
+  private long windowProcessingNs;
+  private double averageProcessingMs;
   private volatile boolean destroyed = false;
   private volatile boolean surfaceReady = false;
   private volatile boolean resumed = false;
@@ -155,6 +162,7 @@ public final class MainActivity extends ComponentActivity {
         new SurfaceHolder.Callback() {
           @Override
           public void surfaceCreated(SurfaceHolder holder) {
+            surfaceGeneration.incrementAndGet();
             surfaceReady = true;
             configureSurface();
             if (resumed
@@ -174,9 +182,14 @@ public final class MainActivity extends ComponentActivity {
           @Override
           public void surfaceDestroyed(SurfaceHolder holder) {
             surfaceReady = false;
+            surfaceGeneration.incrementAndGet();
+            stopCameraSession();
             VisionSdk current = sdk;
             if (current != null) {
               try {
+                // Callback requires rendering to stop before it returns.
+                // Session invalidation prevents any queued bind from reviving
+                // this Surface; the SDK lock drains a frame already rendering.
                 current.setOutputSurface(null);
               } catch (Throwable ignored) {
               }
@@ -303,10 +316,11 @@ public final class MainActivity extends ComponentActivity {
     status = new TextView(this);
     status.setTextColor(Color.WHITE);
     status.setTextSize(10);
-    status.setSingleLine(true);
+    status.setSingleLine(false);
+    status.setMaxLines(2);
     status.setGravity(android.view.Gravity.CENTER_VERTICAL);
-    status.setText("0 FPS · —×—");
-    status.setContentDescription("帧率与分辨率");
+    status.setText("0 FPS · — ms\n—×—");
+    status.setContentDescription("帧率、平均每帧处理耗时与分辨率");
     top.addView(status, new LinearLayout.LayoutParams(0, dp(32), 1));
     allBeautyButton = compactButton("美颜开");
     allBeautyButton.setContentDescription("美颜总开关，已开启");
@@ -1086,48 +1100,109 @@ public final class MainActivity extends ComponentActivity {
   }
 
   private void configureSurface() {
-    if (surfaceHolder == null || !surfaceReady) {
+    if (destroyed || !resumed || surfaceHolder == null || !surfaceReady) {
       return;
     }
     // The native renderer sets the ANativeWindow buffer geometry to the
     // current camera frame. Calling setFixedSize during a 720p/1080p switch
     // destroys the Surface while an old frame may still be posting and can
     // leave the producer connected to a stale window.
-    VisionSdk current = sdk;
-    if (current != null) {
+    final Surface surface = surfaceHolder.getSurface();
+    final long generation = cameraGeneration.get();
+    final long surfaceEpoch = surfaceGeneration.get();
+    worker.execute(() -> {
+      VisionSdk current = sdk;
+      if (current == null) return;
       try {
-        current.setOutputSurface(surfaceHolder.getSurface());
+        synchronized (current) {
+          if (!isCurrentSession(generation, surfaceEpoch, surface)) return;
+          current.setOutputSurface(surface);
+          boundSurfaceGeneration = generation;
+        }
       } catch (Exception e) {
-        showError(e);
+        if (isCurrentSession(generation, surfaceEpoch, surface)) showError(e);
       }
+    });
+  }
+
+  private boolean isCurrentSession(long generation, long surfaceEpoch, Surface surface) {
+    return !destroyed && resumed && surfaceReady
+        && generation == cameraGeneration.get()
+        && surfaceEpoch == surfaceGeneration.get()
+        && surface != null && surface.isValid();
+  }
+
+  /** Worker only: close resources belonging to this or an earlier session. */
+  private void retireCameraSession(long throughGeneration) {
+    Camera2Frames camera = camera2;
+    if (camera != null && cameraOwnerGeneration <= throughGeneration) {
+      camera2 = null;
+      cameraOwnerGeneration = -1;
+      camera.close();
+      lastFpsTick = displayedFrames = uniqueFrames = windowProcessingNs = 0;
+      lastPresentedToken = -1;
+      displayFps = uniqueFps = 0;
+      averageProcessingMs = 0;
     }
+    VisionSdk current = sdk;
+    if (current != null && boundSurfaceGeneration <= throughGeneration) {
+      current.setOutputSurface(null);
+      boundSurfaceGeneration = -1;
+      current.reset();
+    }
+    pending.set(false);
+  }
+
+  private void stopCameraSession() {
+    final long generation = cameraGeneration.incrementAndGet();
+    cameraRetryScheduled.set(false);
+    cameraRetryAttempts.set(0);
+    // Stop production immediately; ImageReader destruction stays on worker,
+    // after the active Image has been returned by the render callback.
+    Camera2Frames camera = camera2;
+    if (camera != null) camera.stopCapture();
+    if (destroyed) return; // onDestroy already queued final cleanup.
+    worker.execute(() -> {
+      try {
+        retireCameraSession(generation);
+      } catch (Exception e) {
+        if (!destroyed && generation == cameraGeneration.get()) showError(e);
+      }
+    });
   }
 
   private void bindCamera() {
-    if (destroyed || !resumed || !surfaceReady) {
+    if (destroyed || !resumed || !surfaceReady || surfaceHolder == null) {
       return;
     }
     final long generation = cameraGeneration.incrementAndGet();
+    final long surfaceEpoch = surfaceGeneration.get();
+    final Surface surface = surfaceHolder.getSurface();
     final boolean requestedFront = front;
     final int requestedWidth = resolutionTier == 2 ? 1080 : resolutionTier == 1 ? 720 : 480;
     final int requestedHeight = resolutionTier == 2 ? 1920 : resolutionTier == 1 ? 1280 : 854;
+    // A continuously busy latest-frame loop must yield to session changes.
+    Camera2Frames running = camera2;
+    if (running != null) running.stopCapture();
     worker.execute(
         () -> {
           try {
-            Camera2Frames old = camera2;
-            camera2 = null;
-            if (old != null) {
-              old.close();
+            if (!isCurrentSession(generation, surfaceEpoch, surface)) return;
+            retireCameraSession(generation);
+            VisionSdk current = sdk;
+            if (current == null) return;
+            synchronized (current) {
+              if (!isCurrentSession(generation, surfaceEpoch, surface)) return;
+              // Always bind after earlier pause cleanup, before starting the
+              // camera. This ordering also covers singleTop resume, where
+              // SurfaceHolder does not deliver a new surfaceCreated callback.
+              current.setOutputSurface(surface);
+              boundSurfaceGeneration = generation;
             }
-            pending.set(false);
-            if (destroyed
-                || !resumed
-                || !surfaceReady
-                || generation != cameraGeneration.get()
-                || sdk == null) {
+            if (!isCurrentSession(generation, surfaceEpoch, surface)) {
+              retireCameraSession(generation);
               return;
             }
-            sdk.reset();
             Camera2Frames next =
                 new Camera2Frames(
                     this,
@@ -1136,9 +1211,11 @@ public final class MainActivity extends ComponentActivity {
                       @Override
                       public void onFrame(
                           android.media.Image image, int rotation, boolean mirrorX) {
-                        if (generation == cameraGeneration.get()) {
+                        if (generation == cameraGeneration.get()
+                            && surfaceEpoch == surfaceGeneration.get()
+                            && resumed && surfaceReady && !destroyed) {
                           cameraRetryAttempts.set(0);
-                          analyze(image, rotation, mirrorX);
+                          analyze(image, rotation, mirrorX, generation, surfaceEpoch);
                         }
                       }
 
@@ -1150,8 +1227,18 @@ public final class MainActivity extends ComponentActivity {
                       }
                     });
             camera2 = next;
+            cameraOwnerGeneration = generation;
             next.start(requestedFront, requestedWidth, requestedHeight);
+            // Pause/destroy can race start(), before the UI sees camera2.
+            if (!isCurrentSession(generation, surfaceEpoch, surface)) {
+              retireCameraSession(generation);
+            }
           } catch (Exception e) {
+            try {
+              retireCameraSession(generation);
+            } catch (Exception cleanupError) {
+              e.addSuppressed(cleanupError);
+            }
             if (generation == cameraGeneration.get()) {
               showError(e);
             }
@@ -1199,199 +1286,195 @@ public final class MainActivity extends ComponentActivity {
   @Override
   protected void onPause() {
     resumed = false;
-    cameraRetryScheduled.set(false);
-    cameraRetryAttempts.set(0);
-    cameraGeneration.incrementAndGet();
-    // Release the CameraDevice before waiting for any in-flight inference.
-    // ImageReader destruction remains serialized after that frame finishes.
-    Camera2Frames camera = camera2;
-    camera2 = null;
-    if (camera != null) {
-      camera.stopCapture();
-    }
-    worker.execute(
-        () -> {
-          if (camera != null) {
-            camera.close();
-          }
-          pending.set(false);
-          VisionSdk current = sdk;
-          if (current != null) {
-            try {
-              current.setOutputSurface(null);
-            } catch (Throwable ignored) {
-            }
-            try {
-              current.reset();
-            } catch (Throwable ignored) {
-            }
-          }
-        });
+    stopCameraSession();
     super.onPause();
   }
 
-  private void analyze(android.media.Image image, int rotation, boolean mirrorX) {
-    if (destroyed || sdk == null || !surfaceReady || !pending.compareAndSet(false, true)) {
+  private void analyze(android.media.Image image, int rotation, boolean mirrorX,
+      long generation, long surfaceEpoch) {
+    VisionSdk processor = sdk;
+    if (destroyed || !resumed || processor == null || !surfaceReady
+        || !pending.compareAndSet(false, true)) {
       return;
     }
     try {
-      long started = SystemClock.elapsedRealtime();
-      VisionOptions current = effectiveOptions();
-      if (configuredOptions == null || !configuredOptions.equals(current)) {
-        sdk.configure(current);
-        configuredOptions = current;
-      }
-      long converted = SystemClock.elapsedRealtime();
-      boolean applied;
-      if (Build.VERSION.SDK_INT >= 29) {
-        // GPU import requires camera producer completion, but no CPU
-        // pixel mapping. Public SyncFence is available from API 33.
-        if (Build.VERSION.SDK_INT >= 33) {
-          try (android.hardware.SyncFence fence = image.getFence()) {
-            if (fence.isValid() && !fence.await(java.time.Duration.ofMillis(500))) {
-              throw new IllegalStateException("Camera acquire fence timed out");
+      // Surface destruction waits on this same lock before detaching. Keep
+      // the session check and frame submission atomic with that barrier.
+      synchronized (processor) {
+        if (destroyed || !resumed || !surfaceReady
+            || generation != cameraGeneration.get()
+            || surfaceEpoch != surfaceGeneration.get()) return;
+        long started = SystemClock.elapsedRealtime();
+        VisionOptions current = effectiveOptions();
+        if (configuredOptions == null || !configuredOptions.equals(current)) {
+          sdk.configure(current);
+          configuredOptions = current;
+        }
+        long converted = SystemClock.elapsedRealtime();
+        boolean applied;
+        long processingNs;
+        if (Build.VERSION.SDK_INT >= 29) {
+          // GPU import requires camera producer completion, but no CPU
+          // pixel mapping. Public SyncFence is available from API 33.
+          if (Build.VERSION.SDK_INT >= 33) {
+            try (android.hardware.SyncFence fence = image.getFence()) {
+              if (fence.isValid() && !fence.await(java.time.Duration.ofMillis(500))) {
+                throw new IllegalStateException("Camera acquire fence timed out");
+              }
             }
+          } else {
+            // Older Java ImageReader APIs do not expose the acquire
+            // fence. Mapping planes performs the framework fence wait.
+            image.getPlanes();
+          }
+          android.hardware.HardwareBuffer hardware = image.getHardwareBuffer();
+          if (hardware == null) {
+            throw new IllegalStateException("ImageReader did not provide HardwareBuffer");
+          }
+          try {
+            // Exclude waiting for the camera producer/acquire fence. This is
+            // synchronous SDK occupancy, not asynchronous model latency.
+            long processingStartNs = SystemClock.elapsedRealtimeNanos();
+            applied =
+                sdk.processHardwareBuffer(
+                    hardware,
+                    image.getWidth(),
+                    image.getHeight(),
+                    rotation,
+                    mirrorX,
+                    image.getTimestamp() / 1_000_000);
+            processingNs = SystemClock.elapsedRealtimeNanos() - processingStartNs;
+          } finally {
+            hardware.close();
           }
         } else {
-          // Older Java ImageReader APIs do not expose the acquire
-          // fence. Mapping planes performs the framework fence wait.
-          image.getPlanes();
-        }
-        android.hardware.HardwareBuffer hardware = image.getHardwareBuffer();
-        if (hardware == null) {
-          throw new IllegalStateException("ImageReader did not provide HardwareBuffer");
-        }
-        try {
+          android.media.Image.Plane[] planes = image.getPlanes();
+          long processingStartNs = SystemClock.elapsedRealtimeNanos();
           applied =
-              sdk.processHardwareBuffer(
-                  hardware,
+              sdk.processYuv(
+                  planes[0].getBuffer(),
+                  planes[1].getBuffer(),
+                  planes[2].getBuffer(),
                   image.getWidth(),
                   image.getHeight(),
+                  planes[0].getRowStride(),
+                  planes[1].getRowStride(),
+                  planes[2].getRowStride(),
+                  planes[1].getPixelStride(),
+                  planes[2].getPixelStride(),
                   rotation,
-                  mirrorX,
                   image.getTimestamp() / 1_000_000);
-        } finally {
-          hardware.close();
+          processingNs = SystemClock.elapsedRealtimeNanos() - processingStartNs;
         }
-      } else {
-        android.media.Image.Plane[] planes = image.getPlanes();
-        applied =
-            sdk.processYuv(
-                planes[0].getBuffer(),
-                planes[1].getBuffer(),
-                planes[2].getBuffer(),
-                image.getWidth(),
-                image.getHeight(),
-                planes[0].getRowStride(),
-                planes[1].getRowStride(),
-                planes[2].getRowStride(),
-                planes[1].getPixelStride(),
-                planes[2].getPixelStride(),
-                rotation,
-                image.getTimestamp() / 1_000_000);
-      }
-      String dimensions =
-          ((rotation % 180) == 0
-              ? image.getWidth() + "x" + image.getHeight()
-              : image.getHeight() + "x" + image.getWidth());
-      long processed = SystemClock.elapsedRealtime();
-      long elapsed = processed - started;
-      long conversionMs = converted - started;
-      long sdkMs = processed - converted;
-      String backend = sdk.renderPath();
-      String delegate = sdk.inferenceBackend();
-      int[] nativePixel = BuildConfig.DEBUG ? sdk.surfaceDiagnostic() : null;
-      String nativeStatus =
-          nativePixel == null ? "" : " native=" + java.util.Arrays.toString(nativePixel);
-      long submitted = sdk.submittedInferences();
-      long completed = sdk.completedInferences();
-      displayedFrames++;
-      long outputToken = sdk.presentedTimestampMs();
-      if (sdk.isPassThrough()) {
-        outputToken = image.getTimestamp() / 1_000_000;
-      }
-      if (outputToken >= 0 && outputToken != lastPresentedToken) {
-        uniqueFrames++;
-        lastPresentedToken = outputToken;
-      }
-      long now = SystemClock.elapsedRealtime();
-      if (lastFpsTick == 0) {
-        lastFpsTick = now;
-      }
-      if (now - lastFpsTick >= 1000) {
-        displayFps = (int) (displayedFrames * 1000 / (now - lastFpsTick));
-        uniqueFps = (int) (uniqueFrames * 1000 / (now - lastFpsTick));
-        uniqueFrames = 0;
-        displayedFrames = 0;
-        lastFpsTick = now;
-      }
-      boolean updateStatus = now - lastStatusTick >= 250;
-      if (updateStatus) {
-        lastStatusTick = now;
-      }
-      if (BuildConfig.DEBUG) {
-        android.util.Log.d(
-            "MediaVisionPerf",
-            "frame="
-                + elapsed
-                + "ms camera_copy="
-                + conversionMs
-                + "ms output=surface sdk="
-                + sdkMs
-                + "ms applied="
-                + applied
-                + " backend="
-                + backend
-                + " delegate="
-                + delegate
-                + " submitted="
-                + submitted
-                + " completed="
-                + completed
-                + " fps="
-                + displayFps);
-      }
-      if (updateStatus) {
-        final String text = uniqueFps + " FPS · " + dimensions;
-        runOnUiThread(
-            () -> {
-              if (!destroyed) {
-                status.setText(text);
-              }
-            });
-      }
-      if (metrics != null) {
-        metrics.record(
-            elapsed,
-            outputToken,
-            sdk.pairedInferenceLatencyMs(),
-            dimensions,
-            backend,
-            "beauty="
-                + current.beauty
-                + " blemish="
-                + current.blemishRemoval
-                + " sharpen="
-                + current.sharpen
-                + " small_head="
-                + current.smallHead
-                + " face_slim="
-                + current.faceSlim
-                + " cheekbone="
-                + current.cheekboneReduce
-                + " nose_slim="
-                + current.noseSlim
-                + " background="
-                + current.background
-                + " mesh="
-                + current.prop
-                + "/"
-                + current.headwear
-                + "/"
-                + current.jewelry);
+        String dimensions =
+            ((rotation % 180) == 0
+                ? image.getWidth() + "x" + image.getHeight()
+                : image.getHeight() + "x" + image.getWidth());
+        long processed = SystemClock.elapsedRealtime();
+        long elapsed = processed - started;
+        long conversionMs = converted - started;
+        long sdkMs = processed - converted;
+        String backend = sdk.renderPath();
+        String delegate = sdk.inferenceBackend();
+        int[] nativePixel = BuildConfig.DEBUG ? sdk.surfaceDiagnostic() : null;
+        String nativeStatus =
+            nativePixel == null ? "" : " native=" + java.util.Arrays.toString(nativePixel);
+        long submitted = sdk.submittedInferences();
+        long completed = sdk.completedInferences();
+        displayedFrames++;
+        windowProcessingNs += processingNs;
+        long outputToken = sdk.presentedTimestampMs();
+        if (sdk.isPassThrough()) {
+          outputToken = image.getTimestamp() / 1_000_000;
+        }
+        if (outputToken >= 0 && outputToken != lastPresentedToken) {
+          uniqueFrames++;
+          lastPresentedToken = outputToken;
+        }
+        long now = SystemClock.elapsedRealtime();
+        if (lastFpsTick == 0) {
+          lastFpsTick = now;
+        }
+        boolean updateStatus = now - lastFpsTick >= 1000;
+        if (updateStatus) {
+          displayFps = (int) (displayedFrames * 1000 / (now - lastFpsTick));
+          uniqueFps = (int) (uniqueFrames * 1000 / (now - lastFpsTick));
+          averageProcessingMs = windowProcessingNs / (displayedFrames * 1e6);
+          windowProcessingNs = 0;
+          uniqueFrames = 0;
+          displayedFrames = 0;
+          lastFpsTick = now;
+        }
+        if (BuildConfig.DEBUG) {
+          android.util.Log.d(
+              "MediaVisionPerf",
+              "frame="
+                  + elapsed
+                  + "ms camera_copy="
+                  + conversionMs
+                  + "ms output=surface sdk="
+                  + sdkMs
+                  + "ms applied="
+                  + applied
+                  + " backend="
+                  + backend
+                  + " delegate="
+                  + delegate
+                  + " submitted="
+                  + submitted
+                  + " completed="
+                  + completed
+                  + " fps="
+                  + displayFps);
+        }
+        if (updateStatus) {
+          final String text = String.format(
+              Locale.US, "%d FPS · %.1f ms\n%s", uniqueFps, averageProcessingMs, dimensions);
+          runOnUiThread(
+              () -> {
+                if (!destroyed) {
+                  status.setText(text);
+                }
+              });
+        }
+        if (metrics != null) {
+          metrics.record(
+              elapsed,
+              outputToken,
+              sdk.pairedInferenceLatencyMs(),
+              dimensions,
+              backend,
+              "beauty="
+                  + current.beauty
+                  + " blemish="
+                  + current.blemishRemoval
+                  + " sharpen="
+                  + current.sharpen
+                  + " small_head="
+                  + current.smallHead
+                  + " face_slim="
+                  + current.faceSlim
+                  + " cheekbone="
+                  + current.cheekboneReduce
+                  + " nose_slim="
+                  + current.noseSlim
+                  + " background="
+                  + current.background
+                  + " mesh="
+                  + current.prop
+                  + "/"
+                  + current.headwear
+                  + "/"
+                  + current.jewelry);
+        }
       }
     } catch (Exception e) {
-      showError(e);
+      if (generation == cameraGeneration.get() && surfaceEpoch == surfaceGeneration.get()
+          && resumed && surfaceReady && !destroyed) {
+        showError(e);
+      } else if (BuildConfig.DEBUG) {
+        android.util.Log.d("MediaVision", "Discarded frame from retired camera session", e);
+      }
     } finally {
       pending.set(false);
     }
@@ -1417,22 +1500,19 @@ public final class MainActivity extends ComponentActivity {
     destroyed = true;
     mainHandler.removeCallbacksAndMessages(null);
     cameraGeneration.incrementAndGet();
-    VisionSdk current = sdk;
+    Camera2Frames camera = camera2;
+    if (camera != null) camera.stopCapture();
     worker.execute(
         () -> {
-          Camera2Frames camera = camera2;
-          camera2 = null;
-          if (camera != null) {
-            camera.close();
-          }
-          if (current == null) {
-            return;
-          }
           try {
-            current.setOutputSurface(null);
-          } catch (Throwable ignored) {
+            retireCameraSession(Long.MAX_VALUE);
+          } finally {
+            // Resolve on worker: destruction may have been requested while
+            // the SDK constructor was still running on this same executor.
+            VisionSdk current = sdk;
+            sdk = null;
+            if (current != null) current.close();
           }
-          current.close();
         });
     worker.shutdown();
     super.onDestroy();

@@ -64,6 +64,9 @@ MVS_API MvsStatus mvs_litert_segment_rgba(
     int32_t person_class, int32_t hair_class, float* mask, size_t mask_count);
 /* Official stored ZIP .task containing detector128 and landmark256/478.
  * Runs native detector decoding, ROI tracking and coordinate projection.
+ * AUTO can select fully delegated QNN HTP landmarks on validated Snapdragon
+ * parts when qnn_skeleton_dir is supplied; GPU/CPU remain compatible fallbacks.
+ * Detection runs on CPU/XNNPACK; model contents and tensor precision are unchanged.
  * Caller owns capacity>=478 output landmarks; count=0 when no face. */
 MVS_API MvsStatus mvs_face_native_create(const void* task, size_t bytes,
                                          const MvsLiteRtOptions* options,

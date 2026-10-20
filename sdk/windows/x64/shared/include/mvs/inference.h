@@ -14,7 +14,8 @@ MVS_API MvsStatus mvs_inference_create(MvsModelsHandle models,
 /* Android native adapter. Copies model bytes and option strings. Can close the
  * model package after creation. All calls must use the creating thread.
  * Options configure the portrait backend and face landmark backend; AUTO
- * benchmarks portrait delegates and GPU face tracking with CPU fallback. */
+ * benchmarks portrait delegates and selects validated QNN HTP face landmarks,
+ * with GPU/CPU fallback. Face detection remains CPU/XNNPACK. */
 MVS_API MvsStatus mvs_inference_create_with_options(MvsModelsHandle models,
     const MvsLiteRtOptions* options, MvsInferenceHandle* result);
 MVS_API MvsStatus mvs_inference_analyze(void* provider, const MvsFrame* frame,

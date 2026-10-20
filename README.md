@@ -9,7 +9,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 
 **发布的 SDK 可以免费商用。**
 
-当前版本：**0.4.3** · [更新日志](CHANGELOG.md) · [接口说明](docs/API.md)
+当前版本：**0.4.4** · [更新日志](CHANGELOG.md) · [接口说明](docs/API.md)
 
 ## 功能与计划
 
@@ -81,7 +81,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:0.4.3'
+implementation 'com.github.qmy1990:MediaVision:0.4.4'
 ```
 
 Java 包名为 `com.moon.mediavision`：
@@ -96,7 +96,7 @@ sdk.configure(new VisionOptions.Builder()
 
 ## HarmonyOS 接入
 
-支持 **HarmonyOS 6.0.0 / API 20+**，提供 C/C++ SDK、ArkTS HAR、加密模型和实时相机 Demo。将 [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.3.har) 加入项目，模型包放入 `resources/rawfile`：
+支持 **HarmonyOS 6.0.0 / API 20+**，提供 C/C++ SDK、ArkTS HAR、加密模型和实时相机 Demo。将 [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.4.har) 加入项目，模型包放入 `resources/rawfile`：
 
 ```typescript
 import { VisionSdk, VisionOptions } from '@moon/mediavision';
@@ -107,7 +107,7 @@ options.beauty = 0.55;
 await sdk.configure(options);
 ```
 
-[完整下载包](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.3.zip) · [相机 Demo](demos/harmonyos) · [接入说明](docs/HARMONYOS.md)
+[完整下载包](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.4.zip) · [相机 Demo](demos/harmonyos) · [接入说明](docs/HARMONYOS.md)
 
 ## iOS / C++ 接入
 
@@ -128,4 +128,4 @@ git clone https://github.com/qmy1990/MediaVision.git
 
 SDK 位于 `sdk/`，Demo 位于 `demos/`，安装包位于 `installers/`。直接下载源码 ZIP 的使用方法见 [集成指南](docs/INTEGRATION.md)。
 
-Android 0.4.3 支持纯 C/C++ 模型推理与效果处理，无需 Java；[原生接入说明](docs/ANDROID_NATIVE.md)包含运行库、参数和完整示例。
+Android 0.4.4 支持纯 C/C++ 模型推理与效果处理，无需 Java；[原生接入说明](docs/ANDROID_NATIVE.md)包含运行库、参数和完整示例。

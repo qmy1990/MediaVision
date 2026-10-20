@@ -1,8 +1,8 @@
 {
   "sdk": "com.moon.mediavision",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "c_abi": 11,
-  "generated_date": "2026-10-15",
+  "generated_date": "2026-10-21",
   "android": {
     "camera_abis": [
       "arm64-v8a",
@@ -18,16 +18,11 @@
     ],
     "camera_rebuilt": true,
     "public_maven_consumer_build": true,
-    "new_package_device_test": true,
+    "new_package_device_test": false,
     "jitpack": {
-      "coordinate": "com.github.qmy1990:MediaVision:0.4.3",
-      "status": "ok",
-      "remote_publication_verified": true,
-      "aar_sha256": "35d17412336e7bea5284a8aefebb27a13731d31dc9cd89161b6a53eb8048c9ce",
-      "build_commit": "876dcaf4bda1f7521765ba53470968353c78ebdf",
-      "pom_runtime_dependencies": 5,
-      "public_debug_consumer_build": true,
-      "public_release_consumer_build": true
+      "coordinate": "com.github.qmy1990:MediaVision:0.4.4",
+      "status": "pending",
+      "remote_publication_verified": false
     },
     "native_inference": {
       "abis": [
@@ -39,54 +34,8 @@
       "pure_c_cpu_test": true,
       "pure_c_gpu_test": true,
       "device": "Infinix X6878 / SM7635",
-      "qnn_device_test": false
-    },
-    "rear_camera_sample": {
-      "release_aar_sha256": "35d17412336e7bea5284a8aefebb27a13731d31dc9cd89161b6a53eb8048c9ce",
-      "device": "Infinix X6878 / SM7635",
-      "scene": "screen portrait; not direct live-person motion validation",
-      "tiers": [
-        {
-          "tier": "480p",
-          "camera": "rear",
-          "scene": "screen portrait captured by rear camera",
-          "seconds": 15,
-          "metric_windows": 15,
-          "actual_size": "480x864",
-          "preview_fps": 29.37,
-          "unique_fps": 27.34,
-          "p50_ms": 13.4,
-          "inference_ms": 19.6,
-          "rear_confirmed": true
-        },
-        {
-          "tier": "720p",
-          "camera": "rear",
-          "scene": "screen portrait captured by rear camera",
-          "seconds": 15,
-          "metric_windows": 14,
-          "actual_size": "720x1280",
-          "preview_fps": 26.7,
-          "unique_fps": 21.4,
-          "p50_ms": 19.14,
-          "inference_ms": 24.0,
-          "rear_confirmed": true
-        },
-        {
-          "tier": "1080p",
-          "camera": "rear",
-          "scene": "screen portrait captured by rear camera",
-          "seconds": 15,
-          "metric_windows": 14,
-          "actual_size": "1080x1920",
-          "preview_fps": 22.27,
-          "unique_fps": 15.23,
-          "p50_ms": 27.79,
-          "inference_ms": 28.79,
-          "rear_confirmed": true
-        }
-      ],
-      "target_met": false
+      "qnn_device_test": false,
+      "device_test_scope": "Prior native inference validation; 0.4.4 preserves the C inference API and refreshes effects."
     }
   },
   "ios": {
@@ -100,7 +49,8 @@
     "core_and_wrapper_rebuilt": true,
     "public_binary_only_demo_build": true,
     "signing": "unsigned",
-    "device_test_this_release": false
+    "device_test_this_release": false,
+    "effect_code_device_validation": "2026-10-20/21 iPhone 8 Plus iOS16.7.10; same effect source before version-only bump to0.4.4"
   },
   "macos": {
     "archs": [
@@ -109,18 +59,17 @@
     ],
     "rebuilt": true,
     "native_tests": {
-      "passed": 9,
+      "passed": 13,
       "failed": 0
     },
     "public_cpp_demo_run": true,
     "render_backend_verified": "Metal",
     "arm64_runtime_tested": false,
     "cpu_metal_parity": {
-      "photo_cases": 68,
-      "single_effect_max_rgb_difference": 3,
-      "combined_effect_max_rgb_difference": 5,
-      "p99_rgb_difference_at_most": 2,
-      "release": "0.4.2 reference validation; effect implementation unchanged in 0.4.3"
+      "release_effect_code": "Synchronized 2026-10-20; same source in0.4.4",
+      "fixed_photo_cases": 364,
+      "photos": 52,
+      "precision_scope": "See local validation archive; not camera FPS validation"
     }
   },
   "windows": {
@@ -154,11 +103,11 @@
     "fps": 15,
     "infinite_loop": true
   },
-  "limits": "Camera results are device-specific short real-face samples; cross compilation is not target-device runtime or FPS validation. No new iPhone, Snapdragon 8 Gen 2, Dimensity 9400, Windows/Linux or macOS ARM64 runtime validation for this release.",
+  "limits": "Cross compilation and SDK/installer integrity checks do not imply runtime testing on every target device. Prior model and device validation remains identified by its scope.",
   "harmonyos": {
     "min_api": 20,
     "minimum_system": "HarmonyOS 6.0.0",
-    "sdk_version": "0.4.3",
+    "sdk_version": "0.4.4",
     "effect_c_abi": 11,
     "abis": [
       "arm64-v8a",
@@ -219,6 +168,8 @@
     "unsigned_hap": "installers/harmonyos/MediaVisionDemo-api20-unsigned.hap",
     "own_signature_required": true,
     "model_validation_report": "models/harmonyos/conversion-validation-2.7.json",
-    "integration_guide": "docs/HARMONYOS.md"
+    "integration_guide": "docs/HARMONYOS.md",
+    "device_test_this_release": false,
+    "previous_device_validation_release": "0.4.3"
   }
 }
