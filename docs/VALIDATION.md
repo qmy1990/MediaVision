@@ -23,3 +23,9 @@
 ## English
 
 SDK 0.4.4 retains effect ABI 11 and updates skin smoothing and blush. Native SDKs, public headers, demos and installers are refreshed across all six platforms. Android includes four ABIs; Apple includes device/simulator frameworks; HarmonyOS targets API20+. Windows, Linux and macOS ARM64 use cross-platform build checks. Cross compilation does not imply runtime validation on every target device. Third-party runtimes and encrypted model packages retain their existing licenses. JitPack uses `com.github.qmy1990:MediaVision:0.4.4`.
+
+## 远程发布校验 / Remote verification
+
+JitPack `0.4.4` 构建成功，提交 `1cd4c60ffaf15fce079087e93dcbf2f5ef6cb523`。POM 包含5项 LiteRT/GPU/QNN 运行依赖。公开 Android Demo 使用默认 JitPack 仓库并以 `--refresh-dependencies` 完成 Debug / Release 构建。Gradle 下载的 AAR 与 GitHub Maven/当前 AAR 逐字节一致，SHA-256：`7a83acc67fbc9eb2c414c1aa3dc323410011b1d889a303cb0f26348913c7570b`。
+
+JitPack build succeeded. The public demo resolves the remote dependency and builds Debug/Release. The Gradle-resolved AAR matches the release SHA-256 above; the POM declares five runtime dependencies.

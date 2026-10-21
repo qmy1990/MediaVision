@@ -1,6 +1,6 @@
 # Maven 发布与引用 / Maven publishing and consumption
 
-JitPack 引用版本：`0.4.4`。发布文件、依赖和校验方式见下文。
+JitPack `0.4.4` 已发布并验证：Gradle 解析的远程 AAR 与发布库逐字节一致，公开 Android Demo 的远程 Debug / Release 构建通过。
 
 推荐坐标：`com.github.qmy1990:MediaVision:0.4.4`。Java 包：`com.moon.mediavision`。
 
