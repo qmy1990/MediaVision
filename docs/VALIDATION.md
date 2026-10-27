@@ -20,8 +20,14 @@
 
 本机15项回归测试全部通过；35个核心二进制的版本及美瞳/人中扩展符号已核对；18组桌面公开C++接入、4种Android NDK接入均编译通过。
 
-坐标：`com.github.qmy1990:MediaVision:0.4.5`。远程发布后核对POM、AAR的SHA-256与公开Demo构建结果。
+坐标：`com.github.qmy1990:MediaVision:0.4.5`。远程 POM、AAR 和公开 Demo 构建均已验证。
 
 ## English
 
 SDK 0.4.5 synchronizes contact lenses, philtrum adjustment, public APIs, SDK binaries, demos and installers across all six platforms. Iris colors accept custom 24-bit RGB; the mobile demos include 29 presets. Philtrum adjustment changes vertical length with 0.5 neutral. ABI 11 options retain their layout and portrait details use a separate extension. Cross compilation and package integrity checks do not imply runtime testing on every target device.
+
+## 远程发布校验 / Remote verification
+
+JitPack `0.4.5` 构建成功，提交 `023026589fc0de2926d7edc6cb5404c5c3a11e65`。POM包含5项LiteRT/GPU/QNN运行依赖。公开Android Demo使用默认JitPack仓库及 `--refresh-dependencies` 完成Debug/Release构建。远程AAR、Gradle解析的AAR和GitHub当前AAR逐字节一致，SHA-256：`4a771116841554b7c10fdddd9cbc72505adb7917b5aa0dd62a51f1acd62603fb`。
+
+JitPack build succeeded. The public demo resolves version0.4.5 from JitPack and builds Debug/Release. The remote and Gradle-resolved AARs match the release checksum above; the POM declares five runtime dependencies.

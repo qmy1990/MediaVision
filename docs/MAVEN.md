@@ -1,6 +1,6 @@
 # Maven 发布与引用 / Maven publishing and consumption
 
-SDK 0.4.5 使用以下 JitPack 坐标，发布校验见 [VALIDATION.md](VALIDATION.md)。
+JitPack `0.4.5` 已发布并验证：远程 AAR 与发布库逐字节一致，公开 Android Demo 的远程 Debug / Release 构建通过。发布校验见 [VALIDATION.md](VALIDATION.md)。
 
 推荐坐标：`com.github.qmy1990:MediaVision:0.4.5`。Java 包：`com.moon.mediavision`。
 

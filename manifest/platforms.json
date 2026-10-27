@@ -21,10 +21,14 @@
     "new_package_device_test": false,
     "jitpack": {
       "coordinate": "com.github.qmy1990:MediaVision:0.4.5",
-      "status": "pending",
-      "remote_publication_verified": false,
+      "status": "ok",
+      "remote_publication_verified": true,
       "local_publication_verified": true,
-      "aar_sha256": "4a771116841554b7c10fdddd9cbc72505adb7917b5aa0dd62a51f1acd62603fb"
+      "aar_sha256": "4a771116841554b7c10fdddd9cbc72505adb7917b5aa0dd62a51f1acd62603fb",
+      "build_commit": "023026589fc0de2926d7edc6cb5404c5c3a11e65",
+      "pom_runtime_dependencies": 5,
+      "public_debug_consumer_build": true,
+      "public_release_consumer_build": true
     },
     "native_inference": {
       "abis": [
