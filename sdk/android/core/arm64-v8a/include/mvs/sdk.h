@@ -162,6 +162,33 @@ typedef struct MvsOptions {
   MvsBlushMode blush_mode; /* cheek-only by default; optional nose-tip tint */
   uint32_t blush_color;   /* 0xRRGGBB, see MvsBlushColor; default apple red */
 } MvsOptions;
+/* Independent extension: MvsOptions retains its existing binary layout.
+ * Iris/catchlight require Face478 iris points; Face468 still supports philtrum.
+ * All geometry uses the same oriented coordinates as MvsAnalysis. */
+typedef enum MvsIrisColor {
+  MVS_IRIS_BROWN = 0x8C623E, MVS_IRIS_AMBER = 0xB38B51,
+  MVS_IRIS_GRAY = 0x88959D, MVS_IRIS_OLIVE = 0x7C8961,
+  MVS_IRIS_BLUE = 0x628DA8, MVS_IRIS_VIOLET = 0x9381AC
+} MvsIrisColor;
+typedef enum MvsCatchlightStyle {
+  MVS_CATCHLIGHT_NATURAL = 0, MVS_CATCHLIGHT_WINDOW = 1,
+  MVS_CATCHLIGHT_CRESCENT = 2
+} MvsCatchlightStyle;
+typedef struct MvsPortraitDetails {
+  uint32_t struct_size;
+  float iris, catchlight; /* [0,1], 0 disables */
+  union {
+    float philtrum_length; /* [0,1]: 0 shorter, .5 identity, 1 longer */
+    float philtrum_width; /* Legacy spelling; same vertical length control. */
+  };
+  uint32_t iris_color; /* custom sRGB 0xRRGGBB or MvsIrisColor */
+  MvsCatchlightStyle catchlight_style;
+} MvsPortraitDetails;
+MVS_API MvsPortraitDetails mvs_default_portrait_details(void);
+MVS_API MvsStatus mvs_set_portrait_details(MvsHandle engine,
+                                           const MvsPortraitDetails* details);
+MVS_API uint32_t mvs_portrait_details_analysis_requirements(
+    const MvsPortraitDetails* details);
 /* Optional inference provider: callback populates borrowed views, valid until
  * process returns. The host owns model loading. Mobile SDK wrappers implement
  * this using the built-in inference adapter. Calls on one engine must not

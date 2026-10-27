@@ -1,11 +1,11 @@
-# 接口说明 / API guide · 0.4.4
+# 接口说明 / API guide · 0.4.5
 
 Android/iOS 相机 SDK 提供模型推理与 GPU 效果处理；Android 新增独立原生推理适配器；其他平台 core 由宿主提供对应帧分析数据。初始化、输入格式及资源生命周期见 [集成指南](INTEGRATION.md)。
 
 ## Android
 
 ```groovy
-implementation 'com.github.qmy1990:MediaVision:0.4.4'
+implementation 'com.github.qmy1990:MediaVision:0.4.5'
 ```
 
 ```java
@@ -62,7 +62,7 @@ NSError *error = nil;
 BOOL success = [processor configure:options error:&error];
 ```
 
-两种模式：`MVS_BLUSH_CHEEKS` / `VisionOptions.BLUSH_CHEEKS` 为脸颊；`MVS_BLUSH_CHEEKS_AND_NOSE` / `VisionOptions.BLUSH_CHEEKS_AND_NOSE` 为脸颊＋鼻尖。默认脸颊模式、苹果红颜色、强度0。模式、颜色和强度独立，换色不修改腮红范围与渐淡。0.4.4 所有平台均支持网格腮红渐变、鼻尖模式及 RGB 妆色；换色不改变空间范围。各平台使用相同的参考美白、磨皮公式；CPU、Metal、Vulkan 的采样和数值精度可能产生少量像素差异。
+两种模式：`MVS_BLUSH_CHEEKS` / `VisionOptions.BLUSH_CHEEKS` 为脸颊；`MVS_BLUSH_CHEEKS_AND_NOSE` / `VisionOptions.BLUSH_CHEEKS_AND_NOSE` 为脸颊＋鼻尖。默认脸颊模式、苹果红颜色、强度0。模式、颜色和强度独立，换色不修改腮红范围与渐淡。0.4.5 所有平台均支持网格腮红渐变、鼻尖模式及 RGB 妆色；换色不改变空间范围。各平台使用相同的参考美白、磨皮公式；CPU、Metal、Vulkan 的采样和数值精度可能产生少量像素差异。
 
 ## 腮红颜色 / Blush shades
 
@@ -85,11 +85,62 @@ BOOL success = [processor configure:options error:&error];
 | 奶茶 / Milk tea | `MVS_BLUSH_MILK_TEA` | `0xBE907C` |
 | 豆沙 / Bean paste | `MVS_BLUSH_BEAN_PASTE` | `0xB97983` |
 
+## 美瞳、眼神光与人中 / Portrait details
+
+| Java / ArkTS 字段 | C / Objective-C 字段 | 范围与含义 / Range |
+|---|---|---|
+| `iris` | `MvsPortraitDetails.iris` | 0–1，美瞳强度 / Contact-lens intensity |
+| `irisColor` | `iris_color` | 任意 sRGB `0xRRGGBB`，默认自然棕 `0x8C623E` |
+| `catchlight` | `catchlight` | 0–1，眼神光强度 / Catchlight intensity |
+| `catchlightStyle` | `catchlight_style` | 0 自然光、1 窗格光、2 月牙光 / Natural, window, crescent |
+| `philtrumLength` | `philtrum_length` | 0 缩短、0.5 中性、1 加长 / Shorter, neutral, longer |
+
+Android、iOS、HarmonyOS Demo 使用相同的 [29 种美瞳颜色](IRIS_COLORS.md)，接口也支持自定义颜色，包括纯黑和纯白。人中调节沿面部上下方向改变长度；旧拼写 `philtrumWidth` / `philtrum_width` 为兼容别名，含义相同。
+
+```java
+sdk.configure(options.toBuilder()
+    .iris(.8f).irisColor(0x13579B)
+    .catchlight(.4f).catchlightStyle(VisionOptions.CATCHLIGHT_WINDOW)
+    .philtrumLength(.3f).build());
+```
+
+```cpp
+MvsPortraitDetails details = mvs_default_portrait_details();
+details.iris = .8f;
+details.iris_color = 0x13579B;
+details.catchlight = .4f;
+details.catchlight_style = MVS_CATCHLIGHT_WINDOW;
+details.philtrum_length = .3f;
+MvsStatus status = mvs_set_portrait_details(engine, &details);
+// C++ RAII wrapper: engine.setPortraitDetails(details);
+```
+
+```objc
+MvsPortraitDetails details = mvs_default_portrait_details();
+details.iris = .8f;
+details.iris_color = 0x13579B;
+details.philtrum_length = .3f;
+BOOL success = [processor configurePortraitDetails:details error:&error];
+```
+
+```typescript
+const options = new VisionOptions();
+options.iris = 0.8;
+options.irisColor = 0x13579B;
+options.catchlight = 0.4;
+options.philtrumLength = 0.3;
+await sdk.configure(options);
+```
+
+原生接口使用独立的 `MvsPortraitDetails` 扩展，保留 ABI 11 的 `MvsOptions` 布局。始终使用 `mvs_default_portrait_details()` 初始化，保留 `struct_size`。美瞳/眼神光需 478 点及可信虹膜；人中调节支持 468/478 点。使用宿主分析时，关键点与输入图像须方向、镜像和时间戳一致。`mvs_portrait_details_analysis_requirements()` 返回扩展效果所需的分析需求，可与 `mvs_options_analysis_requirements()` 的结果按位合并。
+
+Portrait details use a separate extension without changing the ABI 11 options layout. Use the matching 0.4.5 headers and libraries. Iris effects require Face478 iris landmarks; philtrum adjustment also supports Face468. The legacy width spelling controls vertical length. Strengths, color, and style are independent.
+
 ## 兼容与检查 / Compatibility
 
-所有平台 0.4.4 使用 C ABI 11。始终使用 `mvs_default_config()`、`mvs_default_options()` 初始化并保留 `struct_size`；头文件和库必须配套，旧 C/C++ 调用方需重新编译。平台架构与链接方式见 [PLATFORMS.md](PLATFORMS.md)。调用失败时检查 `MvsStatus`；Android 封装和 iOS `NSError` 提供配置或处理错误。
+所有平台 0.4.5 使用 C ABI 11。始终使用 `mvs_default_config()`、`mvs_default_options()` 初始化并保留 `struct_size`；头文件和库必须配套，旧 C/C++ 调用方需重新编译。平台架构与链接方式见 [PLATFORMS.md](PLATFORMS.md)。调用失败时检查 `MvsStatus`；Android 封装和 iOS `NSError` 提供配置或处理错误。
 
-Android/iOS camera wrappers include inference and GPU processing. Android native callers may use the standalone inference adapter; other core callers supply synchronized analysis. Strengths are normally 0–1, with 0.5 neutral for eye spacing and cheekbones. Blush intensity, mode, and 24-bit RGB are independent. All 0.4.4 libraries require matching ABI 11 headers. Every platform supports the landmark-aligned blush regions, nose-tip mode, and RGB shades, with shared reference whitening and smoothing equations. Sampling and numerical precision may cause small pixel differences between backends.
+Android/iOS camera wrappers include inference and GPU processing. Android native callers may use the standalone inference adapter; other core callers supply synchronized analysis. Strengths are normally 0–1, with 0.5 neutral for eye spacing and cheekbones. Blush intensity, mode, and 24-bit RGB are independent. All 0.4.5 libraries require matching ABI 11 headers. Every platform supports the landmark-aligned blush regions, nose-tip mode, and RGB shades, with shared reference whitening and smoothing equations. Sampling and numerical precision may cause small pixel differences between backends.
 
 ## 桌面 Python Demo / Desktop Python demo
 
@@ -103,7 +154,7 @@ python demos/desktop/desktop_demo.py --input portrait.jpg --output output.jpg \
 
 ## Android 原生推理 / Android native inference
 
-0.4.4 新增 `mvs/litert.h` 和 `libmvs_inference.so`。模型、Tensor、Delegate、分割预后处理及 478 点 ROI 跟踪在 C++ 中执行；生产 Java 层不再使用 LiteRT Interpreter 或 MediaPipe Tasks 模型执行。C ABI 11 的效果结构不变，新推理 API 为独立新增接口。完整生命周期、Tensor 合约、运行库和无 JVM 示例见 [ANDROID_NATIVE.md](ANDROID_NATIVE.md)。
+Android 提供 `mvs/litert.h` 和 `libmvs_inference.so`。模型、Tensor、Delegate、分割预后处理及 478 点 ROI 跟踪在 C++ 中执行；生产 Java 层不再使用 LiteRT Interpreter 或 MediaPipe Tasks 模型执行。C ABI 11 的效果结构不变，新推理 API 为独立新增接口。完整生命周期、Tensor 合约、运行库和无 JVM 示例见 [ANDROID_NATIVE.md](ANDROID_NATIVE.md)。
 
 | C API | 输入 | 输出 / 用途 |
 |---|---|---|
@@ -118,7 +169,7 @@ python demos/desktop/desktop_demo.py --input portrait.jpg --output output.jpg \
 | `mvs_inference_create_with_options` | SDK 模型包及推理配置 | 分割和人脸分析适配器 |
 | `mvs_inference_analyze` | 帧、需求位 | `MvsAnalysis`，可接 `mvs_set_analyzer` |
 
-Android 0.4.4 runs model ownership, tensors, delegates, segmentation preprocessing/postprocessing, and face ROI tracking in native C++. Java supplies lifecycle and input/output orchestration. The standalone library supports the same public C API without JNI or a JVM. These inference symbols are Android-specific; iOS and desktop retain their existing inference adapters.
+Android 0.4.5 runs model ownership, tensors, delegates, segmentation preprocessing/postprocessing, and face ROI tracking in native C++. Java supplies lifecycle and input/output orchestration. The standalone library supports the same public C API without JNI or a JVM. These inference symbols are Android-specific; iOS and desktop retain their existing inference adapters.
 
 ## HarmonyOS / API20+
 

@@ -7,7 +7,7 @@ from verify_distribution import ROOT, verify
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--output', type=Path, default=ROOT / 'distribution-output/MediaVision-0.4.4.zip')
+    p.add_argument('--output', type=Path, default=ROOT / 'distribution-output/MediaVision-0.4.5.zip')
     a = p.parse_args()
     manifest = verify()
     a.output.parent.mkdir(parents=True, exist_ok=True)

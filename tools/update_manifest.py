@@ -24,6 +24,6 @@ if __name__ == '__main__':
                           sha256=digest(path), lfs=attr.strip().endswith(': lfs')))
     (ROOT/'manifest').mkdir(exist_ok=True)
     (ROOT/'manifest/files.json').write_text(json.dumps(dict(
-        schema=1, sdk='com.moon.mediavision', version='0.4.4', files=files),
+        schema=1, sdk='com.moon.mediavision', version='0.4.5', files=files),
         ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     print('Recorded', len(files), 'public files.')

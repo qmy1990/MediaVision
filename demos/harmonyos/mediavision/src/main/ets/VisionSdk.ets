@@ -15,6 +15,10 @@ export class VisionConfig implements NativeConfig {
   acceleratorBudgetMs: number = 18;
 }
 export class VisionOptions implements NativeOptions {
+  iris: number = 0; catchlight: number = 0; philtrumLength: number = .5;
+  get philtrumWidth(): number { return this.philtrumLength; }
+  set philtrumWidth(value: number) { this.philtrumLength = value; }
+  irisColor: number = 0x8C623E; catchlightStyle: number = 0;
   beauty: number = 0; whitening: number = 0; sharpen: number = 0; blemishRemoval: number = 0;
   eyeEnlarge: number = 0; faceSlim: number = 0; smallHead: number = 0; noseSlim: number = 0;
   eyeSpacing: number = .5; cheekboneReduce: number = .5;

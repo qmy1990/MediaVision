@@ -6,6 +6,39 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { VisionOptions, VisionCameraFrame, BackgroundMode, BlushMode, BlushColors, BlushPreset } from '@moon/mediavision';
 import { LiveCamera, LiveMeasurement } from '../camera/LiveCamera';
 interface BlushSelectOption { value: string; }
+interface IrisPreset { name: string; rgb: number; }
+// Demo presets only; VisionOptions.irisColor remains a custom 0xRRGGBB value.
+const IrisColors: IrisPreset[] = [
+  {name:'纯黑色',rgb:0x000000},
+  {name:'深棕色',rgb:0x3B2418},
+  {name:'巧克力棕',rgb:0x5E3A25},
+  {name:'自然棕',rgb:0x8C623E},
+  {name:'浅棕色',rgb:0xB0825A},
+  {name:'焦糖棕',rgb:0xA66B3D},
+  {name:'蜂蜜棕',rgb:0xC69445},
+  {name:'奶茶棕',rgb:0xA58A72},
+  {name:'灰棕色',rgb:0x8A7A70},
+  {name:'冷棕色',rgb:0x6E625E},
+  {name:'暖棕色',rgb:0x9B684C},
+  {name:'琥珀棕',rgb:0xB38B51},
+  {name:'金棕色',rgb:0xB88A42},
+  {name:'灰色',rgb:0x88959D},
+  {name:'浅灰色',rgb:0xB6BCC4},
+  {name:'蓝灰色',rgb:0x628DA8},
+  {name:'绿灰色',rgb:0x7C9690},
+  {name:'紫色',rgb:0x9381AC},
+  {name:'香芋紫',rgb:0xB7A0CB},
+  {name:'粉色',rgb:0xD58BA6},
+  {name:'樱花粉',rgb:0xF2B4C8},
+  {name:'蓝色',rgb:0x447DB8},
+  {name:'深海蓝',rgb:0x1F466A},
+  {name:'绿色',rgb:0x4F8867},
+  {name:'橄榄绿',rgb:0x7C8961},
+  {name:'酒红',rgb:0x6F283D},
+  {name:'墨绿',rgb:0x204B3F},
+  {name:'湖蓝',rgb:0x419EAE},
+  {name:'白色',rgb:0xFFFFFF}
+];
 @Entry
 @Component
 struct Index {
@@ -21,6 +54,8 @@ struct Index {
   @State resolution: number = 480;
   @State starting: boolean = false;
   @State colorName: string = '苹果红';
+  @State irisColorName: string = '自然棕';
+  @State catchlightName: string = '自然光';
   @State previewWidth: number = 0;
   @State previewHeight: number = 0;
   @State frameWidth: number = 480;
@@ -35,7 +70,7 @@ struct Index {
   private restartWanted: boolean = false;
   private previewController: XComponentController = new XComponentController();
   private surfaceReady: boolean = false;
-  private effects: string[] = ['背景虚化','磨皮','祛痘','美白','锐化','大眼','瘦脸','小头','鼻翼','眼间距','颧骨','口红','腮红','眉毛','换背景','Mask'];
+  private effects: string[] = ['背景虚化','磨皮','祛痘','美白','锐化','大眼','瘦脸','小头','鼻翼','眼间距','颧骨','口红','腮红','眉毛','美瞳','眼神光','人中长短','换背景','Mask'];
   private context(): common.UIAbilityContext {return this.getUIContext().getHostContext() as common.UIAbilityContext;}
   aboutToAppear(): void {
     this.options.beauty=.55;this.options.whitening=.25;this.options.blemishRemoval=.35;
@@ -115,6 +150,8 @@ struct Index {
       case '小头':return this.options.smallHead*100;case '鼻翼':return this.options.noseSlim*100;
       case '眼间距':return this.options.eyeSpacing*100;case '颧骨':return this.options.cheekboneReduce*100;
       case '口红':return this.options.lipstick*100;case '腮红':return this.options.blush*100;
+      case '美瞳':return this.options.iris*100;case '眼神光':return this.options.catchlight*100;
+      case '人中长短':return this.options.philtrumLength*100;
       case '眉毛':return this.options.eyebrowDarkening*100;
       case '换背景':return this.options.background===BackgroundMode.REPLACE?100:0;
       default:return this.options.background===BackgroundMode.MASK?100:0;
@@ -130,6 +167,8 @@ struct Index {
       case '小头':this.options.smallHead=v;break;case '鼻翼':this.options.noseSlim=v;break;
       case '眼间距':this.options.eyeSpacing=v;break;case '颧骨':this.options.cheekboneReduce=v;break;
       case '口红':this.options.lipstick=v;break;case '腮红':this.options.blush=v;break;
+      case '美瞳':this.options.iris=v;break;case '眼神光':this.options.catchlight=v;break;
+      case '人中长短':this.options.philtrumLength=v;break;
       case '眉毛':this.options.eyebrowDarkening=v;break;
       case '换背景':this.options.background=v>.5 && this.hasBackground?BackgroundMode.REPLACE:BackgroundMode.ORIGINAL;break;
       case 'Mask':this.options.background=v>.5?BackgroundMode.MASK:BackgroundMode.ORIGINAL;break;
@@ -158,6 +197,16 @@ struct Index {
         if(this.picture){Image(this.picture).objectFit(ImageFit.Contain).width('100%')
           .height(this.previewWidth>0?this.previewWidth*this.frameHeight/this.frameWidth:'100%');}
         if(this.starting){LoadingProgress().width(32).height(32);}
+        if(this.selected==='美瞳') {
+          Select(IrisColors.map((p:IrisPreset):BlushSelectOption=>({value:p.name})))
+            .value(this.irisColorName).font({size:12}).width(110).height(28).align(Alignment.Bottom)
+            .onSelect((i:number)=>{if(i<0 || i>=IrisColors.length)return;this.irisColorName=IrisColors[i].name;this.options.irisColor=IrisColors[i].rgb;this.changed();});
+        }
+        if(this.selected==='眼神光') {
+          Select([{value:'自然光'},{value:'窗格光'},{value:'月牙光'}])
+            .value(this.catchlightName).font({size:12}).width(110).height(28).align(Alignment.Bottom)
+            .onSelect((i:number)=>{const names:string[]=['自然光','窗格光','月牙光'];this.catchlightName=names[i];this.options.catchlightStyle=i;this.changed();});
+        }
         if(this.selected==='腮红') {
           Row({space:8}) {
             Button(this.options.blushMode===BlushMode.CHEEKS?'脸颊':'脸颊＋鼻尖').fontSize(12).height(28)

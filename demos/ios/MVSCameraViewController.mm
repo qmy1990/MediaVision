@@ -11,18 +11,19 @@
 #include <vector>
 
 namespace {
-constexpr NSInteger kEffectCount = 19;
+constexpr NSInteger kEffectCount = 22;
 const char *kNames[] = {"磨皮", "祛痘", "肤色", "增强", "大眼", "小头", "瘦脸", "鼻翼",    "眼距",
-                        "颧骨", "口红", "腮红", "眉毛", "道具", "头饰", "首饰", "背景虚化", "Mask", "换背景"};
+                        "颧骨", "口红", "腮红", "眉毛", "道具", "头饰", "首饰", "背景虚化", "Mask", "换背景", "美瞳", "眼神光", "人中长短"};
 // 83 preserves the previous radius 24. Maximum is round(24 * 1.2) = 29.
 constexpr float kDefaultBlurStrength = 83;
 const float kDefaults[] = {
-    55, 35, 25, 45, 25, 35, 28, 18, 65, 50, 30, 20, 25, 100, 100, 100, kDefaultBlurStrength, 100, 100};
+    55, 35, 25, 45, 25, 35, 28, 18, 65, 50, 30, 20, 25, 100, 100, 100, kDefaultBlurStrength, 100, 100, 60, 55, 25};
 uint32_t BlurRadius(float strength) {
   return std::max(1u, uint32_t(lroundf(24.f * 1.2f * std::clamp(strength, 0.f, 100.f) / 100.f)));
 }
-float Neutral(NSInteger index) { return index == 8 || index == 9 ? 50 : 0; }
-float Value(const MvsOptions &o, NSInteger index, float blurStrength) {
+float Neutral(NSInteger index) { return index == 8 || index == 9 || index == 21 ? 50 : 0; }
+float Value(const MvsOptions &o, const MvsPortraitDetails &d, NSInteger index, float blurStrength) {
+  if(index>=19)return (index==19?d.iris:index==20?d.catchlight:d.philtrum_length)*100;
   if (index == 16) return o.background == MVS_BACKGROUND_BLUR ? blurStrength : 0;
   if (index == 17) return o.background == MVS_BACKGROUND_MASK ? 100 : 0;
   if (index == 18) return o.background == MVS_BACKGROUND_REPLACE ? 100 : 0;
@@ -152,6 +153,7 @@ UIColor *PanelColor(CGFloat alpha) {
   BOOL _benchmarkMotion;
   CFTimeInterval _portraitMotionStart;
   CVPixelBufferRef _portraitBuffer;
+  MvsPortraitDetails _details;
   MvsOptions _options;  // Read and written under @synchronized(self).
   BOOL _front;
   BOOL _displayMirror;
@@ -223,6 +225,7 @@ UIColor *PanelColor(CGFloat alpha) {
   _generation = 0;
   _captureSeenGeneration = UINT64_MAX;
   _options = mvs_default_options();
+  _details = mvs_default_portrait_details();
   // Same startup strengths and neutral values as the Android demo.
   _options.beauty = .55f;
   _options.blemish_removal = .35f;
@@ -414,6 +417,27 @@ UIColor *PanelColor(CGFloat alpha) {
   ]];
 }
 - (void)syncColorMenu {
+  if(_selectedEffect==19 || _selectedEffect==20) {
+    BOOL iris=_selectedEffect==19;
+    NSArray *names=iris?@[@"纯黑色",@"深棕色",@"巧克力棕",@"自然棕",@"浅棕色",@"焦糖棕",@"蜂蜜棕",@"奶茶棕",@"灰棕色",@"冷棕色",@"暖棕色",@"琥珀棕",@"金棕色",@"灰色",@"浅灰色",@"蓝灰色",@"绿灰色",@"紫色",@"香芋紫",@"粉色",@"樱花粉",@"蓝色",@"深海蓝",@"绿色",@"橄榄绿",@"酒红",@"墨绿",@"湖蓝",@"白色"]:@[@"自然光",@"窗格光",@"月牙光"];
+    // Demo presets; the SDK also accepts any sRGB 0xRRGGBB.
+    const uint32_t colors[]={0x000000,0x3B2418,0x5E3A25,0x8C623E,0xB0825A,0xA66B3D,0xC69445,0xA58A72,0x8A7A70,0x6E625E,0x9B684C,0xB38B51,0xB88A42,0x88959D,0xB6BCC4,0x628DA8,0x7C9690,0x9381AC,0xB7A0CB,0xD58BA6,0xF2B4C8,0x447DB8,0x1F466A,0x4F8867,0x7C8961,0x6F283D,0x204B3F,0x419EAE,0xFFFFFF};
+    NSInteger selected=iris?-1:_details.catchlight_style;
+    if(iris)for(NSUInteger i=0;i<sizeof(colors)/sizeof(colors[0]);++i)if(colors[i]==_details.iris_color)selected=i;
+    NSMutableArray *actions=[NSMutableArray array];__weak MVSCameraViewController *weakSelf=self;
+    for(NSInteger i=0;i<names.count;++i) {
+      uint32_t rgb=iris?colors[i]:0;
+      UIAction *action=[UIAction actionWithTitle:names[i] image:nil identifier:nil handler:^(UIAction *a){
+        MVSCameraViewController *owner=weakSelf;if(!owner)return;
+        @synchronized(owner){if(iris)owner->_details.iris_color=rgb;else owner->_details.catchlight_style=(MvsCatchlightStyle)i;}
+        [owner syncEffectEditor];
+      }];
+      action.state=selected==i?UIMenuElementStateOn:UIMenuElementStateOff;[actions addObject:action];
+    }
+    _colorButton.menu=[UIMenu menuWithChildren:actions];
+    NSString *title=selected>=0?names[selected]:@"自定义";
+    [_colorButton setTitle:[title stringByAppendingString:@" ▾"] forState:UIControlStateNormal];return;
+  }
   BOOL skin = _selectedEffect == 2;
   BOOL blush = _selectedEffect == 11;
   NSArray *names = blush ? BlushNames() : skin ? @[ @"自然白", @"冷白皮", @"红润白", @"美黑" ] : @[
@@ -474,10 +498,10 @@ UIColor *PanelColor(CGFloat alpha) {
     options = _options;
   }
   for (NSInteger i = 0; i < kEffectCount; ++i) {
-    int value = (int)lroundf(Value(options, i, _blurStrength));
+    int value = (int)lroundf(Value(options, _details, i, _blurStrength));
     NSString *name = [NSString stringWithUTF8String:kNames[i]];
     if (i == 11) name = [name stringByAppendingFormat:@"-%@", BlushNames()[BlushColorIndex(options.blush_color)]];
-    BOOL boolean = (i >= 13 && i <= 15) || i >= 17;
+    BOOL boolean = (i >= 13 && i <= 15) || (i >= 17 && i <= 18);
     [_effectButtons[i]
         setTitle:boolean ? [NSString stringWithFormat:@"%@(%@)", name, value ? @"开" : @"关"]
                          : [NSString stringWithFormat:@"%@(%d)", name, value]
@@ -488,7 +512,7 @@ UIColor *PanelColor(CGFloat alpha) {
                                                                                alpha:.95]
                                                              : PanelColor(.65);
   }
-  float value = Value(options, _selectedEffect, _blurStrength);
+  float value = Value(options, _details, _selectedEffect, _blurStrength);
   if (fabsf(value - Neutral(_selectedEffect)) >= .5) {
     _remembered[_selectedEffect] = value;
   }
@@ -496,9 +520,9 @@ UIColor *PanelColor(CGFloat alpha) {
   _effectSwitch.on = fabsf(value - Neutral(_selectedEffect)) >= .5;
   _effectSwitch.accessibilityLabel = [_effectLabel.text stringByAppendingString:@"开关"];
   _effectSlider.value = value;
-  _effectSlider.hidden = (_selectedEffect >= 13 && _selectedEffect <= 15) || _selectedEffect >= 17;
+  _effectSlider.hidden = (_selectedEffect >= 13 && _selectedEffect <= 15) || (_selectedEffect >= 17 && _selectedEffect <= 18);
   _effectSlider.accessibilityLabel = [_effectLabel.text stringByAppendingString:@"强度"];
-  _colorButton.hidden = _selectedEffect != 2 && _selectedEffect != 10 && _selectedEffect != 11;
+  _colorButton.hidden = _selectedEffect != 2 && _selectedEffect != 10 && _selectedEffect != 11 && _selectedEffect != 19 && _selectedEffect != 20;
   _blushModeButton.hidden = _selectedEffect != 11;
   if (!_blushModeButton.hidden) [self syncBlushModeMenu];
   if (!_colorButton.hidden) {
@@ -507,7 +531,7 @@ UIColor *PanelColor(CGFloat alpha) {
 }
 - (void)selectEffect:(UIButton *)sender {
   _selectedEffect = sender.tag;
-  if (_selectedEffect >= 17) {
+  if (_selectedEffect >= 17 && _selectedEffect <= 18) {
     @synchronized(self) { [self setSelectedEffectValue:100]; }
   }
   [self syncEffectEditor];
@@ -533,11 +557,16 @@ UIColor *PanelColor(CGFloat alpha) {
   [self syncEffectEditor];
 }
 - (void)setSelectedEffectValue:(float)value {
-  if (_selectedEffect == 16) {
+  if (_selectedEffect>=19) {
+    float v=std::clamp(value/100,0.f,1.f);
+    if(_selectedEffect==19)_details.iris=v;
+    else if(_selectedEffect==20)_details.catchlight=v;
+    else _details.philtrum_length=v;
+  } else if (_selectedEffect == 16) {
     _blurStrength = std::clamp(value, 0.f, 100.f);
     _options.blur_radius = BlurRadius(_blurStrength);
     _options.background = _blurStrength > 0 ? MVS_BACKGROUND_BLUR : MVS_BACKGROUND_NONE;
-  } else if (_selectedEffect >= 17) {
+  } else if (_selectedEffect >= 17 && _selectedEffect <= 18) {
     MvsBackground mode = _selectedEffect == 17 ? MVS_BACKGROUND_MASK : MVS_BACKGROUND_REPLACE;
     if (value > 0) _options.background = mode;
     else if (_options.background == mode) _options.background = MVS_BACKGROUND_NONE;
@@ -1034,12 +1063,14 @@ UIColor *PanelColor(CGFloat alpha) {
   @autoreleasepool {
     NSError *error = nil;
     MvsOptions options;
+    MvsPortraitDetails details;
     @synchronized(self) {
-      options = _options;
+      options = _options; details=_allBeautyEnabled?_details:mvs_default_portrait_details();
       if (!_allBeautyEnabled) {
         for (NSInteger i = 0; i < 13; ++i) SetValue(options, i, Neutral(i));
       }
     }
+    if(![_processor configurePortraitDetails:details error:&error]){[self showError:error];_pending=false;return;}
     CFTimeInterval started = CACurrentMediaTime();
     int64_t timestamp =
         (int64_t)(CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sample)) * 1000);

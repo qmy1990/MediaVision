@@ -1,0 +1,95 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.moon.mediavision",
+    "module": "mediavision-sdk",
+    "version": "0.4.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.13"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "mediavision-sdk-0.4.5.aar",
+          "url": "mediavision-sdk-0.4.5.aar",
+          "size": 7426075,
+          "sha512": "baf337741aeda7e24d6fb3e740ae6baf66023a2ce4c69f7488f577bc4415bcc971227ff0f3a6d552a1eed655971e6deb851f4f29f4663f52839f188db5712560",
+          "sha256": "4a771116841554b7c10fdddd9cbc72505adb7917b5aa0dd62a51f1acd62603fb",
+          "sha1": "1dc56537fea5b8a1bfe612dc7fff788363a2d80f",
+          "md5": "026820558d8599bfd9e41dd0f433c200"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.ai.edge.litert",
+          "module": "litert",
+          "version": {
+            "requires": "1.4.2"
+          }
+        },
+        {
+          "group": "com.google.ai.edge.litert",
+          "module": "litert-gpu",
+          "version": {
+            "requires": "1.4.2"
+          }
+        },
+        {
+          "group": "com.google.ai.edge.litert",
+          "module": "litert-gpu-api",
+          "version": {
+            "requires": "1.4.2"
+          }
+        },
+        {
+          "group": "com.qualcomm.qti",
+          "module": "qnn-runtime",
+          "version": {
+            "requires": "2.45.0"
+          }
+        },
+        {
+          "group": "com.qualcomm.qti",
+          "module": "qnn-litert-delegate",
+          "version": {
+            "requires": "2.45.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "mediavision-sdk-0.4.5.aar",
+          "url": "mediavision-sdk-0.4.5.aar",
+          "size": 7426075,
+          "sha512": "baf337741aeda7e24d6fb3e740ae6baf66023a2ce4c69f7488f577bc4415bcc971227ff0f3a6d552a1eed655971e6deb851f4f29f4663f52839f188db5712560",
+          "sha256": "4a771116841554b7c10fdddd9cbc72505adb7917b5aa0dd62a51f1acd62603fb",
+          "sha1": "1dc56537fea5b8a1bfe612dc7fff788363a2d80f",
+          "md5": "026820558d8599bfd9e41dd0f433c200"
+        }
+      ]
+    }
+  ]
+}

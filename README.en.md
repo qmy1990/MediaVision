@@ -9,7 +9,7 @@ MediaVision brings beauty filters, face reshaping, makeup and background effects
 
 **The released SDK is free for commercial use.**
 
-Current release: **0.4.4** · [Changelog](CHANGELOG.md) · [API guide](docs/API.md)
+Current release: **0.4.5** · [Changelog](CHANGELOG.md) · [API guide](docs/API.md)
 
 ## Features and plans
 
@@ -35,6 +35,9 @@ Current release: **0.4.4** · [Changelog](CHANGELOG.md) · [API guide](docs/API.
 | Reshaping | Cheekbone adjustment | Refining | Alignment with background boundaries |
 | Makeup | Lipstick, colors and intensity | Refining | Lip boundaries and occlusion |
 | Makeup | Blush / 14 colors / cheeks and nose-tip modes | Available | Tracking and natural falloff |
+| Makeup | Colored contact lenses / 29 colors / custom RGB | Available | Iris alignment and eyelid occlusion |
+| Makeup | Catchlights / 3 styles | Available | Blink and tracking stability |
+| Reshaping | Philtrum adjustment | Available | Vertical length and natural transitions |
 | Makeup | Eyebrow darkening | Available | Hair detail and occlusion |
 | Accessories | Basic mesh props | Basic | More models and materials |
 | Accessories | Headwear | Basic | Pose tracking and occlusion |
@@ -52,13 +55,12 @@ Current release: **0.4.4** · [Changelog](CHANGELOG.md) · [API guide](docs/API.
 | Performance | Realtime on older iPhones | Refining | 480p/30 FPS and 720p/25 FPS targets |
 | Planned 1 | Pupil size | Planned | Precise pupil-region scaling |
 | Planned 2 | Forehead width | Planned | Natural contour and hairline transitions |
-| Planned 3 | Colored contact lenses | Planned | Texture fit and eyelid occlusion |
-| Planned 4 | Sunglasses | Planned | Pose tracking and realistic occlusion |
-| Planned 5 | Nasolabial fold reduction | Planned | Local texture preservation |
-| Planned 6 | Teeth whitening | Planned | Tooth isolation and natural brightening |
-| Planned 7 | Dark circle reduction | Planned | Blend with surrounding skin |
-| Planned 8 | Hairline adjustment | Planned | Natural hair boundaries |
-| Planned 9 | Hair volume | Planned | Hair structure and temporal stability |
+| Planned 3 | Sunglasses | Planned | Pose tracking and realistic occlusion |
+| Planned 4 | Nasolabial fold reduction | Planned | Local texture preservation |
+| Planned 5 | Teeth whitening | Planned | Tooth isolation and natural brightening |
+| Planned 6 | Dark circle reduction | Planned | Blend with surrounding skin |
+| Planned 7 | Hairline adjustment | Planned | Natural hair boundaries |
+| Planned 8 | Hair volume | Planned | Hair structure and temporal stability |
 
 ## Effect comparisons
 
@@ -81,7 +83,7 @@ Keep `google()` and `mavenCentral()`, then add:
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:0.4.4'
+implementation 'com.github.qmy1990:MediaVision:0.4.5'
 ```
 
 The Java package is `com.moon.mediavision`:
@@ -89,14 +91,17 @@ The Java package is `com.moon.mediavision`:
 ```java
 VisionSdk sdk = new VisionSdk(context, VisionSdk.AUTO);
 sdk.configure(new VisionOptions.Builder()
-    .beauty(0.55f).blemishRemoval(0.35f).build());
+    .beauty(0.55f).blemishRemoval(0.35f)
+    .iris(0.8f).irisColor(0x8C623E).philtrumLength(0.5f).build());
 ```
+
+The demos include 29 contact-lens colors. `irisColor()` accepts any `0xRRGGBB`; see [color presets](docs/IRIS_COLORS.md). Philtrum adjustment changes vertical length: `0` shorter, `0.5` neutral, `1` longer.
 
 See the [Android demo](demos/android) for camera integration and the [integration instructions](docs/MAVEN.md) for complete configuration. Android API 26+.
 
 ## HarmonyOS integration
 
-Supports **HarmonyOS 6.0.0 / API 20+** with a native C/C++ SDK, ArkTS HAR, encrypted models, and a live-camera demo. Add the [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.4.har) to your project and place the model package in `resources/rawfile`:
+Supports **HarmonyOS 6.0.0 / API 20+** with a native C/C++ SDK, ArkTS HAR, encrypted models, and a live-camera demo. Add the [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.5.har) to your project and place the model package in `resources/rawfile`:
 
 ```typescript
 import { VisionSdk, VisionOptions } from '@moon/mediavision';
@@ -107,7 +112,7 @@ options.beauty = 0.55;
 await sdk.configure(options);
 ```
 
-[Complete download](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.4.zip) · [Camera demo](demos/harmonyos) · [Integration guide](docs/HARMONYOS.md)
+[Complete download](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.5.zip) · [Camera demo](demos/harmonyos) · [Integration guide](docs/HARMONYOS.md)
 
 ## iOS / C++ integration
 
@@ -128,4 +133,4 @@ git clone https://github.com/qmy1990/MediaVision.git
 
 SDKs are in `sdk/`, demos in `demos/`, and installers in `installers/`. Source ZIP download instructions are in the [integration guide](docs/INTEGRATION.md).
 
-Android 0.4.4 supports native C/C++ inference and effects without Java. See the [native integration guide](docs/ANDROID_NATIVE.md) for runtime libraries, tensor contracts, and a standalone example.
+Android 0.4.5 supports native C/C++ inference and effects without Java. See the [native integration guide](docs/ANDROID_NATIVE.md) for runtime libraries, tensor contracts, and a standalone example.

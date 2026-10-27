@@ -9,7 +9,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 
 **发布的 SDK 可以免费商用。**
 
-当前版本：**0.4.4** · [更新日志](CHANGELOG.md) · [接口说明](docs/API.md)
+当前版本：**0.4.5** · [更新日志](CHANGELOG.md) · [接口说明](docs/API.md)
 
 ## 功能与计划
 
@@ -35,6 +35,9 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 | 塑形 | 颧骨调节 | 优化中 | 背景边缘对齐 |
 | 美妆 | 口红 / 颜色 / 强度 | 优化中 | 嘴部遮挡与边缘贴合 |
 | 美妆 | 腮红 / 14 色 / 脸颊与鼻尖模式 | 已支持 | 动态贴合与自然渐淡 |
+| 美妆 | 美瞳 / 29 色 / 自定义 RGB | 已支持 | 虹膜贴合与眼睑遮挡 |
+| 美妆 | 眼神光 / 3 种样式 | 已支持 | 眨眼与动态稳定性 |
+| 塑形 | 人中调节 | 已支持 | 上下长短与自然过渡 |
 | 美妆 | 眉毛加深 | 已支持 | 毛发细节与遮挡 |
 | 道具 | 基础网格道具 | 基础版 | 更丰富的模型与材质 |
 | 道具 | 头饰 | 基础版 | 姿态跟随与遮挡 |
@@ -52,13 +55,12 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 | 性能 | 低端 iPhone 实时处理 | 优化中 | 480p/30 FPS、720p/25 FPS |
 | 计划 1 | 瞳孔大小调节 | 待开发 | 瞳孔区域精细缩放 |
 | 计划 2 | 额头宽窄调节 | 待开发 | 自然轮廓与发际线衔接 |
-| 计划 3 | 美瞳佩戴 | 待开发 | 纹理贴合与眼睑遮挡 |
-| 计划 4 | 墨镜佩戴 | 待开发 | 姿态跟随与真实遮挡 |
-| 计划 5 | 法令纹变淡 | 待开发 | 局部纹理保护 |
-| 计划 6 | 牙齿美白 | 待开发 | 牙齿区域隔离与自然提亮 |
-| 计划 7 | 黑眼圈调节 | 待开发 | 眼周肤色融合 |
-| 计划 8 | 发际线调节 | 待开发 | 头发边缘自然融合 |
-| 计划 9 | 发量调节 | 待开发 | 头发结构与动态稳定性 |
+| 计划 3 | 墨镜佩戴 | 待开发 | 姿态跟随与真实遮挡 |
+| 计划 4 | 法令纹变淡 | 待开发 | 局部纹理保护 |
+| 计划 5 | 牙齿美白 | 待开发 | 牙齿区域隔离与自然提亮 |
+| 计划 6 | 黑眼圈调节 | 待开发 | 眼周肤色融合 |
+| 计划 7 | 发际线调节 | 待开发 | 头发边缘自然融合 |
+| 计划 8 | 发量调节 | 待开发 | 头发结构与动态稳定性 |
 
 ## 效果对比
 
@@ -81,7 +83,7 @@ MediaVision 提供美颜、面部塑形、美妆和背景处理，支持移动�
 maven { url 'https://jitpack.io' }
 
 // app/build.gradle
-implementation 'com.github.qmy1990:MediaVision:0.4.4'
+implementation 'com.github.qmy1990:MediaVision:0.4.5'
 ```
 
 Java 包名为 `com.moon.mediavision`：
@@ -89,14 +91,17 @@ Java 包名为 `com.moon.mediavision`：
 ```java
 VisionSdk sdk = new VisionSdk(context, VisionSdk.AUTO);
 sdk.configure(new VisionOptions.Builder()
-    .beauty(0.55f).blemishRemoval(0.35f).build());
+    .beauty(0.55f).blemishRemoval(0.35f)
+    .iris(0.8f).irisColor(0x8C623E).philtrumLength(0.5f).build());
 ```
+
+Demo 内置 29 种美瞳颜色，`irisColor()` 支持任意 `0xRRGGBB`，见[颜色预设](docs/IRIS_COLORS.md)。人中调节为上下长短：`0` 缩短、`0.5` 中性、`1` 加长。
 
 相机接入示例见 [Android Demo](demos/android)，完整配置见 [接入文档](docs/MAVEN.md)。支持 Android API 26+。
 
 ## HarmonyOS 接入
 
-支持 **HarmonyOS 6.0.0 / API 20+**，提供 C/C++ SDK、ArkTS HAR、加密模型和实时相机 Demo。将 [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.4.har) 加入项目，模型包放入 `resources/rawfile`：
+支持 **HarmonyOS 6.0.0 / API 20+**，提供 C/C++ SDK、ArkTS HAR、加密模型和实时相机 Demo。将 [HAR](sdk/harmonyos/har/mediavision-sdk-0.4.5.har) 加入项目，模型包放入 `resources/rawfile`：
 
 ```typescript
 import { VisionSdk, VisionOptions } from '@moon/mediavision';
@@ -107,7 +112,7 @@ options.beauty = 0.55;
 await sdk.configure(options);
 ```
 
-[完整下载包](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.4.zip) · [相机 Demo](demos/harmonyos) · [接入说明](docs/HARMONYOS.md)
+[完整下载包](https://github.com/qmy1990/MediaVision/raw/refs/heads/main/packages/harmonyos/MediaVision-harmonyos-0.4.5.zip) · [相机 Demo](demos/harmonyos) · [接入说明](docs/HARMONYOS.md)
 
 ## iOS / C++ 接入
 
@@ -128,4 +133,4 @@ git clone https://github.com/qmy1990/MediaVision.git
 
 SDK 位于 `sdk/`，Demo 位于 `demos/`，安装包位于 `installers/`。直接下载源码 ZIP 的使用方法见 [集成指南](docs/INTEGRATION.md)。
 
-Android 0.4.4 支持纯 C/C++ 模型推理与效果处理，无需 Java；[原生接入说明](docs/ANDROID_NATIVE.md)包含运行库、参数和完整示例。
+Android 0.4.5 支持纯 C/C++ 模型推理与效果处理，无需 Java；[原生接入说明](docs/ANDROID_NATIVE.md)包含运行库、参数和完整示例。

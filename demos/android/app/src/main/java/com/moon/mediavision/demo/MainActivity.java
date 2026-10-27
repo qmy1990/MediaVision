@@ -56,6 +56,11 @@ public final class MainActivity extends ComponentActivity {
   private Button allBeautyButton;
   private Spinner lipstickColorSpinner;
   private Spinner skinToneSpinner;
+  private static final String[] IRIS_NAMES={"纯黑色","深棕色","巧克力棕","自然棕","浅棕色","焦糖棕","蜂蜜棕","奶茶棕","灰棕色","冷棕色","暖棕色","琥珀棕","金棕色","灰色","浅灰色","蓝灰色","绿灰色","紫色","香芋紫","粉色","樱花粉","蓝色","深海蓝","绿色","橄榄绿","酒红","墨绿","湖蓝","白色"};
+  // Demo presets only; VisionOptions.Builder.irisColor accepts any 0xRRGGBB.
+  private static final int[] IRIS_COLORS={0x000000,0x3B2418,0x5E3A25,0x8C623E,0xB0825A,0xA66B3D,0xC69445,0xA58A72,0x8A7A70,0x6E625E,0x9B684C,0xB38B51,0xB88A42,0x88959D,0xB6BCC4,0x628DA8,0x7C9690,0x9381AC,0xB7A0CB,0xD58BA6,0xF2B4C8,0x447DB8,0x1F466A,0x4F8867,0x7C8961,0x6F283D,0x204B3F,0x419EAE,0xFFFFFF};
+  private Spinner irisColorSpinner, catchlightStyleSpinner;
+  private int irisUiSelection = 3; // Natural brown; suppress queued programmatic callbacks.
   private Spinner blushModeSpinner;
   private Spinner blushColorSpinner;
   private static final String[] BLUSH_NAMES = {
@@ -276,6 +281,21 @@ public final class MainActivity extends ComponentActivity {
       if (intent.hasExtra("blush_color")) {
         b.blushColor(intent.getIntExtra("blush_color", VisionOptions.BLUSH_APPLE_RED));
       }
+      if (intent.hasExtra("iris")) {
+        b.iris(clampUnit(intent.getFloatExtra("iris", 0f)));
+      }
+      if (intent.hasExtra("iris_color")) {
+        b.irisColor(intent.getIntExtra("iris_color", VisionOptions.IRIS_BROWN));
+      }
+      if (intent.hasExtra("catchlight")) {
+        b.catchlight(clampUnit(intent.getFloatExtra("catchlight", 0f)));
+      }
+      if (intent.hasExtra("catchlight_style")) {
+        b.catchlightStyle(Math.max(0, Math.min(2, intent.getIntExtra("catchlight_style", 0))));
+      }
+      if (intent.hasExtra("philtrum_length") || intent.hasExtra("philtrum_width")) {
+        b.philtrumLength(clampUnit(intent.getFloatExtra("philtrum_length", intent.getFloatExtra("philtrum_width", .5f))));
+      }
     }
     if (intent.hasExtra("beauty")) {
       b.beauty(clampUnit(intent.getFloatExtra("beauty", options.beauty)));
@@ -385,6 +405,9 @@ public final class MainActivity extends ComponentActivity {
 
     buildEffectControls();
     selectedEffect = findEffect("磨皮");
+    if (BuildConfig.DEBUG && getIntent().hasExtra("qa_effect")) {
+      selectedEffect = findEffect(getIntent().getStringExtra("qa_effect"));
+    }
     LinearLayout bottom = new LinearLayout(this);
     bottom.setOrientation(LinearLayout.VERTICAL);
     bottom.setPadding(dp(8), dp(4), dp(8), dp(5));
@@ -446,6 +469,28 @@ public final class MainActivity extends ComponentActivity {
             }
           }
         });
+    irisColorSpinner=compactSpinner(IRIS_NAMES);
+    irisColorSpinner.setSelection(irisUiSelection,false);
+    catchlightStyleSpinner=compactSpinner(new String[]{"自然光","窗格光","月牙光"});
+    editor.addView(irisColorSpinner,new LinearLayout.LayoutParams(dp(94),dp(38)));
+    editor.addView(catchlightStyleSpinner,new LinearLayout.LayoutParams(dp(94),dp(38)));
+    irisColorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+      public void onNothingSelected(AdapterView<?> parent){}
+      public void onItemSelected(AdapterView<?> parent,View view,int position,long id){
+        if(!syncingEffectUi && position>=0 && position<IRIS_COLORS.length &&
+            position==irisColorSpinner.getSelectedItemPosition() && position!=irisUiSelection) {
+          irisUiSelection=position;
+          options=options.toBuilder().irisColor(IRIS_COLORS[position]).build();
+        }
+      }
+    });
+    catchlightStyleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+      public void onNothingSelected(AdapterView<?> parent){}
+      public void onItemSelected(AdapterView<?> parent,View view,int position,long id){
+        if(!syncingEffectUi && position>=0 && position<3)
+          options=options.toBuilder().catchlightStyle(position).build();
+      }
+    });
     blushModeSpinner = compactSpinner(new String[] {"脸颊", "脸颊＋鼻尖"});
     LinearLayout.LayoutParams blushParams = new LinearLayout.LayoutParams(dp(108), dp(38));
     blushParams.leftMargin = dp(4);
@@ -491,6 +536,9 @@ public final class MainActivity extends ComponentActivity {
     LinearLayout.LayoutParams listParams = new LinearLayout.LayoutParams(-1, dp(48));
     listParams.topMargin = dp(4);
     bottom.addView(effectList, listParams);
+    if (BuildConfig.DEBUG && getIntent().hasExtra("qa_effect")) {
+      effectList.scrollToPosition(selectedEffect);
+    }
     root.addView(bottom, new FrameLayout.LayoutParams(-1, dp(105), android.view.Gravity.BOTTOM));
     effectSlider.setOnSeekBarChangeListener(
         new SeekBar.OnSeekBarChangeListener() {
@@ -703,6 +751,9 @@ public final class MainActivity extends ComponentActivity {
             25,
             () -> pct(options.eyebrowDarkening),
             v -> options = options.toBuilder().eyebrowDarkening(v / 100f).build()));
+    effects.add(strength("美瞳",0,60,()->pct(options.iris),v->options=options.toBuilder().iris(v/100f).build()));
+    effects.add(strength("眼神光",0,55,()->pct(options.catchlight),v->options=options.toBuilder().catchlight(v/100f).build()));
+    effects.add(strength("人中长短",50,25,()->pct(options.philtrumLength),v->options=options.toBuilder().philtrumLength(v/100f).build()));
     effects.add(
         toggle(
             "道具",
@@ -841,6 +892,12 @@ public final class MainActivity extends ComponentActivity {
     if (skinTone) {
       skinToneSpinner.setSelection(options.skinTone, false);
     }
+    irisColorSpinner.setVisibility("美瞳".equals(effect.name)?View.VISIBLE:View.GONE);
+    catchlightStyleSpinner.setVisibility("眼神光".equals(effect.name)?View.VISIBLE:View.GONE);
+    int irisIndex=-1;for(int i=0;i<IRIS_COLORS.length;++i)if(options.irisColor==IRIS_COLORS[i])irisIndex=i;
+    if(irisIndex>=0){irisUiSelection=irisIndex;irisColorSpinner.setSelection(irisIndex,false);}
+    // A custom SDK RGB is retained until the user explicitly picks a preset.
+    catchlightStyleSpinner.setSelection(options.catchlightStyle,false);
     boolean blush = "腮红".equals(effect.name);
     blushModeSpinner.setVisibility(blush ? View.VISIBLE : View.GONE);
     blushColorSpinner.setVisibility(blush ? View.VISIBLE : View.GONE);
@@ -865,7 +922,7 @@ public final class MainActivity extends ComponentActivity {
     if (allBeautyEnabled) {
       return value;
     }
-    return value.toBuilder()
+    return value.toBuilder().iris(0).catchlight(0).philtrumLength(.5f)
         .beauty(0)
         .whitening(0)
         .sharpen(0)
@@ -1458,6 +1515,16 @@ public final class MainActivity extends ComponentActivity {
                   + current.cheekboneReduce
                   + " nose_slim="
                   + current.noseSlim
+                  + " iris="
+                  + current.iris
+                  + " iris_color="
+                  + current.irisColor
+                  + " catchlight="
+                  + current.catchlight
+                  + " catchlight_style="
+                  + current.catchlightStyle
+                  + " philtrum_length="
+                  + current.philtrumLength
                   + " background="
                   + current.background
                   + " mesh="

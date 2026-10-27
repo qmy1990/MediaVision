@@ -11,6 +11,8 @@ import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.hardware.camera2.params.SessionConfiguration;
+import android.hardware.camera2.params.OutputConfiguration;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Build;
@@ -93,6 +95,7 @@ final class Camera2Frames implements AutoCloseable {
     cameraThread = new HandlerThread("MvsCamera2", Process.THREAD_PRIORITY_DISPLAY);
     cameraThread.start();
     handler = new Handler(cameraThread.getLooper());
+    final Handler callbackHandler = handler;
     CameraManager manager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
     Size requestedSize = new Size(portraitHeight, portraitWidth);
     String cameraId = null;
@@ -229,9 +232,15 @@ final class Camera2Frames implements AutoCloseable {
             }
             device = c;
             try {
-              c.createCaptureSession(
-                  Collections.singletonList(reader.getSurface()),
-                  new CameraCaptureSession.StateCallback() {
+              // Configure the target cadence before creating the session. Applying
+              // it only to the first repeating request may reconfigure the ISP.
+              CaptureRequest.Builder b = c.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+              b.addTarget(reader.getSurface());
+              b.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_VIDEO);
+              Range<Integer> fps = chooseThirtyFps(selectedCharacteristics);
+              if (fps != null) b.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, fps);
+              final CaptureRequest request = b.build();
+              CameraCaptureSession.StateCallback callback = new CameraCaptureSession.StateCallback() {
                     @Override
                     public void onConfigured(CameraCaptureSession s) {
                       if (closed) {
@@ -240,17 +249,7 @@ final class Camera2Frames implements AutoCloseable {
                       }
                       session = s;
                       try {
-                        CaptureRequest.Builder b =
-                            c.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
-                        b.addTarget(reader.getSurface());
-                        b.set(
-                            CaptureRequest.CONTROL_AF_MODE,
-                            CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_VIDEO);
-                        Range<Integer> fps = chooseThirtyFps(selectedCharacteristics);
-                        if (fps != null) {
-                          b.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, fps);
-                        }
-                        s.setRepeatingRequest(b.build(), null, handler);
+                        s.setRepeatingRequest(request, null, handler);
                       } catch (CameraAccessException error) {
                         listener.onError(error);
                       }
@@ -261,8 +260,24 @@ final class Camera2Frames implements AutoCloseable {
                       listener.onError(
                           new IllegalStateException("Camera2 session configuration failed"));
                     }
-                  },
-                  handler);
+                  };
+              if (Build.VERSION.SDK_INT >= 28) {
+                SessionConfiguration config = new SessionConfiguration(
+                    SessionConfiguration.SESSION_REGULAR,
+                    Collections.singletonList(new OutputConfiguration(reader.getSurface())),
+                    command -> callbackHandler.post(command), callback);
+                config.setSessionParameters(request);
+                c.createCaptureSession(config);
+              } else {
+                // API 26/27 have no session-parameter API. Keep the same
+                // supported range on the initial repeating request.
+                c.createCaptureSession(Collections.singletonList(reader.getSurface()), callback, handler);
+              }
+              if (BuildConfig.DEBUG) {
+                Log.i("MediaVisionCamera", "initial_ae_fps=" + fps
+                    + " supported=" + java.util.Arrays.toString(selectedCharacteristics.get(
+                        CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES)));
+              }
             } catch (CameraAccessException error) {
               listener.onError(error);
             }
@@ -358,6 +373,8 @@ final class Camera2Frames implements AutoCloseable {
     if (ranges == null) {
       return null;
     }
+    // Request a fixed 30 FPS whenever the camera advertises this range.
+    // Only use a different supported range on cameras without fixed 30 FPS.
     Range<Integer> best = null;
     for (Range<Integer> range : ranges) {
       if (!range.contains(30)) {

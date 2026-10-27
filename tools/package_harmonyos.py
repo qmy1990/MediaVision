@@ -15,11 +15,12 @@ DIRECTORIES = ('sdk/harmonyos', 'models/harmonyos', 'installers/harmonyos',
                'include/mvs', 'demos/harmonyos', 'demos/harmonyos-native', 'licenses')
 FILES = ('LICENSE.md', 'CHANGELOG.md', 'docs/API.md', 'docs/HARMONYOS.md',
          'tools/build_harmonyos_demo.py', 'tools/convert_harmonyos_models.py',
-         'tools/fix_harmonyos_prelu.py', 'tools/package_harmonyos.py')
+         'tools/fix_harmonyos_prelu.py', 'tools/package_harmonyos.py',
+         'docs/IRIS_COLORS.md', 'demos/iris_colors.json')
 SKIP_DIRS = {'build', '.hvigor', 'oh_modules', 'node_modules', '.git', '__pycache__', 'xcuserdata'}
 FORBIDDEN = {'.metal', '.glsl', '.vert', '.frag', '.comp', '.spv', '.air', '.p12',
              '.pem', '.p7b', '.cer', '.mobileprovision', '.keystore', '.jks', '.ms', '.tflite'}
-README = """# MediaVision HarmonyOS 0.4.4
+README = """# MediaVision HarmonyOS 0.4.5
 
 最低 HarmonyOS 6.0.0 / API20。SDK可免费商用。
 
@@ -48,7 +49,7 @@ Repository: https://github.com/qmy1990/MediaVision
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path,
-                        default=ROOT/'packages/harmonyos/MediaVision-harmonyos-0.4.4.zip')
+                        default=ROOT/'packages/harmonyos/MediaVision-harmonyos-0.4.5.zip')
     args = parser.parse_args()
     paths = {ROOT/p for p in FILES}
     for directory in DIRECTORIES:
@@ -69,20 +70,20 @@ def main():
     assert hashlib.sha256(model).hexdigest() == validation['encrypted_package_sha256']
     entries = [{'path': p, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
                for p, data in sorted(content.items())]
-    content['PACKAGE-MANIFEST.json'] = (json.dumps({'sdk': 'com.moon.mediavision', 'version': '0.4.4',
+    content['PACKAGE-MANIFEST.json'] = (json.dumps({'sdk': 'com.moon.mediavision', 'version': '0.4.5',
         'min_api': 20, 'files': entries}, ensure_ascii=False, indent=2)+'\n').encode()
     output = args.output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
         for name, data in sorted(content.items()):
-            info = zipfile.ZipInfo('MediaVision-harmonyos-0.4.4/'+name, date_time=(2026, 10, 21, 0, 0, 0))
+            info = zipfile.ZipInfo('MediaVision-harmonyos-0.4.5/'+name, date_time=(2026, 10, 28, 0, 0, 0))
             info.external_attr = (0o100755 if name.endswith('.py') else 0o100644) << 16
             info.compress_type = zipfile.ZIP_DEFLATED
             archive.writestr(info, data)
     with zipfile.ZipFile(output) as archive:
         assert archive.testzip() is None
         for entry in entries:
-            assert hashlib.sha256(archive.read('MediaVision-harmonyos-0.4.4/'+entry['path'])).hexdigest() == entry['sha256']
+            assert hashlib.sha256(archive.read('MediaVision-harmonyos-0.4.5/'+entry['path'])).hexdigest() == entry['sha256']
     digest = hashlib.sha256(output.read_bytes()).hexdigest()
     output.with_suffix('.zip.sha256').write_text(digest+'  '+output.name+'\n')
     print(f'PASS: {len(entries)} files; {output.stat().st_size} bytes; SHA256 {digest}')

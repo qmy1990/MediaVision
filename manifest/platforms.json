@@ -1,8 +1,8 @@
 {
   "sdk": "com.moon.mediavision",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "c_abi": 11,
-  "generated_date": "2026-10-21",
+  "generated_date": "2026-10-28",
   "android": {
     "camera_abis": [
       "arm64-v8a",
@@ -20,14 +20,11 @@
     "public_maven_consumer_build": true,
     "new_package_device_test": false,
     "jitpack": {
-      "coordinate": "com.github.qmy1990:MediaVision:0.4.4",
-      "status": "ok",
-      "remote_publication_verified": true,
-      "aar_sha256": "7a83acc67fbc9eb2c414c1aa3dc323410011b1d889a303cb0f26348913c7570b",
-      "build_commit": "1cd4c60ffaf15fce079087e93dcbf2f5ef6cb523",
-      "pom_runtime_dependencies": 5,
-      "public_debug_consumer_build": true,
-      "public_release_consumer_build": true
+      "coordinate": "com.github.qmy1990:MediaVision:0.4.5",
+      "status": "pending",
+      "remote_publication_verified": false,
+      "local_publication_verified": true,
+      "aar_sha256": "4a771116841554b7c10fdddd9cbc72505adb7917b5aa0dd62a51f1acd62603fb"
     },
     "native_inference": {
       "abis": [
@@ -40,8 +37,9 @@
       "pure_c_gpu_test": true,
       "device": "Infinix X6878 / SM7635",
       "qnn_device_test": false,
-      "device_test_scope": "Prior native inference validation; 0.4.4 preserves the C inference API and refreshes effects."
-    }
+      "device_test_scope": "Prior native inference validation; 0.4.5 retains the inference API. New release binaries are checked separately."
+    },
+    "local_candidate_public_demo_build": true
   },
   "ios": {
     "device_archs": [
@@ -55,7 +53,7 @@
     "public_binary_only_demo_build": true,
     "signing": "unsigned",
     "device_test_this_release": false,
-    "effect_code_device_validation": "2026-10-20/21 iPhone 8 Plus iOS16.7.10; same effect source before version-only bump to0.4.4"
+    "effect_code_device_validation": "Prior iPhone 8 Plus validation through 2026-10-21; new 0.4.5 packages receive compile and integrity checks."
   },
   "macos": {
     "archs": [
@@ -64,17 +62,19 @@
     ],
     "rebuilt": true,
     "native_tests": {
-      "passed": 13,
+      "passed": 15,
       "failed": 0
     },
     "public_cpp_demo_run": true,
     "render_backend_verified": "Metal",
     "arm64_runtime_tested": false,
     "cpu_metal_parity": {
-      "release_effect_code": "Synchronized 2026-10-20; same source in0.4.4",
-      "fixed_photo_cases": 364,
+      "release_effect_code": "2026-10-27 local eye-performance equivalence checks",
       "photos": 52,
-      "precision_scope": "See local validation archive; not camera FPS validation"
+      "profiles": 6,
+      "photo_profile_cases": 312,
+      "max_channel_error": 0,
+      "scope": "Fixed local images; not camera FPS validation"
     }
   },
   "windows": {
@@ -112,7 +112,7 @@
   "harmonyos": {
     "min_api": 20,
     "minimum_system": "HarmonyOS 6.0.0",
-    "sdk_version": "0.4.4",
+    "sdk_version": "0.4.5",
     "effect_c_abi": 11,
     "abis": [
       "arm64-v8a",
@@ -176,5 +176,13 @@
     "integration_guide": "docs/HARMONYOS.md",
     "device_test_this_release": false,
     "previous_device_validation_release": "0.4.3"
+  },
+  "features": {
+    "iris": true,
+    "iris_custom_rgb": true,
+    "demo_iris_color_count": 29,
+    "catchlight": true,
+    "philtrum_length": true,
+    "legacy_philtrum_width_alias": "vertical length"
   }
 }

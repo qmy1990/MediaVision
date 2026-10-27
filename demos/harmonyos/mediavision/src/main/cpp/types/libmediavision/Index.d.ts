@@ -30,6 +30,7 @@ export interface NativeConfig {
   effectsBackend: number; inferenceBackend: number; threads: number; enableFp16: number; acceleratorBudgetMs: number;
 }
 export interface NativeOptions {
+  iris?: number; catchlight?: number; philtrumLength?: number; philtrumWidth?: number; irisColor?: number; catchlightStyle?: number;
   beauty: number; whitening: number; sharpen: number; blemishRemoval: number; eyeEnlarge: number; faceSlim: number;
   smallHead: number; noseSlim: number; eyeSpacing: number; cheekboneReduce: number; lipstick: number; lipstickColor: number;
   blush: number; blushColor: number; blushMode: number; eyebrowDarkening: number; background: number; blurRadius: number;

@@ -49,6 +49,7 @@ typedef void (^MVSProcessingCompletion)(CVPixelBufferRef _Nullable output, MVSFr
                         personSegmentationQuality:(MVSPersonSegmentationQuality)quality
                                             error:(NSError **)error;
 - (BOOL)configure:(MvsOptions)options error:(NSError **)error;
+- (BOOL)configurePortraitDetails:(MvsPortraitDetails)details error:(NSError **)error;
 - (MvsBackend)backend;
 - (nullable CVPixelBufferRef)newPixelBufferByProcessing:(CVPixelBufferRef)input
                                   timestampMilliseconds:(int64_t)timestamp

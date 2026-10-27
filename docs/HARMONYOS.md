@@ -1,12 +1,12 @@
 # HarmonyOS 接入 / HarmonyOS integration
 
-最低 **HarmonyOS 6.0.0 / API 20**，SDK版本0.4.4，效果C ABI 11，包名 `com.moon.mediavision`，ArkTS模块 `@moon/mediavision`。
+最低 **HarmonyOS 6.0.0 / API 20**，SDK版本0.4.5，效果C ABI 11，包名 `com.moon.mediavision`，ArkTS模块 `@moon/mediavision`。
 
 ## 交付内容
 
 | 文件 | 用途 |
 |---|---|
-| `sdk/harmonyos/har/mediavision-sdk-0.4.4.har` | ArkTS集成，包含两种架构的原生库 |
+| `sdk/harmonyos/har/mediavision-sdk-0.4.5.har` | ArkTS集成，包含两种架构的原生库 |
 | `sdk/harmonyos/<ABI>/shared/lib/` | `libmvs_sdk.so`、`libmvs_harmony.so`、`libmediavision.so`、`libc++_shared.so` |
 | `sdk/harmonyos/<ABI>/static/lib/libmvs_sdk.a` | 静态效果核心，可由宿主提供分析数据 |
 | `include/mvs/harmonyos.h` | 模型、效果、PixelMap、YUV与原生相机C接口 |
@@ -14,7 +14,7 @@
 | `demos/harmonyos/` | ArkTS实时相机Demo源码 |
 | `demos/harmonyos-native/` | 纯C接入示例与CMake配置 |
 | `installers/harmonyos/MediaVisionDemo-api20-unsigned.hap` | 未签名Demo，需使用自己的签名安装 |
-| `packages/harmonyos/MediaVision-harmonyos-0.4.4.zip` | 完整下载包，含文件SHA-256清单 |
+| `packages/harmonyos/MediaVision-harmonyos-0.4.5.zip` | 完整下载包，含文件SHA-256清单 |
 
 ABI为 `arm64-v8a`、`x86_64`。鸿蒙使用专用OHOS库，不能复用Android的SO或AAR。
 
@@ -23,7 +23,7 @@ ABI为 `arm64-v8a`、`x86_64`。鸿蒙使用专用OHOS库，不能复用Android�
 在宿主 `oh-package.json5` 中引用HAR：
 
 ```json
-{ "dependencies": { "@moon/mediavision": "file:./libs/mediavision-sdk-0.4.4.har" } }
+{ "dependencies": { "@moon/mediavision": "file:./libs/mediavision-sdk-0.4.5.har" } }
 ```
 
 模型包放入 `entry/src/main/resources/rawfile`。在UIAbility上下文中初始化：

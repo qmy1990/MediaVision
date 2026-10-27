@@ -1,6 +1,6 @@
 # 平台与交付状态 / Platforms and delivery
 
-所有平台 SDK **0.4.4 / C ABI 11**。使用配套库与头文件；原生 ABI 保留 `mvs_*`，Android 包名为 `com.moon.mediavision`。
+所有平台 SDK **0.4.5 / C ABI 11**。使用配套库与头文件；原生 ABI 保留 `mvs_*`，Android 包名为 `com.moon.mediavision`。
 
 | 平台 | 架构 | SDK / Demo | 构建与验证 |
 |---|---|---|---|
@@ -12,7 +12,7 @@
 | Windows | x86、x64、ARM64 | MSVC `.lib`、`.dll`、CLI | 使用 clang-cl/MSVC CRT 和 Windows SDK 交叉编译；静态、动态接入示例编译通过 |
 | Linux glibc | x86、x86_64、ARMv7 hard-float、aarch64 | `.a`、`.so`、CLI | Zig/Clang，glibc 2.28 目标；静态、动态接入示例编译通过 |
 
-美白和磨皮采用相同参考公式；腮红区域随 468/478 点网格变化，统一支持两种模式与 14 种颜色。渲染后端采用 Metal / Vulkan，CPU 可回退；采样精度与输出取整可能产生少量像素差异。原生 core 的分析数据、模型推理或平台推理适配由宿主提供；Android/iOS 相机封装包含推理适配。
+美瞳、眼神光与人中上下长短调节已同步至所有平台；美瞳接受自定义 RGB，移动端 Demo 内置29色。美白和磨皮采用相同参考公式；腮红区域随 468/478 点网格变化，统一支持两种模式与 14 种颜色。渲染后端采用 Metal / Vulkan，CPU 可回退；采样精度与输出取整可能产生少量像素差异。原生 core 的分析数据、模型推理或平台推理适配由宿主提供；Android/iOS 相机封装包含推理适配。
 
 ## 运行依赖
 
@@ -26,8 +26,8 @@ Windows/Linux 交叉编译完成不等于已在所有目标设备运行。本次
 
 ## English
 
-Every 0.4.4 platform ships ABI 11 headers and newly built SDK libraries. Whitening, smoothing, landmark-aligned blush regions, colors, and the nose-tip mode are synchronized. Platform rendering, inference adapters, and precision may differ. Windows x86/x64/ARM64 libraries now use the MSVC ABI, including ARM64; rebuild consumers of the previous GNU ARM64 package. Linux targets glibc 2.28 and uses Clang/libc++ for static linking. Windows/Linux cross builds and macOS ARM64 builds have not received new native-device performance tests. The iOS IPA and Android release APK require application signing.
+Every 0.4.5 platform ships ABI 11 headers and newly built SDK libraries. Contact lenses, catchlights, vertical philtrum adjustment, whitening, smoothing and blush are synchronized. Platform rendering, inference adapters, and precision may differ. Windows x86/x64/ARM64 libraries now use the MSVC ABI, including ARM64; rebuild consumers of the previous GNU ARM64 package. Linux targets glibc 2.28 and uses Clang/libc++ for static linking. Windows/Linux cross builds and macOS ARM64 builds have not received new native-device performance tests. The iOS IPA and Android release APK require application signing.
 
-Android 0.4.4 增加四 ABI 的 `libmvs_inference.so`；`sdk/android/native-runtime` 提供配套 LiteRT/GPU/C++ 运行库，arm64 额外提供可选 QNN HTP 运行库。单独使用效果 core 时不需要这些模型运行库。iOS、macOS、Windows、Linux 沿用各自的 Core ML/Vision/ONNX Runtime 适配，未切换为 Android LiteRT 库。
+Android 0.4.5 提供四 ABI 的 `libmvs_inference.so`；`sdk/android/native-runtime` 提供配套 LiteRT/GPU/C++ 运行库，arm64 额外提供可选 QNN HTP 运行库。单独使用效果 core 时不需要这些模型运行库。iOS、macOS、Windows、Linux 沿用各自的 Core ML/Vision/ONNX Runtime 适配，未切换为 Android LiteRT 库。
 
 HarmonyOS 本次适配及验证范围见 [HARMONYOS.md](HARMONYOS.md)。Native binary and public-API compatibility builds are not signed Huawei-device runtime validation.

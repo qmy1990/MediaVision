@@ -43,6 +43,7 @@ class Engine {
   Engine(Engine&& other) noexcept
       : handle_(std::exchange(other.handle_, nullptr)) {}
   MvsHandle get() const noexcept { return handle_; }
+  void setPortraitDetails(const MvsPortraitDetails& d) { Check(mvs_set_portrait_details(handle_, &d)); }
   void setOptions(const MvsOptions& o) { Check(mvs_set_options(handle_, &o)); }
   void process(const MvsFrame& i, const MvsAnalysis& a, MvsOutput& o) {
     Check(mvs_process_with_analysis(handle_, &i, &a, &o));

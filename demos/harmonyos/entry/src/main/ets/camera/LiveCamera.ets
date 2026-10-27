@@ -317,7 +317,7 @@ export class LiveCamera {
     m.queueAgeMs/=m.processedFrames;m.captureToSubmitMs/=m.processedFrames;
     m.backgroundMode=this.options.background;m.blurRadius=this.options.blurRadius;m.debugMesh=this.options.debugFaceMesh;
     m.beautyStrength=this.options.beauty;m.whiteningStrength=this.options.whitening;m.blemishStrength=this.options.blemishRemoval;
-    m.geometryEnabled=this.options.smallHead>0 || this.options.eyeEnlarge>0 || this.options.faceSlim>0 || this.options.noseSlim>0 || this.options.eyeSpacing!==.5 || this.options.cheekboneReduce!==.5;
+    m.geometryEnabled=this.options.philtrumLength!==.5 || this.options.smallHead>0 || this.options.eyeEnlarge>0 || this.options.faceSlim>0 || this.options.noseSlim>0 || this.options.eyeSpacing!==.5 || this.options.cheekboneReduce!==.5;
     m.lipstickStrength=this.options.lipstick;m.blushStrength=this.options.blush;
     this.onMeasurement(m);hilog.info(0x1234,'MVSCamera','METRICS %{public}s',JSON.stringify(m));
     this.measurement=new LiveMeasurement();this.windowStart=now;

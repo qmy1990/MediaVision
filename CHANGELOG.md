@@ -1,5 +1,17 @@
 # 更新日志 / Changelog
 
+## 0.4.5 · 2026-10-28
+
+### 中文
+
+- 新增美瞳功能。
+- 新增人中宽窄调节功能。
+
+### English
+
+- Added colored contact lenses.
+- Added philtrum adjustment.
+
 ## 0.4.4 · 2026-10-21
 
 ### 中文

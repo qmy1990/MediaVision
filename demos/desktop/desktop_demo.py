@@ -80,6 +80,11 @@ class Options(C.Structure):
     ]
 
 
+class PortraitDetails(C.Structure):
+    _fields_ = [("struct_size", C.c_uint32), ("iris", C.c_float), ("catchlight", C.c_float),
+                ("philtrum_length", C.c_float), ("iris_color", C.c_uint32), ("catchlight_style", C.c_int)]
+
+
 class Frame(C.Structure):
     _fields_ = [
         ("data", C.c_void_p),
@@ -136,8 +141,12 @@ class SDK:
         l.mvs_default_config.restype = Config
         config = l.mvs_default_config()
         if config.abi_version != 11:
-            raise RuntimeError("This demo requires the matching MediaVision 0.4.4 ABI 11 library")
+            raise RuntimeError("This demo requires the matching MediaVision 0.4.5 ABI 11 library")
         l.mvs_default_options.restype = Options
+        l.mvs_default_portrait_details.restype = PortraitDetails
+        l.mvs_set_portrait_details.argtypes = [C.c_void_p, C.POINTER(PortraitDetails)]
+        if C.sizeof(PortraitDetails) != l.mvs_default_portrait_details().struct_size:
+            raise RuntimeError("PortraitDetails layout does not match this SDK library")
         if C.sizeof(Options) != l.mvs_default_options().struct_size:
             raise RuntimeError("Options layout does not match this SDK library")
         l.mvs_create.argtypes = [C.POINTER(Config), C.POINTER(C.c_void_p)]
@@ -168,10 +177,14 @@ class SDK:
         points = np.ascontiguousarray(points, np.float32)
         o = self.lib.mvs_default_options()
         o.mask_smoothing = 0
+        details = self.lib.mvs_default_portrait_details()
+        option_fields = {name for name, _ in Options._fields_}
+        detail_fields = {name for name, _ in PortraitDetails._fields_}
         for key, value in kwargs.items():
-            if key not in {name for name, _ in Options._fields_}:
+            if key not in option_fields | detail_fields:
                 raise ValueError(f"Unknown SDK option: {key}")
-            setattr(o, key, value)
+            setattr(details if key in detail_fields else o, key, value)
+        self.check(self.lib.mvs_set_portrait_details(self.handle, C.byref(details)))
         self.check(self.lib.mvs_set_options(self.handle, C.byref(o)))
         self.timestamp += 1
         f = Frame(rgba.ctypes.data, rgba.nbytes, w, h, w * 4, 0, self.timestamp)
@@ -476,6 +489,11 @@ def main():
         ("eye-spacing", .5),
     ]:
         p.add_argument("--" + flag, type=float, default=default)
+    p.add_argument("--iris", type=float, default=0)
+    p.add_argument("--catchlight", type=float, default=0)
+    p.add_argument("--philtrum-length", "--philtrum-width", dest="philtrum_length", type=float, default=.5)
+    p.add_argument("--iris-color", type=lambda v:int(v,0), default=0x8C623E)
+    p.add_argument("--catchlight-style", type=int, choices=[0,1,2], default=0)
     p.add_argument("--blush-mode", choices=["cheeks", "cheeks-nose"], default="cheeks")
     p.add_argument("--blush-color", type=lambda value: int(value.removeprefix("#"), 16), default=0xEB5263, help="RGB hex, e.g. F4A18F")
     p.add_argument("--skin-tone", type=int, choices=range(4), default=0)
@@ -493,6 +511,8 @@ def main():
         background={"original": 0, "blur": 1, "replace": 2, "mask": 3}[
             a.background
         ],
+        iris=a.iris, catchlight=a.catchlight, philtrum_length=a.philtrum_length,
+        iris_color=a.iris_color, catchlight_style=a.catchlight_style,
         beauty=a.beauty,
         blemish_removal=a.blemish,
         small_head=a.small_head,
@@ -524,6 +544,7 @@ def main():
                 ("small_head", a.small_head),
                 ("whitening", a.whitening),
                 ("blush", a.blush),
+                ("iris", a.iris), ("catchlight", a.catchlight), ("philtrum_length", a.philtrum_length),
             ]:
                 cv2.createTrackbar(
                     name,
@@ -575,7 +596,7 @@ def main():
             alpha, mt = mat.run(rgb, timestamp)
             points, ft = face.run(rgb, timestamp)
             if camera:
-                for key in ["beauty", "small_head", "whitening", "blush"]:
+                for key in ["beauty", "small_head", "whitening", "blush", "iris", "catchlight", "philtrum_length"]:
                     opts[key] = (
                         cv2.getTrackbarPos(key, "MediaVision Desktop") / 100
                     )

@@ -99,6 +99,8 @@ MVS_API void mvs_harmony_model_destroy(MvsHarmonyModelHandle model);
 /* Package IDs: 201 portrait .ms, 202 detector .ms, 203 Face478 .ms. */
 MVS_API MvsStatus mvs_harmony_create(const MvsHarmonyConfig* config,
   const void* encrypted_models, size_t model_bytes, MvsHarmonyHandle* out);
+MVS_API MvsStatus mvs_harmony_configure_details(MvsHarmonyHandle processor,
+    const MvsPortraitDetails* details);
 MVS_API MvsStatus mvs_harmony_configure(MvsHarmonyHandle processor, const MvsOptions* options);
 MVS_API MvsStatus mvs_harmony_set_background_rgba(MvsHarmonyHandle processor,
   const void* rgba, size_t bytes, uint32_t width, uint32_t height, uint32_t stride_bytes);
