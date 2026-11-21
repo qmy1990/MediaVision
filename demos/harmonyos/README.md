@@ -1,7 +1,7 @@
-# MediaVision HarmonyOS Demo
+# HarmonyOS Demo
 
-最低 **HarmonyOS 6.0.0 / API20**。Demo使用相机实时预览，支持前后摄像头、480p/720p/1080p、效果强度、关键点、网格及腮红颜色/鼻尖模式。模型使用NNRT/NPU，效果使用Vulkan。
+最低API20（HarmonyOS 6.0.0），使用实时相机、MindSpore Lite/NNRT推理和Vulkan效果渲染。
 
-使用最新官方DevEco Studio打开本目录，通过仓库根目录的 `tools/build_harmonyos_demo.py` 将SDK二进制与模型复制到构建目录；该工具仅构建上层Demo。然后在DevEco Studio打开生成的工程，为自己的设备配置签名并运行。依赖目录、HAR引用、相机生命周期和C接口见 [接入指南](../../docs/HARMONYOS.md)。预编译 [HAP](../../installers/harmonyos/MediaVisionDemo-api20-unsigned.hap) 未签名，不能直接免签安装。
+“瞳孔大小”滑杆为0–100，50原状，整体调整虹膜与中心瞳孔，保持眼睑轮廓。ArkTS设置 `options.pupilSize = 0.75` 后调用 `await sdk.configure(options)`；C/C++使用 `mvs_harmony_configure_eye_geometry()`。两端最大半径变化统一限制为±16.8%，与Android/iOS保持一致。
 
-Minimum **HarmonyOS 6.0.0 / API20**. The live-camera demo supports front/rear cameras, resolutions, effect strengths, landmarks/mesh, and blush presets. Run `tools/build_harmonyos_demo.py` from the repository root to stage binary SDK/model dependencies and build the app. Open the generated project in official DevEco Studio, configure your own device signature, and run. The distributed HAP is unsigned. See the integration guide for details.
+复用现有Face478模型、虹膜拟合和Vulkan眼部区域渲染，可叠加美瞳和眼神光，不增加模型或全帧遮罩。HAR、原生头文件与接口用法见[瞳孔大小接入](../../docs/PUPIL_SIZE.md)。HAP真机安装需要自己的调试签名。

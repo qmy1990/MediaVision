@@ -1,6 +1,6 @@
 # Android Demo
 
-Android 相机 Demo 使用 JitPack 依赖 `com.github.qmy1990:MediaVision:0.4.5`。用 Android Studio 打开此目录，或在 JDK 17、Android SDK 35 环境下执行：
+Android 相机 Demo 使用 JitPack 依赖 `com.github.qmy1990:MediaVision:0.4.6`。用 Android Studio 打开此目录，或在 JDK 17、Android SDK 35 环境下执行：
 
 ```bash
 ./gradlew :app:assembleDebug
@@ -14,4 +14,10 @@ SDK 支持 API 26+，其中 API 29+ 相机路径使用 Camera2 → AHardwareBuff
 
 远程 Maven 引用和更新方法见 [Maven 文档](../../docs/MAVEN.md)，发布验证范围见 [分发验证](../../docs/VALIDATION.md)。本公开工程不包含 SDK 内部测试或核心编译任务。
 
-This demo consumes `com.github.qmy1990:MediaVision:0.4.5` from JitPack. Open it in Android Studio or run `./gradlew :app:assembleDebug` with JDK 17 and Android SDK 35. It contains application integration code only. Release APKs require your own signing. See the linked Maven guide for remote consumption and upgrades.
+This demo consumes `com.github.qmy1990:MediaVision:0.4.6` from JitPack. Open it in Android Studio or run `./gradlew :app:assembleDebug` with JDK 17 and Android SDK 35. It contains application integration code only. Release APKs require your own signing. See the linked Maven guide for remote consumption and upgrades.
+
+## 瞳孔大小 / Iris and pupil size
+
+SDK 0.4.6新增瞳孔大小：整体调整虹膜和中心瞳孔，保持眼睛轮廓。Demo 0–100，50原状；API 0–1，0.5原状，可与美瞳、眼神光组合。SDK内部最大半径变化为±16.8%。[接口与示例](../../docs/PUPIL_SIZE.md)。
+
+SDK0.4.6 adds iris and pupil size adjustment with neutral0.5, independent of contact-lens color and catchlights.

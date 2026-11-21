@@ -1,5 +1,15 @@
 # 更新日志 / Changelog
 
+## 0.4.6 · 2026-11-21
+
+### 中文
+
+- 新增瞳孔大小调节功能。
+
+### English
+
+- Added iris and pupil size adjustment.
+
 ## 0.4.5 · 2026-10-28
 
 ### 中文

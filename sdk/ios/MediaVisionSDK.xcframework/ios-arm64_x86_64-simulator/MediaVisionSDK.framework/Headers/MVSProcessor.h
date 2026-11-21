@@ -50,6 +50,8 @@ typedef void (^MVSProcessingCompletion)(CVPixelBufferRef _Nullable output, MVSFr
                                             error:(NSError **)error;
 - (BOOL)configure:(MvsOptions)options error:(NSError **)error;
 - (BOOL)configurePortraitDetails:(MvsPortraitDetails)details error:(NSError **)error;
+/** Pupil/iris scale, .5 neutral. Requires the current Face478 analysis. */
+- (BOOL)configureEyeGeometry:(MvsEyeGeometry)geometry error:(NSError **)error;
 - (MvsBackend)backend;
 - (nullable CVPixelBufferRef)newPixelBufferByProcessing:(CVPixelBufferRef)input
                                   timestampMilliseconds:(int64_t)timestamp

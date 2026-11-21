@@ -1,11 +1,11 @@
-# 接口说明 / API guide · 0.4.5
+# 接口说明 / API guide · 0.4.6
 
 Android/iOS 相机 SDK 提供模型推理与 GPU 效果处理；Android 新增独立原生推理适配器；其他平台 core 由宿主提供对应帧分析数据。初始化、输入格式及资源生命周期见 [集成指南](INTEGRATION.md)。
 
 ## Android
 
 ```groovy
-implementation 'com.github.qmy1990:MediaVision:0.4.5'
+implementation 'com.github.qmy1990:MediaVision:0.4.6'
 ```
 
 ```java
@@ -62,7 +62,7 @@ NSError *error = nil;
 BOOL success = [processor configure:options error:&error];
 ```
 
-两种模式：`MVS_BLUSH_CHEEKS` / `VisionOptions.BLUSH_CHEEKS` 为脸颊；`MVS_BLUSH_CHEEKS_AND_NOSE` / `VisionOptions.BLUSH_CHEEKS_AND_NOSE` 为脸颊＋鼻尖。默认脸颊模式、苹果红颜色、强度0。模式、颜色和强度独立，换色不修改腮红范围与渐淡。0.4.5 所有平台均支持网格腮红渐变、鼻尖模式及 RGB 妆色；换色不改变空间范围。各平台使用相同的参考美白、磨皮公式；CPU、Metal、Vulkan 的采样和数值精度可能产生少量像素差异。
+两种模式：`MVS_BLUSH_CHEEKS` / `VisionOptions.BLUSH_CHEEKS` 为脸颊；`MVS_BLUSH_CHEEKS_AND_NOSE` / `VisionOptions.BLUSH_CHEEKS_AND_NOSE` 为脸颊＋鼻尖。默认脸颊模式、苹果红颜色、强度0。模式、颜色和强度独立，换色不修改腮红范围与渐淡。0.4.6 所有平台均支持网格腮红渐变、鼻尖模式及 RGB 妆色；换色不改变空间范围。各平台使用相同的参考美白、磨皮公式；CPU、Metal、Vulkan 的采样和数值精度可能产生少量像素差异。
 
 ## 腮红颜色 / Blush shades
 
@@ -134,13 +134,36 @@ await sdk.configure(options);
 
 原生接口使用独立的 `MvsPortraitDetails` 扩展，保留 ABI 11 的 `MvsOptions` 布局。始终使用 `mvs_default_portrait_details()` 初始化，保留 `struct_size`。美瞳/眼神光需 478 点及可信虹膜；人中调节支持 468/478 点。使用宿主分析时，关键点与输入图像须方向、镜像和时间戳一致。`mvs_portrait_details_analysis_requirements()` 返回扩展效果所需的分析需求，可与 `mvs_options_analysis_requirements()` 的结果按位合并。
 
-Portrait details use a separate extension without changing the ABI 11 options layout. Use the matching 0.4.5 headers and libraries. Iris effects require Face478 iris landmarks; philtrum adjustment also supports Face468. The legacy width spelling controls vertical length. Strengths, color, and style are independent.
+Portrait details use a separate extension without changing the ABI 11 options layout. Use the matching 0.4.6 headers and libraries. Iris effects require Face478 iris landmarks; philtrum adjustment also supports Face468. The legacy width spelling controls vertical length. Strengths, color, and style are independent.
+
+## 瞳孔大小 / Iris and pupil size
+
+新增独立 `MvsEyeGeometry` 扩展，调整虹膜与中心瞳孔整体大小，保持眼睑与眼睛轮廓。与大眼、美瞳、眼神光独立，可组合使用。
+
+| 平台 | 接口 | 取值 |
+|---|---|---|
+| Android | `VisionOptions.Builder.pupilSize(float)` | 0缩小、0.5原状、1放大 |
+| iOS | `configureEyeGeometry:error:` | `MvsEyeGeometry.pupil_size` |
+| HarmonyOS | `VisionOptions.pupilSize` / `mvs_harmony_configure_eye_geometry()` | 同上 |
+| Windows/macOS/Linux、原生移动端 | `mvs_set_eye_geometry()` / `mvs::Engine::setEyeGeometry()` | 同上 |
+
+Demo滑杆保持0–100、50原状。SDK内部最大半径变化为±16.8%，遮挡与低置信度时采用更保守幅度；需可信Face478虹膜数据。`MvsOptions`104字节、`MvsPortraitDetails`24字节及ABI11保持不变，新扩展8字节。
+
+```cpp
+MvsEyeGeometry eyes = mvs_default_eye_geometry();
+eyes.pupil_size = 0.75f;
+MvsStatus status = mvs_set_eye_geometry(engine, &eyes);
+```
+
+使用宿主分析时将 `mvs_eye_geometry_analysis_requirements(&eyes)` 与其他分析需求合并，并提供同帧、同方向、同镜像的关键点。完整Java、Objective-C、ArkTS、C/C++及桌面用法见[瞳孔大小说明](PUPIL_SIZE.md)。
+
+SDK 0.4.6 scales the entire iris and pupil, preserving eyelids. The API range is0–1 with0.5 neutral; demos use0–100 with50 neutral. CPU, Metal and Vulkan share a bounded ±16.8% radius change without changing ABI11 or the existing options structures. Initialize the separate extension with `mvs_default_eye_geometry()`.
 
 ## 兼容与检查 / Compatibility
 
-所有平台 0.4.5 使用 C ABI 11。始终使用 `mvs_default_config()`、`mvs_default_options()` 初始化并保留 `struct_size`；头文件和库必须配套，旧 C/C++ 调用方需重新编译。平台架构与链接方式见 [PLATFORMS.md](PLATFORMS.md)。调用失败时检查 `MvsStatus`；Android 封装和 iOS `NSError` 提供配置或处理错误。
+所有平台 0.4.6 使用 C ABI 11。始终使用 `mvs_default_config()`、`mvs_default_options()` 初始化并保留 `struct_size`；头文件和库必须配套，旧 C/C++ 调用方需重新编译。平台架构与链接方式见 [PLATFORMS.md](PLATFORMS.md)。调用失败时检查 `MvsStatus`；Android 封装和 iOS `NSError` 提供配置或处理错误。
 
-Android/iOS camera wrappers include inference and GPU processing. Android native callers may use the standalone inference adapter; other core callers supply synchronized analysis. Strengths are normally 0–1, with 0.5 neutral for eye spacing and cheekbones. Blush intensity, mode, and 24-bit RGB are independent. All 0.4.5 libraries require matching ABI 11 headers. Every platform supports the landmark-aligned blush regions, nose-tip mode, and RGB shades, with shared reference whitening and smoothing equations. Sampling and numerical precision may cause small pixel differences between backends.
+Android/iOS camera wrappers include inference and GPU processing. Android native callers may use the standalone inference adapter; other core callers supply synchronized analysis. Strengths are normally 0–1, with 0.5 neutral for eye spacing and cheekbones. Blush intensity, mode, and 24-bit RGB are independent. All 0.4.6 libraries require matching ABI 11 headers. Every platform supports the landmark-aligned blush regions, nose-tip mode, and RGB shades, with shared reference whitening and smoothing equations. Sampling and numerical precision may cause small pixel differences between backends.
 
 ## 桌面 Python Demo / Desktop Python demo
 
@@ -169,7 +192,7 @@ Android 提供 `mvs/litert.h` 和 `libmvs_inference.so`。模型、Tensor、Dele
 | `mvs_inference_create_with_options` | SDK 模型包及推理配置 | 分割和人脸分析适配器 |
 | `mvs_inference_analyze` | 帧、需求位 | `MvsAnalysis`，可接 `mvs_set_analyzer` |
 
-Android 0.4.5 runs model ownership, tensors, delegates, segmentation preprocessing/postprocessing, and face ROI tracking in native C++. Java supplies lifecycle and input/output orchestration. The standalone library supports the same public C API without JNI or a JVM. These inference symbols are Android-specific; iOS and desktop retain their existing inference adapters.
+Android 0.4.6 runs model ownership, tensors, delegates, segmentation preprocessing/postprocessing, and face ROI tracking in native C++. Java supplies lifecycle and input/output orchestration. The standalone library supports the same public C API without JNI or a JVM. These inference symbols are Android-specific; iOS and desktop retain their existing inference adapters.
 
 ## HarmonyOS / API20+
 

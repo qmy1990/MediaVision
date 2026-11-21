@@ -189,6 +189,18 @@ MVS_API MvsStatus mvs_set_portrait_details(MvsHandle engine,
                                            const MvsPortraitDetails* details);
 MVS_API uint32_t mvs_portrait_details_analysis_requirements(
     const MvsPortraitDetails* details);
+/* Independent extension; does not change MvsOptions or MvsPortraitDetails.
+ * Scales the iris and pupil together inside the visible eye, preserving lids.
+ * Requires trusted Face478 iris landmarks. 0 smaller, .5 identity, 1 larger. */
+typedef struct MvsEyeGeometry {
+  uint32_t struct_size;
+  float pupil_size; /* [0,1], default .5; independent of eye_enlarge / iris tint */
+} MvsEyeGeometry;
+MVS_API MvsEyeGeometry mvs_default_eye_geometry(void);
+MVS_API MvsStatus mvs_set_eye_geometry(MvsHandle engine,
+                                      const MvsEyeGeometry* geometry);
+MVS_API uint32_t mvs_eye_geometry_analysis_requirements(
+    const MvsEyeGeometry* geometry);
 /* Optional inference provider: callback populates borrowed views, valid until
  * process returns. The host owns model loading. Mobile SDK wrappers implement
  * this using the built-in inference adapter. Calls on one engine must not

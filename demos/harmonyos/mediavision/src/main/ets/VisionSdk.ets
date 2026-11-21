@@ -15,6 +15,7 @@ export class VisionConfig implements NativeConfig {
   acceleratorBudgetMs: number = 18;
 }
 export class VisionOptions implements NativeOptions {
+  pupilSize: number = .5;
   iris: number = 0; catchlight: number = 0; philtrumLength: number = .5;
   get philtrumWidth(): number { return this.philtrumLength; }
   set philtrumWidth(value: number) { this.philtrumLength = value; }

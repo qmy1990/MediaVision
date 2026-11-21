@@ -11,18 +11,19 @@
 #include <vector>
 
 namespace {
-constexpr NSInteger kEffectCount = 22;
+constexpr NSInteger kEffectCount = 23;
 const char *kNames[] = {"磨皮", "祛痘", "肤色", "增强", "大眼", "小头", "瘦脸", "鼻翼",    "眼距",
-                        "颧骨", "口红", "腮红", "眉毛", "道具", "头饰", "首饰", "背景虚化", "Mask", "换背景", "美瞳", "眼神光", "人中长短"};
+                        "颧骨", "口红", "腮红", "眉毛", "道具", "头饰", "首饰", "背景虚化", "Mask", "换背景", "美瞳", "眼神光", "人中长短", "瞳孔大小"};
 // 83 preserves the previous radius 24. Maximum is round(24 * 1.2) = 29.
 constexpr float kDefaultBlurStrength = 83;
 const float kDefaults[] = {
-    55, 35, 25, 45, 25, 35, 28, 18, 65, 50, 30, 20, 25, 100, 100, 100, kDefaultBlurStrength, 100, 100, 60, 55, 25};
+    55, 35, 25, 45, 25, 35, 28, 18, 65, 50, 30, 20, 25, 100, 100, 100, kDefaultBlurStrength, 100, 100, 60, 55, 25, 75};
 uint32_t BlurRadius(float strength) {
   return std::max(1u, uint32_t(lroundf(24.f * 1.2f * std::clamp(strength, 0.f, 100.f) / 100.f)));
 }
-float Neutral(NSInteger index) { return index == 8 || index == 9 || index == 21 ? 50 : 0; }
-float Value(const MvsOptions &o, const MvsPortraitDetails &d, NSInteger index, float blurStrength) {
+float Neutral(NSInteger index) { return index == 8 || index == 9 || index == 21 || index == 22 ? 50 : 0; }
+float Value(const MvsOptions &o, const MvsPortraitDetails &d, const MvsEyeGeometry &g, NSInteger index, float blurStrength) {
+  if(index==22)return g.pupil_size*100;
   if(index>=19)return (index==19?d.iris:index==20?d.catchlight:d.philtrum_length)*100;
   if (index == 16) return o.background == MVS_BACKGROUND_BLUR ? blurStrength : 0;
   if (index == 17) return o.background == MVS_BACKGROUND_MASK ? 100 : 0;
@@ -154,6 +155,7 @@ UIColor *PanelColor(CGFloat alpha) {
   CFTimeInterval _portraitMotionStart;
   CVPixelBufferRef _portraitBuffer;
   MvsPortraitDetails _details;
+  MvsEyeGeometry _eyeGeometry;
   MvsOptions _options;  // Read and written under @synchronized(self).
   BOOL _front;
   BOOL _displayMirror;
@@ -226,6 +228,7 @@ UIColor *PanelColor(CGFloat alpha) {
   _captureSeenGeneration = UINT64_MAX;
   _options = mvs_default_options();
   _details = mvs_default_portrait_details();
+  _eyeGeometry = mvs_default_eye_geometry();
   // Same startup strengths and neutral values as the Android demo.
   _options.beauty = .55f;
   _options.blemish_removal = .35f;
@@ -498,7 +501,7 @@ UIColor *PanelColor(CGFloat alpha) {
     options = _options;
   }
   for (NSInteger i = 0; i < kEffectCount; ++i) {
-    int value = (int)lroundf(Value(options, _details, i, _blurStrength));
+    int value = (int)lroundf(Value(options, _details, _eyeGeometry, i, _blurStrength));
     NSString *name = [NSString stringWithUTF8String:kNames[i]];
     if (i == 11) name = [name stringByAppendingFormat:@"-%@", BlushNames()[BlushColorIndex(options.blush_color)]];
     BOOL boolean = (i >= 13 && i <= 15) || (i >= 17 && i <= 18);
@@ -512,7 +515,7 @@ UIColor *PanelColor(CGFloat alpha) {
                                                                                alpha:.95]
                                                              : PanelColor(.65);
   }
-  float value = Value(options, _details, _selectedEffect, _blurStrength);
+  float value = Value(options, _details, _eyeGeometry, _selectedEffect, _blurStrength);
   if (fabsf(value - Neutral(_selectedEffect)) >= .5) {
     _remembered[_selectedEffect] = value;
   }
@@ -561,7 +564,8 @@ UIColor *PanelColor(CGFloat alpha) {
     float v=std::clamp(value/100,0.f,1.f);
     if(_selectedEffect==19)_details.iris=v;
     else if(_selectedEffect==20)_details.catchlight=v;
-    else _details.philtrum_length=v;
+    else if(_selectedEffect==21)_details.philtrum_length=v;
+    else _eyeGeometry.pupil_size=v;
   } else if (_selectedEffect == 16) {
     _blurStrength = std::clamp(value, 0.f, 100.f);
     _options.blur_radius = BlurRadius(_blurStrength);
@@ -1064,13 +1068,15 @@ UIColor *PanelColor(CGFloat alpha) {
     NSError *error = nil;
     MvsOptions options;
     MvsPortraitDetails details;
+    MvsEyeGeometry eyeGeometry;
     @synchronized(self) {
       options = _options; details=_allBeautyEnabled?_details:mvs_default_portrait_details();
+      eyeGeometry=_allBeautyEnabled?_eyeGeometry:mvs_default_eye_geometry();
       if (!_allBeautyEnabled) {
         for (NSInteger i = 0; i < 13; ++i) SetValue(options, i, Neutral(i));
       }
     }
-    if(![_processor configurePortraitDetails:details error:&error]){[self showError:error];_pending=false;return;}
+    if(![_processor configurePortraitDetails:details error:&error] || ![_processor configureEyeGeometry:eyeGeometry error:&error]){[self showError:error];_pending=false;return;}
     CFTimeInterval started = CACurrentMediaTime();
     int64_t timestamp =
         (int64_t)(CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sample)) * 1000);

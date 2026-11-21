@@ -70,7 +70,7 @@ struct Index {
   private restartWanted: boolean = false;
   private previewController: XComponentController = new XComponentController();
   private surfaceReady: boolean = false;
-  private effects: string[] = ['背景虚化','磨皮','祛痘','美白','锐化','大眼','瘦脸','小头','鼻翼','眼间距','颧骨','口红','腮红','眉毛','美瞳','眼神光','人中长短','换背景','Mask'];
+  private effects: string[] = ['背景虚化','磨皮','祛痘','美白','锐化','大眼','瘦脸','小头','鼻翼','眼间距','颧骨','口红','腮红','眉毛','瞳孔大小','美瞳','眼神光','人中长短','换背景','Mask'];
   private context(): common.UIAbilityContext {return this.getUIContext().getHostContext() as common.UIAbilityContext;}
   aboutToAppear(): void {
     this.options.beauty=.55;this.options.whitening=.25;this.options.blemishRemoval=.35;
@@ -151,6 +151,7 @@ struct Index {
       case '眼间距':return this.options.eyeSpacing*100;case '颧骨':return this.options.cheekboneReduce*100;
       case '口红':return this.options.lipstick*100;case '腮红':return this.options.blush*100;
       case '美瞳':return this.options.iris*100;case '眼神光':return this.options.catchlight*100;
+      case '瞳孔大小':return this.options.pupilSize*100;
       case '人中长短':return this.options.philtrumLength*100;
       case '眉毛':return this.options.eyebrowDarkening*100;
       case '换背景':return this.options.background===BackgroundMode.REPLACE?100:0;
@@ -168,6 +169,7 @@ struct Index {
       case '眼间距':this.options.eyeSpacing=v;break;case '颧骨':this.options.cheekboneReduce=v;break;
       case '口红':this.options.lipstick=v;break;case '腮红':this.options.blush=v;break;
       case '美瞳':this.options.iris=v;break;case '眼神光':this.options.catchlight=v;break;
+      case '瞳孔大小':this.options.pupilSize=v;break;
       case '人中长短':this.options.philtrumLength=v;break;
       case '眉毛':this.options.eyebrowDarkening=v;break;
       case '换背景':this.options.background=v>.5 && this.hasBackground?BackgroundMode.REPLACE:BackgroundMode.ORIGINAL;break;

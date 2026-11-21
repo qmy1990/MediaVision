@@ -1,14 +1,18 @@
 #include <fstream>
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "mvs/mvs.hpp"
 // Portable RGB PPM demo. For inference, install an MvsAnalyzeFn provider or use
 // platform wrappers; this CLI tests actual sharpening with no required model.
 int main(int argc, char** argv) {
-  if (argc != 3) {
-    std::cout << "Usage: mvs_demo_cli input.ppm output.ppm (binary P6)\n";
-    return 0;
+  if (argc != 3 && argc != 5) {
+    std::cout << "Usage: mvs_demo_cli input.ppm output.ppm "
+                 "[pupil_size landmarks.txt]\n"
+                 "Binary P6; pupil_size: 0 smaller, 0.5 neutral, 1 larger.\n"
+                 "landmarks.txt: 478 normalized x y z rows, matched to input.\n";
+    return argc == 1 ? 0 : 1;
   }
   try {
     std::ifstream input(argv[1], std::ios::binary);
@@ -31,12 +35,40 @@ int main(int argc, char** argv) {
       rgba[k * 4 + 3] = 255;
     }
     mvs::Engine engine;
+    std::vector<MvsLandmark> landmarks;
+    MvsAnalysis analysis{};
+    if (argc == 5) {
+      size_t end = 0;
+      auto geometry = mvs_default_eye_geometry();
+      geometry.pupil_size = std::stof(argv[3], &end);
+      if (argv[3][end] != '\0') {
+        throw std::runtime_error("Invalid pupil_size");
+      }
+      engine.setEyeGeometry(geometry);
+      std::ifstream points(argv[4]);
+      landmarks.resize(478);
+      for (auto& point : landmarks) {
+        if (!(points >> point.x >> point.y >> point.z)) {
+          throw std::runtime_error("Expected 478 normalized x y z landmark rows");
+        }
+      }
+      std::string extra;
+      if (points >> extra) {
+        throw std::runtime_error("Unexpected data after 478 landmarks");
+      }
+      analysis.landmarks = landmarks.data();
+      analysis.landmark_count = static_cast<uint32_t>(landmarks.size());
+    }
     auto options = mvs_default_options();
     options.sharpen = .3f;
     engine.setOptions(options);
     MvsFrame frame{rgba.data(), rgba.size(), w, h, w * 4, MVS_RGBA8, 0};
     MvsOutput dest{output.data(), output.size(), w * 4, MVS_RGBA8};
-    mvs::Check(mvs_process(engine.get(), &frame, &dest));
+    if (argc == 5) {
+      engine.process(frame, analysis, dest);
+    } else {
+      mvs::Check(mvs_process(engine.get(), &frame, &dest));
+    }
     std::ofstream file(argv[2], std::ios::binary);
     file << "P6\n" << w << " " << h << "\n255\n";
     for (size_t k = 0; k < static_cast<size_t>(w) * h; ++k) {

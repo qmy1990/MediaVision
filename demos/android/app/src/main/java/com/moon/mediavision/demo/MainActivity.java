@@ -281,6 +281,9 @@ public final class MainActivity extends ComponentActivity {
       if (intent.hasExtra("blush_color")) {
         b.blushColor(intent.getIntExtra("blush_color", VisionOptions.BLUSH_APPLE_RED));
       }
+      if (intent.hasExtra("pupil_size")) {
+        b.pupilSize(clampUnit(intent.getFloatExtra("pupil_size", .5f)));
+      }
       if (intent.hasExtra("iris")) {
         b.iris(clampUnit(intent.getFloatExtra("iris", 0f)));
       }
@@ -751,6 +754,7 @@ public final class MainActivity extends ComponentActivity {
             25,
             () -> pct(options.eyebrowDarkening),
             v -> options = options.toBuilder().eyebrowDarkening(v / 100f).build()));
+    effects.add(strength("瞳孔大小",50,75,()->pct(options.pupilSize),v->options=options.toBuilder().pupilSize(v/100f).build()));
     effects.add(strength("美瞳",0,60,()->pct(options.iris),v->options=options.toBuilder().iris(v/100f).build()));
     effects.add(strength("眼神光",0,55,()->pct(options.catchlight),v->options=options.toBuilder().catchlight(v/100f).build()));
     effects.add(strength("人中长短",50,25,()->pct(options.philtrumLength),v->options=options.toBuilder().philtrumLength(v/100f).build()));
@@ -922,7 +926,7 @@ public final class MainActivity extends ComponentActivity {
     if (allBeautyEnabled) {
       return value;
     }
-    return value.toBuilder().iris(0).catchlight(0).philtrumLength(.5f)
+    return value.toBuilder().pupilSize(.5f).iris(0).catchlight(0).philtrumLength(.5f)
         .beauty(0)
         .whitening(0)
         .sharpen(0)
@@ -1517,6 +1521,7 @@ public final class MainActivity extends ComponentActivity {
                   + current.noseSlim
                   + " iris="
                   + current.iris
+                  + " pupil_size=" + current.pupilSize
                   + " iris_color="
                   + current.irisColor
                   + " catchlight="
