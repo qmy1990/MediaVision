@@ -10,7 +10,7 @@
 
 ## JitPack
 
-坐标：`com.github.qmy1990:MediaVision:0.4.6`。发布后核对远程POM、AAR与公开Android Demo的依赖解析。
+坐标：`com.github.qmy1990:MediaVision:0.4.6`。远程 POM、AAR 和公开 Demo 构建均已验证。
 
 ## English
 
@@ -27,3 +27,9 @@ SDK0.4.6 adds iris and pupil size adjustment across all six platforms, reusing t
 | 接口与效果 | C ABI11及原有结构保持不变；16项原生回归通过；发布库与已验收缩放算法18组图片对照像素完全一致 |
 
 All platform SDKs and binary-only demo consumers build successfully. Release version is0.4.6, app build10, effect ABI11. The new library preserves the accepted ±16.8% maximum radius change, with exact pixel parity in18 representative photo/profile comparisons. No new phone runtime test is claimed.
+
+## 远程发布校验 / Remote verification
+
+JitPack `0.4.6` 构建成功，提交 `d4d321ded80e7c251bfa236cc6fcc016ad03b9f6`。POM包含5项LiteRT/GPU/QNN运行依赖。公开Android Demo使用默认JitPack仓库及 `--refresh-dependencies` 完成Debug/Release构建。远程AAR、Gradle解析的AAR和GitHub当前AAR逐字节一致，SHA-256：`ca01527f42afc553ed45bef8b53238090286033a6cd755469662da94387e47de`。
+
+JitPack build succeeded. The public demo resolves version0.4.6 from JitPack and builds Debug/Release. The remote and Gradle-resolved AARs match the release checksum above; the POM declares five runtime dependencies.

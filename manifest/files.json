@@ -719,8 +719,8 @@
     },
     {
       "path": "docs/MAVEN.md",
-      "size": 4445,
-      "sha256": "7baa322039a6bd3c74ae4b01f1f7b92865d1feb83162d288ac63e2b2dcd77f83",
+      "size": 4536,
+      "sha256": "7cbaaef50c932bb3251380a765480abfe1750820a3d9596c317b91c691ea2ee0",
       "lfs": false
     },
     {
@@ -749,8 +749,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "size": 2479,
-      "sha256": "784ef6d82bd93fcb8bc51163c6324d5020315f54fb892ef61c0c2ca4d6c7fe55",
+      "size": 3097,
+      "sha256": "b52186666e5ab749d63b600e03bf56a20000a928bb01040375c75f04c2e2e42b",
       "lfs": false
     },
     {
@@ -1037,8 +1037,8 @@
     },
     {
       "path": "manifest/platforms.json",
-      "size": 5607,
-      "sha256": "83a28e93938d3b59174dc8a7c3a79aa5c47b92153baa95fb198ca4de64fc1716",
+      "size": 5879,
+      "sha256": "c7a922f0d9e6fc53842167f6f4cd27ff62d603b12b41b30b28f7f3a4e8cc4985",
       "lfs": false
     },
     {
